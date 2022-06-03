@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_100_days/secret/secret.dart';
 import 'package:oauth1/oauth1.dart' as oauth1;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,9 +34,7 @@ class _MyWidgetState extends State<MyWidget> {
     oauth1.SignatureMethods.hmacSha1,
   );
   final clientCredentials = oauth1.ClientCredentials(
-    'API Key をここに設定',
-    'API Key Secret をここに設定',
-  );
+      TwitterAPISecret.apiKey, TwitterAPISecret.apiKeySecret);
   late final auth = oauth1.Authorization(clientCredentials, platform);
   oauth1.Credentials? tokenCredentials;
 
@@ -43,10 +42,8 @@ class _MyWidgetState extends State<MyWidget> {
   void initState() {
     super.initState();
 
-    // CallbackURLを"oob"とすることでPINでの認証とできる
     auth.requestTemporaryCredentials('oob').then((res) {
       tokenCredentials = res.credentials;
-      // launch() で ログイン用URLを開く
       launch(auth.getResourceOwnerAuthorizationURI(tokenCredentials!.token));
     });
   }
