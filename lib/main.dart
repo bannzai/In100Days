@@ -51,27 +51,6 @@ class _MyWidgetState extends State<MyWidget> {
             ),
             ElevatedButton(
               onPressed: () async {
-                final twitterLogin = TwitterLogin(
-                  apiKey: TwitterAPISecret.apiKey,
-                  apiSecretKey: TwitterAPISecret.apiKeySecret,
-                  redirectURI: 'in100days://',
-                );
-                final authResult = await twitterLogin.login();
-
-                // 取得した Access Token を使ってAPIにリクエストできる
-                final client = oauth1.Client(
-                  platform.signatureMethod,
-                  clientCredentials,
-                  oauth1.Credentials(
-                    authResult.authToken!,
-                    authResult.authTokenSecret!,
-                  ),
-                );
-                final apiResponse = await client.get(
-                  Uri.parse(
-                      'https://api.twitter.com/1.1/statuses/home_timeline.json?count=1'),
-                );
-                print(apiResponse.body);
               },
               child: Text('OK'),
             ),
