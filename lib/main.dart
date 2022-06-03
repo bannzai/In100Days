@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/secret/secret.dart';
 import 'package:oauth1/oauth1.dart' as oauth1;
-import 'package:url_launcher/url_launcher.dart';
+import 'package:twitter_login/twitter_login.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,16 +39,6 @@ class _MyWidgetState extends State<MyWidget> {
   oauth1.Credentials? tokenCredentials;
 
   @override
-  void initState() {
-    super.initState();
-
-    auth.requestTemporaryCredentials('oob').then((res) {
-      tokenCredentials = res.credentials;
-      launch(auth.getResourceOwnerAuthorizationURI(tokenCredentials!.token));
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -61,21 +51,21 @@ class _MyWidgetState extends State<MyWidget> {
             ),
             ElevatedButton(
               onPressed: () async {
-                // 入力されたPINを元に Access Token を取得
-                final pin = controller.text;
-                final verifier = pin;
-                final res = await auth.requestTokenCredentials(
-                  tokenCredentials!,
-                  verifier,
+                final twitterLogin = TwitterLogin(
+                  apiKey: TwitterAPISecret.apiKey,
+                  apiSecretKey: TwitterAPISecret.apiKeySecret,
+                  redirectURI: 'in100days://',
                 );
-                print('Access Token: ${res.credentials.token}');
-                print('Access Token Secret: ${res.credentials.tokenSecret}');
+                final authResult = await twitterLogin.login();
 
                 // 取得した Access Token を使ってAPIにリクエストできる
                 final client = oauth1.Client(
                   platform.signatureMethod,
                   clientCredentials,
-                  res.credentials,
+                  oauth1.Credentials(
+                    authResult.authToken!,
+                    authResult.authTokenSecret!,
+                  ),
                 );
                 final apiResponse = await client.get(
                   Uri.parse(
