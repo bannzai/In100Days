@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   oauth1: ^2.0.0
   url_launcher: ^6.1.2
+  twitter_login: ^4.2.3
 
 dev_dependencies:
   flutter_test:
