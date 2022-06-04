@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/root.dart';
-import 'package:in_100_days/secret/secret.dart';
-import 'package:oauth1/oauth1.dart' as oauth1;
-import 'package:twitter_login/twitter_login.dart';
 
 void main() {
   runApp(MyApp());
