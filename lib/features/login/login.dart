@@ -24,6 +24,8 @@ Future<AuthResult> twitterLogin() {
   );
   return twitterLogin.login();
 }
+
+
 //  final apiResponse = await client.get(
 //    Uri.parse(
 //        'https://api.twitter.com/1.1/statuses/home_timeline.json?count=1'),
