@@ -5,17 +5,14 @@ import 'package:riverpod/riverpod.dart';
 import '../oauth/oatuh1.dart';
 
 final twitterAPIClientProvider = Provider((ref) {
-  final twitterLogin = ref.watch(twitterLoginProvider);
-  if (twitterLogin is AsyncLoading) {
-    return null;
-  }
+  final twitterLoginAuthResult = ref.watch(twitterLoginAuthResultProvider)!;
 
   final client = oauth1.Client(
     oAuth1TwitterPlatform.signatureMethod,
     clientCredentials,
     oauth1.Credentials(
-      twitterLogin.value!.authToken!,
-      twitterLogin.value!.authTokenSecret!,
+      twitterLoginAuthResult.authToken!,
+      twitterLoginAuthResult.authTokenSecret!,
     ),
   );
   return client;
