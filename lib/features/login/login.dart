@@ -4,9 +4,6 @@ import 'package:riverpod/riverpod.dart';
 import 'package:twitter_login/entity/auth_result.dart';
 import 'package:twitter_login/twitter_login.dart';
 
-final twitterLoginAuthResultProvider =
-    StateProvider<AuthResult?>((ref) => null);
-
 final isTwitterLoggedInProvider = FutureProvider((ref) async {
   final storage = ref.watch(secureStorageProvider);
   final twitterAuthToken =
