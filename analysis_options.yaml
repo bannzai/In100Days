@@ -29,4 +29,10 @@ linter:
 # https://dart.dev/guides/language/analysis-options
 analyzer:
   errors:
+    missing_required_param: error
+    missing_return: error
     invalid_annotation_target: ignore
+  exclude:
+    - "lib/**/*.g.dart"
+    - "lib/**/*.freezed.dart"
+
