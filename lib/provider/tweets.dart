@@ -1,18 +1,20 @@
-import 'package:dart_twitter_api/twitter_api.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:in_100_days/provider/auth.dart';
+import 'package:in_100_days/provider/firestore.dart';
 
-final tweetsProvider = Provider.family((ref, TwitterApi client) async {
-  final userName = "";
-  client.tweetSearchService.searchTweets(q: Uri.encodeQueryComponent("#"))
-  return ref.read(authInfoProvider).when(
-        data: (authInfo) {
-          if (authInfo != null) {
-            return authInfo.twitterAuthToken;
-          } else {
-            return null;
-          }
-        },
-        error: (error, st) => null,
-        loading: () => null,
-      );
+import '../entity/tweet.codegen.dart';
+
+final tweetsStreamProvider = StreamProvider<List<TweetSearch>>((ref) {
+  final authInfo = ref.watch(authInfoProvider);
+  final firestore = ref.watch(firestoreProvider);
+  return firestore
+      .collection("/users/${authInfo.value!.firebaseUserID}/searchTweets")
+      .withConverter(
+          fromFirestore: (snapshot, _) =>
+              TweetSearch.fromJson(snapshot.data()!),
+          toFirestore: (TweetSearch value, _) {
+            return value.toJson();
+          })
+      .snapshots()
+      .map((event) => event.docs.map((doc) => doc.data()).toList());
 });
