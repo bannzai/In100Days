@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/features/login/login.dart';
+import 'package:in_100_days/provider/auth.dart';
 import 'package:in_100_days/provider/secure_storage.dart';
 
 class LoginPage extends HookConsumerWidget {
@@ -34,7 +35,7 @@ class LoginPage extends HookConsumerWidget {
                     );
                   }
 
-                  ref.refresh(isTwitterLoggedInProvider);
+                  ref.refresh(authInfoProvider);
                 } catch (error) {
                   showErrorAlert(context, error: error);
                 }

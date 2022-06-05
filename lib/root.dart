@@ -4,18 +4,19 @@ import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/home/home_page.dart';
 import 'package:in_100_days/features/login/login.dart';
 import 'package:in_100_days/features/login/login_page.dart';
+import 'package:in_100_days/provider/auth.dart';
 
 class Root extends HookConsumerWidget {
   const Root({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isTwitterLoggedIn = ref.watch(isTwitterLoggedInProvider);
+    final authInfo = ref.watch(authInfoProvider);
 
-    return isTwitterLoggedIn.when(
-      data: (isTwitterLoggedIn) {
-        if (isTwitterLoggedIn) {
-          return const HomePage();
+    return authInfo.when(
+      data: (authInfo) {
+        if (authInfo != null) {
+          return const HomePage(authInfo: authInfo);
         } else {
           return const LoginPage();
         }

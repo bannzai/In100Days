@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:in_100_days/provider/auth.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/secret/secret.dart';
 import 'package:oauth1/oauth1.dart';
 
 class HomePage extends HookConsumerWidget {
-  final Client twitterAPIClient;
-  const HomePage({Key? key, required this.twitterAPIClient}) : super(key: key);
+  final AuthInfo authInfo;
+  const HomePage({Key? key, required this.authInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final twitterAPIClient = ref.watch(twitterAPIClientProvider(authInfo));
+
     Future.microtask(() async {
       final apiResponse = await twitterAPIClient.get(
         Uri.parse(
