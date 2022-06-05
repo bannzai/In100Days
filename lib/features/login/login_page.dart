@@ -34,8 +34,7 @@ class LoginPage extends HookConsumerWidget {
                     );
                   }
 
-                  ref.read(twitterLoginAuthResultProvider.notifier).state =
-                      authResult;
+                  ref.refresh(isTwitterLoggedInProvider);
                 } catch (error) {
                   showErrorAlert(context, error: error);
                 }
