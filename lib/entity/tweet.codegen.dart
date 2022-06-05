@@ -1,20 +1,21 @@
+import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tweet.codegen.freezed.dart';
 
 @freezed
-class Tweet with _$Tweet {
-  factory Tweet({
+class AppTweetSearch with _$AppTweetSearch {
+  factory AppTweetSearch({
     required TweetTwitterAPIResponse response,
-  }) = _Tweet;
-  Tweet._();
+    required DateTime createdDateTime,
+  }) = _AppTweetSearch;
+  AppTweetSearch._();
 }
 
 @freezed
 class TweetTwitterAPIResponse with _$TweetTwitterAPIResponse {
   factory TweetTwitterAPIResponse({
-    required User user,
-    required PremiumAndTrial premiumAndTrial,
+    required Tweet tweet,
   }) = _TweetTwitterAPIResponse;
   TweetTwitterAPIResponse._();
 }

@@ -7,7 +7,7 @@ final firestoreProvider = Provider((ref) {
   return FirebaseFirestore.instance;
 });
 
-final searchTweetsStream = StreamProvider<List<TweetSearch>>((ref) {
+final tweetsStreamProvider = StreamProvider<List<TweetSearch>>((ref) {
   final authInfo = ref.watch(authInfoProvider);
   final firestore = ref.watch(firestoreProvider);
   return firestore
