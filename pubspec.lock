@@ -479,7 +479,7 @@ packages:
     source: hosted
     version: "1.0.2"
   oauth1:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: oauth1
       url: "https://pub.dartlang.org"
