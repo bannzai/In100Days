@@ -1,7 +1,9 @@
-import 'package:oauth1/oauth1.dart';
+import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:riverpod/riverpod.dart';
 
-final tweetsProvider = Provider.family((ref, Client client) async {
+final tweetsProvider = Provider.family((ref, TwitterApi client) async {
+  final userName = "";
+  client.tweetSearchService.searchTweets(q: Uri.encodeQueryComponent("#"))
   return ref.read(authInfoProvider).when(
         data: (authInfo) {
           if (authInfo != null) {
