@@ -4,8 +4,8 @@ part 'user.codegen.freezed.dart';
 part 'user.codegen.g.dart';
 
 @freezed
-@JsonSerializable(explicitToJson: true)
 class User with _$User {
+  @JsonSerializable(explicitToJson: true)
   factory User({
     required String twitterUserID,
     required String name,

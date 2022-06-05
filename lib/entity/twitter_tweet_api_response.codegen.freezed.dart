@@ -113,7 +113,8 @@ class __$TwitterTweetAPIResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_TwitterTweetAPIResponse implements _TwitterTweetAPIResponse {
   _$_TwitterTweetAPIResponse({required this.tweet});
 

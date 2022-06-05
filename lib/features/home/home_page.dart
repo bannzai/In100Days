@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/provider/auth.dart';
-import 'package:in_100_days/provider/firestore.dart';
+import 'package:in_100_days/provider/tweets.dart';
 
 class HomePage extends HookConsumerWidget {
   final AuthInfo authInfo;

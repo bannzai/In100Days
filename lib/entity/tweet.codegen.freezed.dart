@@ -56,6 +56,8 @@ abstract class $TweetSearchCopyWith<$Res> {
           TweetSearch value, $Res Function(TweetSearch) then) =
       _$TweetSearchCopyWithImpl<$Res>;
   $Res call({TwitterTweetAPIResponse response, DateTime createdDateTime});
+
+  $TwitterTweetAPIResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -82,6 +84,13 @@ class _$TweetSearchCopyWithImpl<$Res> implements $TweetSearchCopyWith<$Res> {
               as DateTime,
     ));
   }
+
+  @override
+  $TwitterTweetAPIResponseCopyWith<$Res> get response {
+    return $TwitterTweetAPIResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -92,6 +101,9 @@ abstract class _$TweetSearchCopyWith<$Res>
       __$TweetSearchCopyWithImpl<$Res>;
   @override
   $Res call({TwitterTweetAPIResponse response, DateTime createdDateTime});
+
+  @override
+  $TwitterTweetAPIResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -123,7 +135,8 @@ class __$TweetSearchCopyWithImpl<$Res> extends _$TweetSearchCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_TweetSearch implements _TweetSearch {
   _$_TweetSearch({required this.response, required this.createdDateTime});
 

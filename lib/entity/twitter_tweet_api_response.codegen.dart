@@ -5,8 +5,8 @@ part 'twitter_tweet_api_response.codegen.freezed.dart';
 part 'twitter_tweet_api_response.codegen.g.dart';
 
 @freezed
-@JsonSerializable(explicitToJson: true)
 class TwitterTweetAPIResponse with _$TwitterTweetAPIResponse {
+  @JsonSerializable(explicitToJson: true)
   factory TwitterTweetAPIResponse({
     required Tweet tweet,
   }) = _TwitterTweetAPIResponse;

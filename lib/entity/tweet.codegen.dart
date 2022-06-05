@@ -1,12 +1,12 @@
-import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:in_100_days/entity/twitter_tweet_api_response.codegen.dart';
 
 part 'tweet.codegen.freezed.dart';
 part 'tweet.codegen.g.dart';
 
 @freezed
-@JsonSerializable(explicitToJson: true)
 class TweetSearch with _$TweetSearch {
+  @JsonSerializable(explicitToJson: true)
   factory TweetSearch({
     required TwitterTweetAPIResponse response,
     required DateTime createdDateTime,
