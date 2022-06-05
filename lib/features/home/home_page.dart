@@ -11,6 +11,7 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tweetsStream = ref.watch(tweetsStreamProvider);
+
     return tweetsStream.when(
         data: (tweets) {
           if (tweets.isEmpty) {
