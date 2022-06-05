@@ -2,20 +2,16 @@ import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tweet.codegen.freezed.dart';
+part 'tweet.codegen.g.dart';
 
 @freezed
-class AppTweetSearch with _$AppTweetSearch {
-  factory AppTweetSearch({
-    required TweetTwitterAPIResponse response,
+@JsonSerializable(explicitToJson: true)
+class TweetSearch with _$TweetSearch {
+  factory TweetSearch({
+    required TwitterTweetAPIResponse response,
     required DateTime createdDateTime,
-  }) = _AppTweetSearch;
-  AppTweetSearch._();
-}
+  }) = _TweetSearch;
 
-@freezed
-class TweetTwitterAPIResponse with _$TweetTwitterAPIResponse {
-  factory TweetTwitterAPIResponse({
-    required Tweet tweet,
-  }) = _TweetTwitterAPIResponse;
-  TweetTwitterAPIResponse._();
+  factory TweetSearch.fromJson(Map<String, dynamic> json) =>
+      _$TweetSearchFromJson(json);
 }
