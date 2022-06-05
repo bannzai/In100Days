@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/provider/auth.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
-import 'package:in_100_days/secret/secret.dart';
-import 'package:oauth1/oauth1.dart';
 
 class HomePage extends HookConsumerWidget {
   final AuthInfo authInfo;
@@ -23,7 +21,7 @@ class HomePage extends HookConsumerWidget {
     });
     return Scaffold(
         body: Column(children: [
-      Text("hello, world"),
+      const Text("hello, world"),
     ]));
   }
 }
