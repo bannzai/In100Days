@@ -1,4 +1,5 @@
 import 'state.codegen.dart';
+import 'package:in_100_days/features/login/state.codegen.dart';
 import 'package:riverpod/riverpod.dart';
 
 final loginStateNotifierProvider = StateNotifierProvider.autoDispose<
