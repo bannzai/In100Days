@@ -11,34 +11,38 @@ class LoginPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final secureStorage = ref.watch(secureStorageProvider);
     return Scaffold(
-      body: Column(
-        children: [
-          ElevatedButton(
-            child: const Text('Sign in with Twitter'),
-            onPressed: () async {
-              try {
-                final authResult = await twitterLogin();
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              child: const Text('Sign in with Twitter'),
+              onPressed: () async {
+                try {
+                  final authResult = await twitterLogin();
 
-                if (authResult.authToken != null &&
-                    authResult.authTokenSecret != null) {
-                  await secureStorage.write(
-                    key: SecuretStorageKeys.twitterAuthToken,
-                    value: authResult.authToken,
-                  );
-                  await secureStorage.write(
-                    key: SecuretStorageKeys.twitterAuthTokenSecret,
-                    value: authResult.authTokenSecret,
-                  );
+                  if (authResult.authToken != null &&
+                      authResult.authTokenSecret != null) {
+                    await secureStorage.write(
+                      key: SecuretStorageKeys.twitterAuthToken,
+                      value: authResult.authToken,
+                    );
+                    await secureStorage.write(
+                      key: SecuretStorageKeys.twitterAuthTokenSecret,
+                      value: authResult.authTokenSecret,
+                    );
+                  }
+
+                  ref.read(twitterLoginAuthResultProvider.notifier).state =
+                      authResult;
+                } catch (error) {
+                  showErrorAlert(context, error: error);
                 }
-
-                ref.read(twitterLoginAuthResultProvider.notifier).state =
-                    authResult;
-              } catch (error) {
-                showErrorAlert(context, error: error);
-              }
-            },
-          ),
-        ],
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
