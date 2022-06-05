@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_twitter_api/twitter_api.dart' as twitterAPI;
-import 'package:firebase_auth/firebase_auth.dart' as firebaseAuth;
+import 'package:dart_twitter_api/twitter_api.dart' as twitter_api;
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
@@ -45,17 +45,16 @@ class LoginPage extends HookConsumerWidget {
 
                     // SignIn with Twitter
                     final twitterAuthCredential =
-                        firebaseAuth.TwitterAuthProvider.credential(
+                        firebase_auth.TwitterAuthProvider.credential(
                       accessToken: authToken,
                       secret: authTokenSecret,
                     );
-                    final firebaseAuthSignInResult = await firebaseAuth
-                        .FirebaseAuth.instance
+                    final firebaseAuthSignInResult = await firebase_auth.FirebaseAuth.instance
                         .signInWithCredential(twitterAuthCredential);
 
                     // Instantiate twitter API Client for app
-                    twitterAPIClient = twitterAPI.TwitterApi(
-                      client: twitterAPI.TwitterClient(
+                    twitterAPIClient = twitter_api.TwitterApi(
+                      client: twitter_api.TwitterClient(
                         consumerKey: TwitterAPISecret.apiKey,
                         consumerSecret: TwitterAPISecret.apiKeySecret,
                         token: authToken,
@@ -69,7 +68,7 @@ class LoginPage extends HookConsumerWidget {
                           Uri.https(
                               'api.twitter.com', '1.1/lists/subscribers.json'),
                         )
-                        .then(twitterAPI.defaultUserTransform);
+                        .then(twitter_api.defaultUserTransform);
                     final user = User(
                         twitterUserID: twitterAPIMe.idStr!,
                         name: twitterAPIMe.name!,
