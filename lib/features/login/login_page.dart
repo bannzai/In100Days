@@ -49,7 +49,8 @@ class LoginPage extends HookConsumerWidget {
                       accessToken: authToken,
                       secret: authTokenSecret,
                     );
-                    await firebaseAuth.FirebaseAuth.instance
+                    final firebaseAuthSignInResult = await firebaseAuth
+                        .FirebaseAuth.instance
                         .signInWithCredential(twitterAuthCredential);
 
                     // Instantiate twitter API Client for app
@@ -76,7 +77,8 @@ class LoginPage extends HookConsumerWidget {
                         profileURL: twitterAPIMe.profileImageUrlHttps!,
                         profileImageURL: twitterAPIMe.profileImageUrlHttps!);
                     await ref
-                        .read(userDocumentReferenceProvider)
+                        .read(userDocumentReferenceProvider(
+                            firebaseAuthSignInResult.user!.uid))
                         .set(user, SetOptions(merge: true));
                   }
 
