@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_twitter_api/twitter_api.dart' as twitterAPI;
+import 'package:firebase_auth/firebase_auth.dart' as firebaseAuth;
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
@@ -28,26 +29,36 @@ class LoginPage extends HookConsumerWidget {
               onPressed: () async {
                 try {
                   final authResult = await twitterLogin();
+                  final authToken = authResult.authToken;
+                  final authTokenSecret = authResult.authTokenSecret;
 
-                  if (authResult.authToken != null &&
-                      authResult.authTokenSecret != null) {
+                  if (authToken != null && authTokenSecret != null) {
                     // Store to secure storage
                     await secureStorage.write(
                       key: SecuretStorageKeys.twitterAuthToken,
-                      value: authResult.authToken,
+                      value: authToken,
                     );
                     await secureStorage.write(
                       key: SecuretStorageKeys.twitterAuthTokenSecret,
-                      value: authResult.authTokenSecret,
+                      value: authTokenSecret,
                     );
+
+                    // SignIn with Twitter
+                    final twitterAuthCredential =
+                        firebaseAuth.TwitterAuthProvider.credential(
+                      accessToken: authToken,
+                      secret: authTokenSecret,
+                    );
+                    await firebaseAuth.FirebaseAuth.instance
+                        .signInWithCredential(twitterAuthCredential);
 
                     // Instantiate twitter API Client for app
                     twitterAPIClient = twitterAPI.TwitterApi(
                       client: twitterAPI.TwitterClient(
                         consumerKey: TwitterAPISecret.apiKey,
                         consumerSecret: TwitterAPISecret.apiKeySecret,
-                        token: authResult.authToken!,
-                        secret: authResult.authTokenSecret!,
+                        token: authToken,
+                        secret: authTokenSecret,
                       ),
                     );
 
