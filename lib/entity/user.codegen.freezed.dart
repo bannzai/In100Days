@@ -23,12 +23,14 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {required String twitterUserID,
+      {required String? id,
+      required String twitterUserID,
       required String name,
       required String screenName,
       required String profileURL,
       required String profileImageURL}) {
     return _User(
+      id: id,
       twitterUserID: twitterUserID,
       name: name,
       screenName: screenName,
@@ -47,6 +49,7 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
+  String? get id => throw _privateConstructorUsedError;
   String get twitterUserID => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get screenName => throw _privateConstructorUsedError;
@@ -63,7 +66,8 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String twitterUserID,
+      {String? id,
+      String twitterUserID,
       String name,
       String screenName,
       String profileURL,
@@ -80,6 +84,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? twitterUserID = freezed,
     Object? name = freezed,
     Object? screenName = freezed,
@@ -87,6 +92,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? profileImageURL = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       twitterUserID: twitterUserID == freezed
           ? _value.twitterUserID
           : twitterUserID // ignore: cast_nullable_to_non_nullable
@@ -117,7 +126,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String twitterUserID,
+      {String? id,
+      String twitterUserID,
       String name,
       String screenName,
       String profileURL,
@@ -135,6 +145,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? twitterUserID = freezed,
     Object? name = freezed,
     Object? screenName = freezed,
@@ -142,6 +153,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? profileImageURL = freezed,
   }) {
     return _then(_User(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       twitterUserID: twitterUserID == freezed
           ? _value.twitterUserID
           : twitterUserID // ignore: cast_nullable_to_non_nullable
@@ -171,7 +186,8 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_User extends _User {
   _$_User(
-      {required this.twitterUserID,
+      {required this.id,
+      required this.twitterUserID,
       required this.name,
       required this.screenName,
       required this.profileURL,
@@ -180,6 +196,8 @@ class _$_User extends _User {
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String twitterUserID;
   @override
@@ -193,7 +211,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(twitterUserID: $twitterUserID, name: $name, screenName: $screenName, profileURL: $profileURL, profileImageURL: $profileImageURL)';
+    return 'User(id: $id, twitterUserID: $twitterUserID, name: $name, screenName: $screenName, profileURL: $profileURL, profileImageURL: $profileImageURL)';
   }
 
   @override
@@ -201,6 +219,7 @@ class _$_User extends _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _User &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.twitterUserID, twitterUserID) &&
             const DeepCollectionEquality().equals(other.name, name) &&
@@ -215,6 +234,7 @@ class _$_User extends _User {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(twitterUserID),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(screenName),
@@ -234,7 +254,8 @@ class _$_User extends _User {
 
 abstract class _User extends User {
   factory _User(
-      {required String twitterUserID,
+      {required String? id,
+      required String twitterUserID,
       required String name,
       required String screenName,
       required String profileURL,
@@ -243,6 +264,8 @@ abstract class _User extends User {
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
+  @override
+  String? get id;
   @override
   String get twitterUserID;
   @override

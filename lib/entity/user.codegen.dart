@@ -7,6 +7,7 @@ part 'user.codegen.g.dart';
 class User with _$User {
   @JsonSerializable(explicitToJson: true)
   factory User({
+    required String? id,
     required String twitterUserID,
     required String name,
     required String screenName,
