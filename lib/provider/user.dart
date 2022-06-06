@@ -7,18 +7,27 @@ import '../entity/user.codegen.dart';
 final userDocumentReferenceProvider = Provider.family(
   (ref, String userID) =>
       ref.watch(firestoreProvider).doc("/users/$userID").withConverter(
-            fromFirestore: (snapshot, _) => User.fromJson(snapshot.data()!),
+            fromFirestore: (snapshot, _) =>
+                User.fromJson(snapshot.data()!)..copyWith(id: snapshot.id),
             toFirestore: (User value, _) {
               return value.toJson();
             },
           ),
 );
 
-final userStramProvider = StreamProvider<User>((ref) {
+final userStreamProvider = StreamProvider<User?>((ref) {
   final authInfo = ref.watch(authInfoProvider);
+  if (authInfo is AsyncLoading) {
+    return const Stream.empty();
+  }
+
+  final authInfoValue = authInfo.value;
+  if (authInfoValue == null) {
+    return Stream.value(null);
+  }
 
   return ref
-      .watch(userDocumentReferenceProvider(authInfo.value!.firebaseUserID))
+      .watch(userDocumentReferenceProvider(authInfoValue.firebaseUserID))
       .snapshots()
       .map((event) => event.data()!);
 });
