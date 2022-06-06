@@ -11,7 +11,7 @@ class ErrorPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SvgPicture.asset("assets/images/error.svg"),
+          SvgPicture.asset("images/error.svg"),
           Text(error.toString()),
         ],
       ),
