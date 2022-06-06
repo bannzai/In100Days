@@ -1,26 +1,25 @@
-import 'dart:async';
-
-import 'package:in_100_days/provider/twitter_api_client.dart';
-import 'package:in_100_days/secret/secret.dart';
+import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:dart_twitter_api/twitter_api.dart' as twitter_api;
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import 'async_action.dart';
 import 'state.codegen.dart';
 
-final loginStateNotifierProvider = StateNotifierProvider.autoDispose<
-    LoginStateNotifier, AsyncValue<LoginState>>(
+final loginStateNotifierProvider =
+    StateNotifierProvider.autoDispose<LoginStateNotifier, LoginState>(
   (ref) => LoginStateNotifier(
     asyncAction: ref.watch(loginAsyncActionProvider),
     initialState: ref.watch(loginAsyncStateProvider),
   ),
 );
 
-class LoginStateNotifier extends StateNotifier<AsyncValue<LoginState>> {
+class LoginStateNotifier extends StateNotifier<LoginState> {
   final LoginAsyncAction asyncAction;
   LoginStateNotifier({
     required this.asyncAction,
-    required AsyncValue<LoginState> initialState,
+    required LoginState initialState,
   }) : super(initialState);
+
+  void setUser(User user) {
+    state = state.copyWith(user: user);
+  }
 }

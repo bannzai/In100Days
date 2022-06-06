@@ -53,6 +53,7 @@ class LoginAsyncAction {
         profileURL: twitterAPIMe.profileImageUrlHttps!,
         profileImageURL: twitterAPIMe.profileImageUrlHttps!);
 
+    print("[DEBUG] $user");
     return user;
   }
 
