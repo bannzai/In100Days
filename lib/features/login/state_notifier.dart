@@ -9,8 +9,8 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'async_action.dart';
 import 'state.codegen.dart';
 
-final loginStateNotifierProvider =
-    StateNotifierProvider<LoginStateNotifier, AsyncValue<LoginState>>(
+final loginStateNotifierProvider = StateNotifierProvider.autoDispose<
+    LoginStateNotifier, AsyncValue<LoginState>>(
   (ref) => LoginStateNotifier(
     asyncAction: ref.watch(loginAsyncActionProvider),
     initialState: ref.watch(loginAsyncStateProvider),
