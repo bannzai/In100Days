@@ -16,10 +16,10 @@ class HomePage extends HookConsumerWidget {
         data: (tweets) {
           if (tweets.isEmpty) {
             // TODO:
-            return Container();
+            return Container(child: Text("Tweet is Empty"));
           } else {
             // TODO:
-            return Container();
+            return Container(child: Text("Tweet is not Empty"));
           }
         },
         error: (error, _) => ErrorPage(error: error),
