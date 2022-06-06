@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_twitter_api/twitter_api.dart' as twitter_api;
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
@@ -49,7 +50,8 @@ class LoginPage extends HookConsumerWidget {
                       accessToken: authToken,
                       secret: authTokenSecret,
                     );
-                    final firebaseAuthSignInResult = await firebase_auth.FirebaseAuth.instance
+                    final firebaseAuthSignInResult = await firebase_auth
+                        .FirebaseAuth.instance
                         .signInWithCredential(twitterAuthCredential);
 
                     // Instantiate twitter API Client for app
@@ -62,13 +64,13 @@ class LoginPage extends HookConsumerWidget {
                       ),
                     );
 
+                    // Retrieve twitter account info
+                    final twitterUID =
+                        firebaseAuthSignInResult.user!.providerData.first.uid;
+                    final twitterAPIMe = await twitterAPIClient.userService
+                        .usersShow(userId: twitterUID);
+
                     // Save twitter user profile to Firestore
-                    final twitterAPIMe = await twitterAPIClient.client
-                        .get(
-                          Uri.https(
-                              'api.twitter.com', '1.1/lists/subscribers.json'),
-                        )
-                        .then(twitter_api.defaultUserTransform);
                     final user = User(
                         twitterUserID: twitterAPIMe.idStr!,
                         name: twitterAPIMe.name!,
