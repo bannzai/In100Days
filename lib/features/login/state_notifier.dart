@@ -7,7 +7,7 @@ import 'package:dart_twitter_api/twitter_api.dart' as twitter_api;
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import 'async_action.dart';
-import 'state.dart';
+import 'state.codegen.dart';
 
 final loginStateNotifierProvider =
     StateNotifierProvider<LoginStateNotifier, AsyncValue<LoginState>>(

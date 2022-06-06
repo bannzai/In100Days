@@ -1,25 +1,21 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:in_100_days/entity/user.codegen.dart';
+import 'package:in_100_days/provider/user.dart';
 
 part 'state.codegen.freezed.dart';
 
 final loginAsyncStateProvider =
     Provider.autoDispose<AsyncValue<LoginState>>((ref) {
-  final user = ref.watch(userProvider);
-  final premiumAndTrial = ref.watch(premiumAndTrialProvider);
-  final sharedPreferencesAsyncValue = ref.watch(sharedPreferenceProvider);
+  final user = ref.watch(userStreamProvider);
 
-  if (user is AsyncLoading ||
-      premiumAndTrial is AsyncLoading ||
-      sharedPreferencesAsyncValue is AsyncLoading) {
+  if (user is AsyncLoading) {
     return const AsyncValue.loading();
   }
 
   try {
-    final sharedPreferences = sharedPreferencesAsyncValue.value!;
-
     return AsyncValue.data(LoginState(
-      user: user,
-      premiumAndTrial: premiumAndTrial,
+      user: user.value,
     ));
   } catch (error, stackTrace) {
     return AsyncValue.error(error, stackTrace: stackTrace);
@@ -29,8 +25,7 @@ final loginAsyncStateProvider =
 @freezed
 class LoginState with _$LoginState {
   factory LoginState({
-    required User user,
-    required PremiumAndTrial premiumAndTrial,
+    required User? user,
   }) = _LoginState;
   LoginState._();
 }
