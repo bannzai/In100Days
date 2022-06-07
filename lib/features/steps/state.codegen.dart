@@ -8,7 +8,8 @@ import 'package:in_100_days/provider/user.dart';
 
 part 'state.codegen.freezed.dart';
 
-final stepsAsyncStateProvider = Provider.family.autoDispose((ref, Goal goal) {
+final stepsAsyncStateProvider =
+    Provider.family.autoDispose<AsyncValue<StepsState>, Goal>((ref, Goal goal) {
   final user = ref.watch(userStreamProvider);
   final steps = ref.watch(stepsStreamProvider(goal.id!));
 
