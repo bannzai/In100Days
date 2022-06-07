@@ -123,9 +123,13 @@ class ObjectiveSheet extends HookConsumerWidget {
                     if (text.value.isEmpty) {
                       return;
                     }
-                    await twitterAPIClient.tweetService.update(status: """
+                    try {
+                      await twitterAPIClient.tweetService.update(status: """
 #100日後に${text.value}$twitterIDName
                         """);
+                    } catch (error) {
+                      showErrorAlert(context, error: error);
+                    }
                   },
                 ),
               ),
