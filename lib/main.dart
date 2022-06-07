@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/provider/secure_storage.dart';
 import 'package:in_100_days/root.dart';
+import 'package:in_100_days/style/color.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: AppColor.primary,
+          inputDecorationTheme: const InputDecorationTheme(
+            border: UnderlineInputBorder(
+              borderSide: BorderSide(width: 1, color: AppColor.primary),
+            ),
+          ),
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: AppColor.primary,
+          ),
         ),
         home: const Root(),
       ),

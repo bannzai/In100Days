@@ -100,6 +100,7 @@ class ObjectiveSheet extends HookConsumerWidget {
                 width:
                     MediaQuery.of(context).size.width - paddingHorizontal * 2,
                 child: TextField(
+                  textInputAction: TextInputAction.done,
                   controller: textFieldController,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
@@ -108,13 +109,16 @@ class ObjectiveSheet extends HookConsumerWidget {
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     filled: true,
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide(width: 1),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(width: 1, color: AppColor.primary),
                     ),
                     contentPadding: EdgeInsets.only(bottom: 8),
                   ),
                   onChanged: (_text) {
                     text.value = _text;
+                  },
+                  onEditingComplete: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
                   },
                 ),
               ),
@@ -131,11 +135,15 @@ class ObjectiveSheet extends HookConsumerWidget {
                   ),
                 ],
               ),
-              Spacer(),
-              Text("#100日後に${text.value}$twitterIDName",
-                  style: const TextStyle(
-                    color: AppColor.twitterHashTag,
-                  )),
+              const SizedBox(height: 20),
+              Text(
+                "#100日後に${text.value}$twitterIDName",
+                style: const TextStyle(
+                  color: AppColor.twitterHashTag,
+                ),
+              ),
+              const SizedBox(height: 44),
+              const Spacer(),
             ],
           ),
         ),
