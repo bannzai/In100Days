@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/user.dart';
+import 'package:in_100_days/style/color.dart';
 
 import 'state_notifier.dart';
 
@@ -66,6 +67,7 @@ class ObjectiveSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final text = useState("");
     final textFieldController = useTextEditingController(text: "");
 
     const double paddingHorizontal = 20;
@@ -76,10 +78,11 @@ class ObjectiveSheet extends HookConsumerWidget {
           padding: const EdgeInsets.symmetric(
               vertical: 20, horizontal: paddingHorizontal),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Spacer(),
               Row(
                 children: const [
                   Text(
@@ -110,8 +113,8 @@ class ObjectiveSheet extends HookConsumerWidget {
                     ),
                     contentPadding: EdgeInsets.only(bottom: 8),
                   ),
-                  onChanged: (text) {
-                    print(text);
+                  onChanged: (_text) {
+                    text.value = _text;
                   },
                 ),
               ),
@@ -120,7 +123,7 @@ class ObjectiveSheet extends HookConsumerWidget {
                 children: [
                   const Spacer(),
                   Text(
-                    "@" + twitterIDName,
+                    twitterIDName,
                     style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 44,
@@ -128,6 +131,11 @@ class ObjectiveSheet extends HookConsumerWidget {
                   ),
                 ],
               ),
+              Spacer(),
+              Text("#100日後に${text.value}$twitterIDName",
+                  style: const TextStyle(
+                    color: AppColor.twitterHashTag,
+                  )),
             ],
           ),
         ),
