@@ -24,10 +24,7 @@ CollectionReference<Goal> goalCollectionReference({required String userID}) =>
           toFirestore: _toFirestore(),
         );
 
-final goalsStreamProvider = StreamProvider((ref) {
-  final collectionReference =
-      goalCollectionReference(userID: FirebaseAuth.instance.currentUser!.uid);
-  return collectionReference
-      .snapshots()
-      .map((event) => event.docs.map((e) => e.data()).toList());
-});
+final goalsStreamProvider = StreamProvider((ref) =>
+    goalCollectionReference(userID: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots()
+        .map((event) => event.docs.map((e) => e.data()).toList()));
