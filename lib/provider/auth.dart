@@ -24,7 +24,7 @@ final authInfoProvider = FutureProvider<AuthInfo?>((ref) async {
       await storage.read(key: SecuretStorageKeys.twitterAuthToken);
   final twitterAuthTokenSecret =
       await storage.read(key: SecuretStorageKeys.twitterAuthTokenSecret);
-  final firebaseAuthUserStream = ref.read(firebaseAuthUserChangesStream);
+  final firebaseAuthUserStream = ref.watch(firebaseAuthUserChangesStream);
   if (twitterAuthToken == null ||
       twitterAuthTokenSecret == null ||
       firebaseAuthUserStream is AsyncLoading) {
