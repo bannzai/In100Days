@@ -59,9 +59,6 @@ class GoalInputSheet extends HookConsumerWidget {
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     filled: true,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(width: 1, color: AppColor.primary),
-                    ),
                     contentPadding: EdgeInsets.only(bottom: 8),
                   ),
                   onChanged: (_text) {
