@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/auth.dart';
+import 'package:in_100_days/provider/root.dart';
 import 'package:in_100_days/provider/user.dart';
 
 import 'state_notifier.dart';
@@ -30,7 +31,7 @@ class LoginPage extends HookConsumerWidget {
                       .read(userDocumentReferenceProvider(user.id!))
                       .set(user, SetOptions(merge: true));
 
-                  ref.refresh(authInfoProvider);
+                  ref.refresh(rootStateProvider);
                 } catch (error) {
                   showErrorAlert(context, error: error);
                 }
