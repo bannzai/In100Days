@@ -23,10 +23,12 @@ class _$GoalTearOff {
   const _$GoalTearOff();
 
   _Goal call(
-      {required String goalAction,
+      {String? id,
+      required String goalAction,
       required String fullHashTag,
       required DateTime createdDateTime}) {
     return _Goal(
+      id: id,
       goalAction: goalAction,
       fullHashTag: fullHashTag,
       createdDateTime: createdDateTime,
@@ -43,6 +45,7 @@ const $Goal = _$GoalTearOff();
 
 /// @nodoc
 mixin _$Goal {
+  String? get id => throw _privateConstructorUsedError;
   String get goalAction => throw _privateConstructorUsedError;
   String get fullHashTag => throw _privateConstructorUsedError;
   DateTime get createdDateTime => throw _privateConstructorUsedError;
@@ -56,7 +59,11 @@ mixin _$Goal {
 abstract class $GoalCopyWith<$Res> {
   factory $GoalCopyWith(Goal value, $Res Function(Goal) then) =
       _$GoalCopyWithImpl<$Res>;
-  $Res call({String goalAction, String fullHashTag, DateTime createdDateTime});
+  $Res call(
+      {String? id,
+      String goalAction,
+      String fullHashTag,
+      DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -69,11 +76,16 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? goalAction = freezed,
     Object? fullHashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       goalAction: goalAction == freezed
           ? _value.goalAction
           : goalAction // ignore: cast_nullable_to_non_nullable
@@ -95,7 +107,11 @@ abstract class _$GoalCopyWith<$Res> implements $GoalCopyWith<$Res> {
   factory _$GoalCopyWith(_Goal value, $Res Function(_Goal) then) =
       __$GoalCopyWithImpl<$Res>;
   @override
-  $Res call({String goalAction, String fullHashTag, DateTime createdDateTime});
+  $Res call(
+      {String? id,
+      String goalAction,
+      String fullHashTag,
+      DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -109,11 +125,16 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? goalAction = freezed,
     Object? fullHashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_Goal(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       goalAction: goalAction == freezed
           ? _value.goalAction
           : goalAction // ignore: cast_nullable_to_non_nullable
@@ -135,12 +156,15 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_Goal implements _Goal {
   _$_Goal(
-      {required this.goalAction,
+      {this.id,
+      required this.goalAction,
       required this.fullHashTag,
       required this.createdDateTime});
 
   factory _$_Goal.fromJson(Map<String, dynamic> json) => _$$_GoalFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String goalAction;
   @override
@@ -150,7 +174,7 @@ class _$_Goal implements _Goal {
 
   @override
   String toString() {
-    return 'Goal(goalAction: $goalAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime)';
+    return 'Goal(id: $id, goalAction: $goalAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime)';
   }
 
   @override
@@ -158,6 +182,7 @@ class _$_Goal implements _Goal {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Goal &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.goalAction, goalAction) &&
             const DeepCollectionEquality()
@@ -169,6 +194,7 @@ class _$_Goal implements _Goal {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(goalAction),
       const DeepCollectionEquality().hash(fullHashTag),
       const DeepCollectionEquality().hash(createdDateTime));
@@ -186,12 +212,15 @@ class _$_Goal implements _Goal {
 
 abstract class _Goal implements Goal {
   factory _Goal(
-      {required String goalAction,
+      {String? id,
+      required String goalAction,
       required String fullHashTag,
       required DateTime createdDateTime}) = _$_Goal;
 
   factory _Goal.fromJson(Map<String, dynamic> json) = _$_Goal.fromJson;
 
+  @override
+  String? get id;
   @override
   String get goalAction;
   @override

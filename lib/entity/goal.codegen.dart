@@ -7,6 +7,7 @@ part 'goal.codegen.g.dart';
 class Goal with _$Goal {
   @JsonSerializable(explicitToJson: true)
   factory Goal({
+    String? id,
     required String goalAction,
     required String fullHashTag,
     required DateTime createdDateTime,
