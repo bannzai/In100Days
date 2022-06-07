@@ -12,6 +12,18 @@ class HomePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tweetsStream = ref.watch(tweetsStreamProvider);
 
+    Future.microtask(() {
+      if (user != null) {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (context) {
+            return ObjectiveSheet(twitterIDName: user.screenName);
+          },
+        );
+      }
+    });
+
     return tweetsStream.when(
         data: (tweets) {
           if (tweets.isEmpty) {
