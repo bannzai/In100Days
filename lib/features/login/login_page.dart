@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
+import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/provider/user.dart';
 import 'package:in_100_days/style/color.dart';
 
@@ -117,8 +118,14 @@ class ObjectiveSheet extends HookConsumerWidget {
                   onChanged: (_text) {
                     text.value = _text;
                   },
-                  onEditingComplete: () {
+                  onEditingComplete: () async {
                     FocusManager.instance.primaryFocus?.unfocus();
+                    if (text.value.isEmpty) {
+                      return;
+                    }
+                    await twitterAPIClient.tweetService.update(status: """
+#100日後に${text.value}$twitterIDName
+                        """);
                   },
                 ),
               ),
