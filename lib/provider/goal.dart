@@ -29,5 +29,5 @@ final goalsStreamProvider = StreamProvider((ref) {
       goalCollectionReference(userID: FirebaseAuth.instance.currentUser!.uid);
   return collectionReference
       .snapshots()
-      .map((event) => event.docs.map((e) => e.data()!).toList());
+      .map((event) => event.docs.map((e) => e.data()).toList());
 });
