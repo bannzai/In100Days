@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
-import 'package:in_100_days/provider/auth.dart';
 import 'package:in_100_days/provider/root.dart';
 import 'package:in_100_days/provider/user.dart';
 

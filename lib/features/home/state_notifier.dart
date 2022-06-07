@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'state.codegen.dart';
 import 'package:riverpod/riverpod.dart';
 

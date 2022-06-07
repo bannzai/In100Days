@@ -1,4 +1,3 @@
-import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:riverpod/riverpod.dart';
 

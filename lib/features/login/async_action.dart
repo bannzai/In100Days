@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
@@ -53,7 +52,6 @@ class LoginAsyncAction {
         profileURL: twitterAPIMe.profileImageUrlHttps!,
         profileImageURL: twitterAPIMe.profileImageUrlHttps!);
 
-    print("[DEBUG] $user");
     return user;
   }
 

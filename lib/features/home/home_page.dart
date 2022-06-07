@@ -4,7 +4,6 @@ import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/goal/goal_input_sheet.dart';
 import 'package:in_100_days/features/home/state_notifier.dart';
 import 'package:in_100_days/provider/auth.dart';
-import 'package:in_100_days/provider/tweets.dart';
 
 class HomePage extends HookConsumerWidget {
   final AuthInfo authInfo;
