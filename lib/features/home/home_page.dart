@@ -19,6 +19,8 @@ class HomePage extends HookConsumerWidget {
               showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
+                isDismissible: false,
+                enableDrag: false,
                 builder: (context) {
                   return GoalInputSheet(twitterIDName: state.user.screenName);
                 },
