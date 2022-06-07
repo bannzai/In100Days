@@ -31,6 +31,7 @@ class LoginPage extends HookConsumerWidget {
                       .read(userDocumentReferenceProvider(user.id!))
                       .set(user, SetOptions(merge: true));
 
+                  // Refresh root page
                   ref.refresh(rootStateProvider);
                 } catch (error) {
                   showErrorAlert(context, error: error);
