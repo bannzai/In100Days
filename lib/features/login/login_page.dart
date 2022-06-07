@@ -68,27 +68,41 @@ class ObjectiveSheet extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final textFieldController = useTextEditingController(text: "");
 
+    const double paddingHorizontal = 20;
+
     return Scaffold(
       body: Center(
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          padding: const EdgeInsets.symmetric(
+              vertical: 20, horizontal: paddingHorizontal),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                "#100日後に",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 30,
-                ),
+              Row(
+                children: const [
+                  Text(
+                    "#100日後に",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 44,
+                    ),
+                  ),
+                  Spacer(),
+                ],
               ),
               const SizedBox(height: 20),
               SizedBox(
-                width: 200,
+                width:
+                    MediaQuery.of(context).size.width - paddingHorizontal * 2,
                 child: TextField(
                   controller: textFieldController,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 44,
+                  ),
+                  textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     filled: true,
                     border: UnderlineInputBorder(
@@ -102,12 +116,17 @@ class ObjectiveSheet extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
-                "@" + twitterIDName,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 30,
-                ),
+              Row(
+                children: [
+                  const Spacer(),
+                  Text(
+                    "@" + twitterIDName,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 44,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
