@@ -1,27 +1,27 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
-import 'package:in_100_days/entity/step.codegen.dart';
+import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
-import 'package:in_100_days/provider/step.dart';
+import 'package:in_100_days/provider/record.dart';
 import 'package:in_100_days/provider/user.dart';
 
 part 'state.codegen.freezed.dart';
 
-final stepsAsyncStateProvider =
-    Provider.family.autoDispose<AsyncValue<StepsState>, Goal>((ref, Goal goal) {
+final recordsAsyncStateProvider = Provider.family
+    .autoDispose<AsyncValue<RecordsState>, Goal>((ref, Goal goal) {
   final user = ref.watch(userStreamProvider);
-  final steps = ref.watch(stepsStreamProvider(goal.id!));
+  final records = ref.watch(recordsStreamProvider(goal.id!));
 
-  if (user is AsyncLoading || steps is AsyncLoading) {
+  if (user is AsyncLoading || records is AsyncLoading) {
     return const AsyncValue.loading();
   }
 
   try {
     return AsyncValue.data(
-      StepsState(
+      RecordsState(
         user: user.value!,
-        steps: steps.value ?? [],
+        records: records.value ?? [],
       ),
     );
   } catch (error, stackTrace) {
@@ -30,10 +30,10 @@ final stepsAsyncStateProvider =
 });
 
 @freezed
-class StepsState with _$StepsState {
-  factory StepsState({
+class RecordsState with _$RecordsState {
+  factory RecordsState({
     required User user,
-    required List<Step> steps,
-  }) = _StepsState;
-  StepsState._();
+    required List<Record> records,
+  }) = _RecordsState;
+  RecordsState._();
 }

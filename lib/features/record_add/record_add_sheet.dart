@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
-import 'package:in_100_days/entity/step.codegen.dart';
+import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/provider/goal.dart';
-import 'package:in_100_days/provider/step.dart';
+import 'package:in_100_days/provider/record.dart';
 import 'package:in_100_days/style/color.dart';
 
-class StepAddSheet extends HookConsumerWidget {
+class RecordAddSheet extends HookConsumerWidget {
   final User user;
   final Goal goal;
 
-  const StepAddSheet({
+  const RecordAddSheet({
     Key? key,
     required this.goal,
   }) : super(key: key);

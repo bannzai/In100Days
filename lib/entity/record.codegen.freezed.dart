@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'step.codegen.dart';
+part of 'record.codegen.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,69 +14,70 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Step _$StepFromJson(Map<String, dynamic> json) {
-  return _Step.fromJson(json);
+Record _$RecordFromJson(Map<String, dynamic> json) {
+  return _Record.fromJson(json);
 }
 
 /// @nodoc
-class _$StepTearOff {
-  const _$StepTearOff();
+class _$RecordTearOff {
+  const _$RecordTearOff();
 
-  _Step call(
-      {required String stepAction,
+  _Record call(
+      {required String recordAction,
       required String fullHashTag,
       required DateTime createdDateTime}) {
-    return _Step(
-      stepAction: stepAction,
+    return _Record(
+      recordAction: recordAction,
       fullHashTag: fullHashTag,
       createdDateTime: createdDateTime,
     );
   }
 
-  Step fromJson(Map<String, Object?> json) {
-    return Step.fromJson(json);
+  Record fromJson(Map<String, Object?> json) {
+    return Record.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Step = _$StepTearOff();
+const $Record = _$RecordTearOff();
 
 /// @nodoc
-mixin _$Step {
-  String get stepAction => throw _privateConstructorUsedError;
+mixin _$Record {
+  String get recordAction => throw _privateConstructorUsedError;
   String get fullHashTag => throw _privateConstructorUsedError;
   DateTime get createdDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StepCopyWith<Step> get copyWith => throw _privateConstructorUsedError;
+  $RecordCopyWith<Record> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepCopyWith<$Res> {
-  factory $StepCopyWith(Step value, $Res Function(Step) then) =
-      _$StepCopyWithImpl<$Res>;
-  $Res call({String stepAction, String fullHashTag, DateTime createdDateTime});
+abstract class $RecordCopyWith<$Res> {
+  factory $RecordCopyWith(Record value, $Res Function(Record) then) =
+      _$RecordCopyWithImpl<$Res>;
+  $Res call(
+      {String recordAction, String fullHashTag, DateTime createdDateTime});
 }
 
 /// @nodoc
-class _$StepCopyWithImpl<$Res> implements $StepCopyWith<$Res> {
-  _$StepCopyWithImpl(this._value, this._then);
+class _$RecordCopyWithImpl<$Res> implements $RecordCopyWith<$Res> {
+  _$RecordCopyWithImpl(this._value, this._then);
 
-  final Step _value;
+  final Record _value;
   // ignore: unused_field
-  final $Res Function(Step) _then;
+  final $Res Function(Record) _then;
 
   @override
   $Res call({
-    Object? stepAction = freezed,
+    Object? recordAction = freezed,
     Object? fullHashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_value.copyWith(
-      stepAction: stepAction == freezed
-          ? _value.stepAction
-          : stepAction // ignore: cast_nullable_to_non_nullable
+      recordAction: recordAction == freezed
+          ? _value.recordAction
+          : recordAction // ignore: cast_nullable_to_non_nullable
               as String,
       fullHashTag: fullHashTag == freezed
           ? _value.fullHashTag
@@ -91,32 +92,33 @@ class _$StepCopyWithImpl<$Res> implements $StepCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$StepCopyWith<$Res> implements $StepCopyWith<$Res> {
-  factory _$StepCopyWith(_Step value, $Res Function(_Step) then) =
-      __$StepCopyWithImpl<$Res>;
+abstract class _$RecordCopyWith<$Res> implements $RecordCopyWith<$Res> {
+  factory _$RecordCopyWith(_Record value, $Res Function(_Record) then) =
+      __$RecordCopyWithImpl<$Res>;
   @override
-  $Res call({String stepAction, String fullHashTag, DateTime createdDateTime});
+  $Res call(
+      {String recordAction, String fullHashTag, DateTime createdDateTime});
 }
 
 /// @nodoc
-class __$StepCopyWithImpl<$Res> extends _$StepCopyWithImpl<$Res>
-    implements _$StepCopyWith<$Res> {
-  __$StepCopyWithImpl(_Step _value, $Res Function(_Step) _then)
-      : super(_value, (v) => _then(v as _Step));
+class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
+    implements _$RecordCopyWith<$Res> {
+  __$RecordCopyWithImpl(_Record _value, $Res Function(_Record) _then)
+      : super(_value, (v) => _then(v as _Record));
 
   @override
-  _Step get _value => super._value as _Step;
+  _Record get _value => super._value as _Record;
 
   @override
   $Res call({
-    Object? stepAction = freezed,
+    Object? recordAction = freezed,
     Object? fullHashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
-    return _then(_Step(
-      stepAction: stepAction == freezed
-          ? _value.stepAction
-          : stepAction // ignore: cast_nullable_to_non_nullable
+    return _then(_Record(
+      recordAction: recordAction == freezed
+          ? _value.recordAction
+          : recordAction // ignore: cast_nullable_to_non_nullable
               as String,
       fullHashTag: fullHashTag == freezed
           ? _value.fullHashTag
@@ -133,16 +135,17 @@ class __$StepCopyWithImpl<$Res> extends _$StepCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_Step implements _Step {
-  _$_Step(
-      {required this.stepAction,
+class _$_Record implements _Record {
+  _$_Record(
+      {required this.recordAction,
       required this.fullHashTag,
       required this.createdDateTime});
 
-  factory _$_Step.fromJson(Map<String, dynamic> json) => _$$_StepFromJson(json);
+  factory _$_Record.fromJson(Map<String, dynamic> json) =>
+      _$$_RecordFromJson(json);
 
   @override
-  final String stepAction;
+  final String recordAction;
   @override
   final String fullHashTag;
   @override
@@ -150,16 +153,16 @@ class _$_Step implements _Step {
 
   @override
   String toString() {
-    return 'Step(stepAction: $stepAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime)';
+    return 'Record(recordAction: $recordAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Step &&
+            other is _Record &&
             const DeepCollectionEquality()
-                .equals(other.stepAction, stepAction) &&
+                .equals(other.recordAction, recordAction) &&
             const DeepCollectionEquality()
                 .equals(other.fullHashTag, fullHashTag) &&
             const DeepCollectionEquality()
@@ -169,36 +172,36 @@ class _$_Step implements _Step {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(stepAction),
+      const DeepCollectionEquality().hash(recordAction),
       const DeepCollectionEquality().hash(fullHashTag),
       const DeepCollectionEquality().hash(createdDateTime));
 
   @JsonKey(ignore: true)
   @override
-  _$StepCopyWith<_Step> get copyWith =>
-      __$StepCopyWithImpl<_Step>(this, _$identity);
+  _$RecordCopyWith<_Record> get copyWith =>
+      __$RecordCopyWithImpl<_Record>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StepToJson(this);
+    return _$$_RecordToJson(this);
   }
 }
 
-abstract class _Step implements Step {
-  factory _Step(
-      {required String stepAction,
+abstract class _Record implements Record {
+  factory _Record(
+      {required String recordAction,
       required String fullHashTag,
-      required DateTime createdDateTime}) = _$_Step;
+      required DateTime createdDateTime}) = _$_Record;
 
-  factory _Step.fromJson(Map<String, dynamic> json) = _$_Step.fromJson;
+  factory _Record.fromJson(Map<String, dynamic> json) = _$_Record.fromJson;
 
   @override
-  String get stepAction;
+  String get recordAction;
   @override
   String get fullHashTag;
   @override
   DateTime get createdDateTime;
   @override
   @JsonKey(ignore: true)
-  _$StepCopyWith<_Step> get copyWith => throw _privateConstructorUsedError;
+  _$RecordCopyWith<_Record> get copyWith => throw _privateConstructorUsedError;
 }
