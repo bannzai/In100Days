@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
+import 'package:in_100_days/provider/goal.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/provider/user.dart';
 import 'package:in_100_days/style/color.dart';
@@ -72,6 +75,7 @@ class ObjectiveSheet extends HookConsumerWidget {
     final textFieldController = useTextEditingController(text: "");
 
     const double paddingHorizontal = 20;
+    final hashTag = "#100日後に${text.value}$twitterIDName";
 
     return Scaffold(
       body: Center(
@@ -124,9 +128,17 @@ class ObjectiveSheet extends HookConsumerWidget {
                       return;
                     }
                     try {
-                      await twitterAPIClient.tweetService.update(status: """
-#100日後に${text.value}$twitterIDName
-                        """);
+                      final goal = Goal(
+                          goalAction: text.value,
+                          fullHashTag: hashTag,
+                          createdDateTime: DateTime.now());
+                      await goalCollectionReference(
+                              userID: FirebaseAuth.instance.currentUser!.uid)
+                          .doc()
+                          .set(goal, SetOptions(merge: true));
+//                      await twitterAPIClient.tweetService.update(status: """
+//#100日後に${text.value}$twitterIDName
+//                        """);
                     } catch (error) {
                       showErrorAlert(context, error: error);
                     }
@@ -148,7 +160,7 @@ class ObjectiveSheet extends HookConsumerWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                "#100日後に${text.value}$twitterIDName",
+                hashTag,
                 style: const TextStyle(
                   color: AppColor.twitterHashTag,
                 ),
