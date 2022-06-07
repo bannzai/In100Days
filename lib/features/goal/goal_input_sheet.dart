@@ -84,6 +84,7 @@ class GoalInputSheet extends HookConsumerWidget {
 //                      await twitterAPIClient.tweetService.update(status: """
 //#100日後に${text.value}$twitterIDName
 //                        """);
+                      Navigator.of(context).pop();
                     } catch (error) {
                       showErrorAlert(context, error: error);
                     }
