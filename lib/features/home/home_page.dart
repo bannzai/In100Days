@@ -29,7 +29,7 @@ class HomePage extends HookConsumerWidget {
             });
             return Container();
           } else {
-            return RecordsList(goal: state.goals.last);
+            return RecordList(goal: state.goals.last);
           }
         },
         error: (error, _) => ErrorPage(error: error),
