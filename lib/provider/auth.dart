@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:in_100_days/provider/secure_storage.dart';
 import 'package:riverpod/riverpod.dart';
@@ -14,8 +16,20 @@ class AuthInfo {
   });
 }
 
-final firebaseAuthUserChangesStream =
-    StreamProvider((ref) => FirebaseAuth.instance.userChanges());
+final firebaseAuthUserSetup = FutureProvider((ref) async {
+  final waitForFirebaseAuthSetup = Future<User?>(() {
+    final completer = Completer<User?>();
+
+    StreamSubscription<User?>? subscription;
+    subscription = FirebaseAuth.instance.userChanges().listen((firebaseUser) {
+      completer.complete(firebaseUser);
+      subscription?.cancel();
+    });
+    return completer.future;
+  });
+
+  return await waitForFirebaseAuthSetup;
+});
 
 final authInfoProvider = FutureProvider<AuthInfo?>((ref) async {
   final storage = ref.watch(secureStorageProvider);
@@ -24,14 +38,14 @@ final authInfoProvider = FutureProvider<AuthInfo?>((ref) async {
       await storage.read(key: SecuretStorageKeys.twitterAuthToken);
   final twitterAuthTokenSecret =
       await storage.read(key: SecuretStorageKeys.twitterAuthTokenSecret);
-  final firebaseAuthUserStream = ref.watch(firebaseAuthUserChangesStream);
+  final firebaseAuthUserAsyncValue = ref.watch(firebaseAuthUserSetup);
   if (twitterAuthToken == null ||
       twitterAuthTokenSecret == null ||
-      firebaseAuthUserStream is AsyncLoading) {
+      firebaseAuthUserAsyncValue is AsyncLoading) {
     return null;
   }
 
-  final firebaseAuthUser = firebaseAuthUserStream.value;
+  final firebaseAuthUser = firebaseAuthUserAsyncValue.value;
   if (firebaseAuthUser == null) {
     throw const FormatException("User is not found");
   }
