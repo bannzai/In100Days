@@ -26,52 +26,60 @@ class RecordAddSheet extends HookConsumerWidget {
     const double paddingHorizontal = 20;
     final hashTag = "#100日後に${text.value}${user.screenName}";
 
-    return Column(
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width - paddingHorizontal * 2,
-          child: TextField(
-            textInputAction: TextInputAction.done,
-            controller: textFieldController,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 44,
-            ),
-            textAlign: TextAlign.center,
-            decoration: const InputDecoration(
-              filled: true,
-              contentPadding: EdgeInsets.only(bottom: 8),
-            ),
-            onChanged: (_text) {
-              text.value = _text;
-            },
-            onEditingComplete: () async {
-              FocusManager.instance.primaryFocus?.unfocus();
-              if (text.value.isEmpty) {
-                return;
-              }
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: paddingHorizontal,
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 200,
+            width: MediaQuery.of(context).size.width - paddingHorizontal * 2,
+            child: TextField(
+              textInputAction: TextInputAction.done,
+              controller: textFieldController,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 44,
+              ),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                filled: true,
+                contentPadding: EdgeInsets.only(bottom: 8),
+              ),
+              onChanged: (_text) {
+                text.value = _text;
+              },
+              onEditingComplete: () async {
+                FocusManager.instance.primaryFocus?.unfocus();
+                if (text.value.isEmpty) {
+                  return;
+                }
 
-              final record = Record(
-                message: text.value,
-                hashTag: hashTag,
-                createdDateTime: DateTime.now(),
-              );
-              try {
-                await recordCollectionReference(
-                  userID: firebase_auth.FirebaseAuth.instance.currentUser!.uid,
-                  goalID: goal.id!,
-                ).doc().set(record, SetOptions(merge: true));
+                final record = Record(
+                  message: text.value,
+                  hashTag: hashTag,
+                  createdDateTime: DateTime.now(),
+                );
+                try {
+                  await recordCollectionReference(
+                    userID:
+                        firebase_auth.FirebaseAuth.instance.currentUser!.uid,
+                    goalID: goal.id!,
+                  ).doc().set(record, SetOptions(merge: true));
 //                      await twitterAPIClient.tweetService.update(status: """
 //#100日後に${text.value}$twitterIDName
 //                        """);
-                Navigator.of(context).pop();
-              } catch (error) {
-                showErrorAlert(context, error: error);
-              }
-            },
+                  Navigator.of(context).pop();
+                } catch (error) {
+                  showErrorAlert(context, error: error);
+                }
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
