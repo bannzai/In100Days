@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/goal/goal_input_sheet.dart';
 import 'package:in_100_days/features/home/state_notifier.dart';
-import 'package:in_100_days/features/records/record_list.dart';
+import 'package:in_100_days/features/records/record_list_page.dart';
 import 'package:in_100_days/provider/auth.dart';
 
 class AppHome extends HookConsumerWidget {
@@ -29,7 +29,7 @@ class AppHome extends HookConsumerWidget {
             });
             return Container();
           } else {
-            return RecordList(goal: state.goals.last);
+            return RecordListPage(goal: state.goals.last);
           }
         },
         error: (error, _) => ErrorPage(error: error),
