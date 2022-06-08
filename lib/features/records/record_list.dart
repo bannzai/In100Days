@@ -17,10 +17,39 @@ class RecordsList extends HookConsumerWidget {
     return state.when(
         data: (state) {
           if (state.records.isEmpty) {
-            return RecordListEmpty(user: state.user, goal: state.goal);
-          } else {}
+            return RecordListEmpty(state: state);
+          } else {
+            return _RecordListBody(state: state);
+          }
         },
         error: (error, _) => ErrorPage(error: error),
         loading: () => const Center(child: CircularProgressIndicator()));
+  }
+}
+
+class _RecordListBody extends StatelessWidget {
+  final RecordsState state;
+
+  const _RecordListBody({Key? key, required this.state}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: state.records.map((record) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+          child: Row(
+            children: [
+              Image.network(state.user.profileImageURL),
+              Column(
+                children: [
+                  Text(record.message),
+                ],
+              )
+            ],
+          ),
+        );
+      }).toList(),
+    );
   }
 }
