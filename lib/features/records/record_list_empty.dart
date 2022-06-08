@@ -20,14 +20,17 @@ class RecordListEmpty extends StatelessWidget {
             builder: (_) => RecordAddSheet(user: state.user, goal: state.goal),
           );
         },
+        style: ElevatedButton.styleFrom(
+          shape: const CircleBorder(),
+        ),
         child: Container(
-          width: 300,
-          height: 300,
+          width: 100,
+          height: 100,
           decoration: const BoxDecoration(
             color: AppColor.primary,
             shape: BoxShape.circle,
           ),
-          child: const Icon(Icons.plus_one),
+          child: const Icon(Icons.add),
         ),
       ),
     );

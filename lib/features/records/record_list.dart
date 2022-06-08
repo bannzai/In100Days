@@ -14,13 +14,15 @@ class RecordList extends HookConsumerWidget {
     final state = ref.watch(recordsAsyncStateProvider(goal));
 
     return state.when(
-        data: (state) {
-          if (state.records.isEmpty) {
-            return RecordListEmpty(state: state);
-          } else {
-            return _RecordListBody(state: state);
-          }
-        },
+        data: (state) => Scaffold(
+              body: () {
+                if (state.records.isEmpty) {
+                  return RecordListEmpty(state: state);
+                } else {
+                  return _RecordListBody(state: state);
+                }
+              }(),
+            ),
         error: (error, _) => ErrorPage(error: error),
         loading: () => const Center(child: CircularProgressIndicator()));
   }
