@@ -13,25 +13,34 @@ class RecordListEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ElevatedButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (_) => RecordAddSheet(user: state.user, goal: state.goal),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shape: const CircleBorder(),
-        ),
-        child: Container(
-          width: 100,
-          height: 100,
-          decoration: const BoxDecoration(
-            color: AppColor.primary,
-            shape: BoxShape.circle,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("初めての記録をしましょう",
+              style: TextStyle(fontSize: 20, color: Colors.black)),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (_) =>
+                    RecordAddSheet(user: state.user, goal: state.goal),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+            ),
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: const BoxDecoration(
+                color: AppColor.primary,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.add),
+            ),
           ),
-          child: const Icon(Icons.add),
-        ),
+        ],
       ),
     );
   }
