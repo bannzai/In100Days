@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
-import 'package:in_100_days/features/home/home_page.dart';
+import 'package:in_100_days/features/home/home.dart';
 import 'package:in_100_days/features/login/login_page.dart';
 import 'package:in_100_days/provider/auth.dart';
 
@@ -15,7 +15,7 @@ class Root extends HookConsumerWidget {
     return authInfo.when(
       data: (authInfo) {
         if (authInfo != null) {
-          return HomePage(authInfo: authInfo);
+          return AppHome(authInfo: authInfo);
         } else {
           return const LoginPage();
         }

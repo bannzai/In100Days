@@ -6,9 +6,9 @@ import 'package:in_100_days/features/home/state_notifier.dart';
 import 'package:in_100_days/features/records/record_list.dart';
 import 'package:in_100_days/provider/auth.dart';
 
-class HomePage extends HookConsumerWidget {
+class AppHome extends HookConsumerWidget {
   final AuthInfo authInfo;
-  const HomePage({Key? key, required this.authInfo}) : super(key: key);
+  const AppHome({Key? key, required this.authInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
