@@ -14,31 +14,47 @@ class RecordListEmpty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("初めての記録をしましょう",
-              style: TextStyle(fontSize: 20, color: Colors.black)),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (_) =>
-                    RecordAddSheet(user: state.user, goal: state.goal),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-            ),
-            child: Container(
-              width: 100,
-              height: 100,
-              decoration: const BoxDecoration(
-                color: AppColor.primary,
-                shape: BoxShape.circle,
+          Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(state.user.profileImageURL),
+                backgroundColor: Colors.black,
               ),
-              child: const Icon(Icons.add),
-            ),
+              const SizedBox(height: 20),
+              Text(state.goal.goalAction),
+              Text(state.goal.fullHashTag),
+              Text("作成日: ${state.goal.createdDateTime}"),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("初めての記録をしましょう",
+                  style: TextStyle(fontSize: 20, color: Colors.black)),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (_) =>
+                        RecordAddSheet(user: state.user, goal: state.goal),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                ),
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    color: AppColor.primary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.add),
+                ),
+              ),
+            ],
           ),
         ],
       ),
