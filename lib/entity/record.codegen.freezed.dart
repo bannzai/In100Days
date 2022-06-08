@@ -23,12 +23,12 @@ class _$RecordTearOff {
   const _$RecordTearOff();
 
   _Record call(
-      {required String recordAction,
-      required String fullHashTag,
+      {required String message,
+      required String hashTag,
       required DateTime createdDateTime}) {
     return _Record(
-      recordAction: recordAction,
-      fullHashTag: fullHashTag,
+      message: message,
+      hashTag: hashTag,
       createdDateTime: createdDateTime,
     );
   }
@@ -43,8 +43,8 @@ const $Record = _$RecordTearOff();
 
 /// @nodoc
 mixin _$Record {
-  String get recordAction => throw _privateConstructorUsedError;
-  String get fullHashTag => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  String get hashTag => throw _privateConstructorUsedError;
   DateTime get createdDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,8 +56,7 @@ mixin _$Record {
 abstract class $RecordCopyWith<$Res> {
   factory $RecordCopyWith(Record value, $Res Function(Record) then) =
       _$RecordCopyWithImpl<$Res>;
-  $Res call(
-      {String recordAction, String fullHashTag, DateTime createdDateTime});
+  $Res call({String message, String hashTag, DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -70,18 +69,18 @@ class _$RecordCopyWithImpl<$Res> implements $RecordCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? recordAction = freezed,
-    Object? fullHashTag = freezed,
+    Object? message = freezed,
+    Object? hashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_value.copyWith(
-      recordAction: recordAction == freezed
-          ? _value.recordAction
-          : recordAction // ignore: cast_nullable_to_non_nullable
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fullHashTag: fullHashTag == freezed
-          ? _value.fullHashTag
-          : fullHashTag // ignore: cast_nullable_to_non_nullable
+      hashTag: hashTag == freezed
+          ? _value.hashTag
+          : hashTag // ignore: cast_nullable_to_non_nullable
               as String,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
@@ -96,8 +95,7 @@ abstract class _$RecordCopyWith<$Res> implements $RecordCopyWith<$Res> {
   factory _$RecordCopyWith(_Record value, $Res Function(_Record) then) =
       __$RecordCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String recordAction, String fullHashTag, DateTime createdDateTime});
+  $Res call({String message, String hashTag, DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -111,18 +109,18 @@ class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? recordAction = freezed,
-    Object? fullHashTag = freezed,
+    Object? message = freezed,
+    Object? hashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_Record(
-      recordAction: recordAction == freezed
-          ? _value.recordAction
-          : recordAction // ignore: cast_nullable_to_non_nullable
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fullHashTag: fullHashTag == freezed
-          ? _value.fullHashTag
-          : fullHashTag // ignore: cast_nullable_to_non_nullable
+      hashTag: hashTag == freezed
+          ? _value.hashTag
+          : hashTag // ignore: cast_nullable_to_non_nullable
               as String,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
@@ -137,23 +135,23 @@ class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_Record implements _Record {
   _$_Record(
-      {required this.recordAction,
-      required this.fullHashTag,
+      {required this.message,
+      required this.hashTag,
       required this.createdDateTime});
 
   factory _$_Record.fromJson(Map<String, dynamic> json) =>
       _$$_RecordFromJson(json);
 
   @override
-  final String recordAction;
+  final String message;
   @override
-  final String fullHashTag;
+  final String hashTag;
   @override
   final DateTime createdDateTime;
 
   @override
   String toString() {
-    return 'Record(recordAction: $recordAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime)';
+    return 'Record(message: $message, hashTag: $hashTag, createdDateTime: $createdDateTime)';
   }
 
   @override
@@ -161,10 +159,8 @@ class _$_Record implements _Record {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Record &&
-            const DeepCollectionEquality()
-                .equals(other.recordAction, recordAction) &&
-            const DeepCollectionEquality()
-                .equals(other.fullHashTag, fullHashTag) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.hashTag, hashTag) &&
             const DeepCollectionEquality()
                 .equals(other.createdDateTime, createdDateTime));
   }
@@ -172,8 +168,8 @@ class _$_Record implements _Record {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(recordAction),
-      const DeepCollectionEquality().hash(fullHashTag),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(hashTag),
       const DeepCollectionEquality().hash(createdDateTime));
 
   @JsonKey(ignore: true)
@@ -189,16 +185,16 @@ class _$_Record implements _Record {
 
 abstract class _Record implements Record {
   factory _Record(
-      {required String recordAction,
-      required String fullHashTag,
+      {required String message,
+      required String hashTag,
       required DateTime createdDateTime}) = _$_Record;
 
   factory _Record.fromJson(Map<String, dynamic> json) = _$_Record.fromJson;
 
   @override
-  String get recordAction;
+  String get message;
   @override
-  String get fullHashTag;
+  String get hashTag;
   @override
   DateTime get createdDateTime;
   @override

@@ -1,13 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
-import 'package:in_100_days/provider/goal.dart';
+import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/record.dart';
-import 'package:in_100_days/style/color.dart';
 
 class RecordAddSheet extends HookConsumerWidget {
   final User user;
@@ -50,12 +50,17 @@ class RecordAddSheet extends HookConsumerWidget {
               if (text.value.isEmpty) {
                 return;
               }
+
+              final record = Record(
+                message: text.value,
+                hashTag: hashTag,
+                createdDateTime: DateTime.now(),
+              );
               try {
-                final step = Step(stepAction: stepAction, fullHashTag: fullHashTag, createdDateTime: createdDateTime)
-                await stepCollectionReference(
-                  userID: FirebaseAuth.instance.currentUser!.uid,
+                await recordCollectionReference(
+                  userID: firebase_auth.FirebaseAuth.instance.currentUser!.uid,
                   goalID: goal.id!,
-                ).doc().set(step, SetOptions(merge: true));
+                ).doc().set(record, SetOptions(merge: true));
 //                      await twitterAPIClient.tweetService.update(status: """
 //#100日後に${text.value}$twitterIDName
 //                        """);

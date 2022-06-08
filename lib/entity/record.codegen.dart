@@ -7,8 +7,8 @@ part 'record.codegen.g.dart';
 class Record with _$Record {
   @JsonSerializable(explicitToJson: true)
   factory Record({
-    required String recordAction,
-    required String fullHashTag,
+    required String message,
+    required String hashTag,
     required DateTime createdDateTime,
   }) = _Record;
 
