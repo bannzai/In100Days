@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/goal/goal_input_sheet.dart';
 import 'package:in_100_days/features/home/state_notifier.dart';
+import 'package:in_100_days/features/records/record_list.dart';
 import 'package:in_100_days/provider/auth.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -28,8 +29,7 @@ class HomePage extends HookConsumerWidget {
             });
             return Container();
           } else {
-            // TODO:
-            return Container(child: Text("Tweet is not Empty"));
+            return RecordsList(goal: state.goals.last);
           }
         },
         error: (error, _) => ErrorPage(error: error),
