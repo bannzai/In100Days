@@ -21,6 +21,7 @@ final recordsAsyncStateProvider = Provider.family
     return AsyncValue.data(
       RecordsState(
         user: user.value!,
+        goal: goal,
         records: records.value ?? [],
       ),
     );
@@ -33,6 +34,7 @@ final recordsAsyncStateProvider = Provider.family
 class RecordsState with _$RecordsState {
   factory RecordsState({
     required User user,
+    required Goal goal,
     required List<Record> records,
   }) = _RecordsState;
   RecordsState._();

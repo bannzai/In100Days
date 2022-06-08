@@ -18,9 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$RecordsStateTearOff {
   const _$RecordsStateTearOff();
 
-  _RecordsState call({required User user, required List<Record> records}) {
+  _RecordsState call(
+      {required User user, required Goal goal, required List<Record> records}) {
     return _RecordsState(
       user: user,
+      goal: goal,
       records: records,
     );
   }
@@ -32,6 +34,7 @@ const $RecordsState = _$RecordsStateTearOff();
 /// @nodoc
 mixin _$RecordsState {
   User get user => throw _privateConstructorUsedError;
+  Goal get goal => throw _privateConstructorUsedError;
   List<Record> get records => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -44,9 +47,10 @@ abstract class $RecordsStateCopyWith<$Res> {
   factory $RecordsStateCopyWith(
           RecordsState value, $Res Function(RecordsState) then) =
       _$RecordsStateCopyWithImpl<$Res>;
-  $Res call({User user, List<Record> records});
+  $Res call({User user, Goal goal, List<Record> records});
 
   $UserCopyWith<$Res> get user;
+  $GoalCopyWith<$Res> get goal;
 }
 
 /// @nodoc
@@ -60,6 +64,7 @@ class _$RecordsStateCopyWithImpl<$Res> implements $RecordsStateCopyWith<$Res> {
   @override
   $Res call({
     Object? user = freezed,
+    Object? goal = freezed,
     Object? records = freezed,
   }) {
     return _then(_value.copyWith(
@@ -67,6 +72,10 @@ class _$RecordsStateCopyWithImpl<$Res> implements $RecordsStateCopyWith<$Res> {
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      goal: goal == freezed
+          ? _value.goal
+          : goal // ignore: cast_nullable_to_non_nullable
+              as Goal,
       records: records == freezed
           ? _value.records
           : records // ignore: cast_nullable_to_non_nullable
@@ -80,6 +89,13 @@ class _$RecordsStateCopyWithImpl<$Res> implements $RecordsStateCopyWith<$Res> {
       return _then(_value.copyWith(user: value));
     });
   }
+
+  @override
+  $GoalCopyWith<$Res> get goal {
+    return $GoalCopyWith<$Res>(_value.goal, (value) {
+      return _then(_value.copyWith(goal: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -89,10 +105,12 @@ abstract class _$RecordsStateCopyWith<$Res>
           _RecordsState value, $Res Function(_RecordsState) then) =
       __$RecordsStateCopyWithImpl<$Res>;
   @override
-  $Res call({User user, List<Record> records});
+  $Res call({User user, Goal goal, List<Record> records});
 
   @override
   $UserCopyWith<$Res> get user;
+  @override
+  $GoalCopyWith<$Res> get goal;
 }
 
 /// @nodoc
@@ -108,6 +126,7 @@ class __$RecordsStateCopyWithImpl<$Res> extends _$RecordsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
+    Object? goal = freezed,
     Object? records = freezed,
   }) {
     return _then(_RecordsState(
@@ -115,6 +134,10 @@ class __$RecordsStateCopyWithImpl<$Res> extends _$RecordsStateCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      goal: goal == freezed
+          ? _value.goal
+          : goal // ignore: cast_nullable_to_non_nullable
+              as Goal,
       records: records == freezed
           ? _value.records
           : records // ignore: cast_nullable_to_non_nullable
@@ -126,16 +149,20 @@ class __$RecordsStateCopyWithImpl<$Res> extends _$RecordsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RecordsState extends _RecordsState {
-  _$_RecordsState({required this.user, required this.records}) : super._();
+  _$_RecordsState(
+      {required this.user, required this.goal, required this.records})
+      : super._();
 
   @override
   final User user;
+  @override
+  final Goal goal;
   @override
   final List<Record> records;
 
   @override
   String toString() {
-    return 'RecordsState(user: $user, records: $records)';
+    return 'RecordsState(user: $user, goal: $goal, records: $records)';
   }
 
   @override
@@ -144,6 +171,7 @@ class _$_RecordsState extends _RecordsState {
         (other.runtimeType == runtimeType &&
             other is _RecordsState &&
             const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.goal, goal) &&
             const DeepCollectionEquality().equals(other.records, records));
   }
 
@@ -151,6 +179,7 @@ class _$_RecordsState extends _RecordsState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(goal),
       const DeepCollectionEquality().hash(records));
 
   @JsonKey(ignore: true)
@@ -160,12 +189,16 @@ class _$_RecordsState extends _RecordsState {
 }
 
 abstract class _RecordsState extends RecordsState {
-  factory _RecordsState({required User user, required List<Record> records}) =
-      _$_RecordsState;
+  factory _RecordsState(
+      {required User user,
+      required Goal goal,
+      required List<Record> records}) = _$_RecordsState;
   _RecordsState._() : super._();
 
   @override
   User get user;
+  @override
+  Goal get goal;
   @override
   List<Record> get records;
   @override

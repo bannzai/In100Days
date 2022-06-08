@@ -15,6 +15,7 @@ class RecordAddSheet extends HookConsumerWidget {
 
   const RecordAddSheet({
     Key? key,
+    required this.user,
     required this.goal,
   }) : super(key: key);
 
