@@ -10,20 +10,30 @@ class UserDeleteRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        child: const Text("ユーザーを削除する"),
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return _alert(context);
-              });
-        });
+    return ListTile(
+      title: Row(children: const [
+        Text(
+          "ユーザーを削除する",
+          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 16),
+        ),
+        SizedBox(width: 8),
+      ]),
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return _alert(context);
+            });
+      },
+    );
   }
 
   Widget _alert(BuildContext context) {
     return AlertDialog(
-        title: const Icon(Icons.warning),
+        title: const Icon(
+          Icons.warning,
+          color: AppColor.danger,
+        ),
         content: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,

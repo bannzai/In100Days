@@ -27,7 +27,15 @@ class UserPage extends HookConsumerWidget {
                 backgroundColor: Colors.black,
               ),
               const SizedBox(height: 20),
-              const UserDeleteRow()
+              Expanded(
+                child: ListView(
+                  children: const [
+                    Divider(color: Colors.black38),
+                    UserDeleteRow(),
+                    Divider(color: Colors.black38, indent: 16),
+                  ],
+                ),
+              )
             ],
           ),
         ),
