@@ -16,19 +16,24 @@ class AuthInfo {
   });
 }
 
-final firebaseAuthUserSetup = FutureProvider((ref) async {
-  final waitForFirebaseAuthSetup = Future<User?>(() {
-    final completer = Completer<User?>();
+final firebaseCurrentUserProvider = FutureProvider((ref) async {
+  final waitForFirebaseAuthSetup = Future<void>(() {
+    final completer = Completer<void>();
 
     StreamSubscription<User?>? subscription;
     subscription = FirebaseAuth.instance.userChanges().listen((firebaseUser) {
-      completer.complete(firebaseUser);
+      completer.complete();
       subscription?.cancel();
     });
     return completer.future;
   });
 
-  return await waitForFirebaseAuthSetup;
+  await waitForFirebaseAuthSetup;
+  final currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser == null) {
+    throw const FormatException("currentUser is null");
+  }
+  return currentUser;
 });
 
 final authInfoProvider = FutureProvider<AuthInfo?>((ref) async {
@@ -38,7 +43,7 @@ final authInfoProvider = FutureProvider<AuthInfo?>((ref) async {
       await storage.read(key: SecuretStorageKeys.twitterAuthToken);
   final twitterAuthTokenSecret =
       await storage.read(key: SecuretStorageKeys.twitterAuthTokenSecret);
-  final firebaseAuthUserAsyncValue = ref.watch(firebaseAuthUserSetup);
+  final firebaseAuthUserAsyncValue = ref.watch(firebaseCurrentUserProvider);
   if (twitterAuthToken == null ||
       twitterAuthTokenSecret == null ||
       firebaseAuthUserAsyncValue is AsyncLoading) {

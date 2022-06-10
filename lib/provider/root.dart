@@ -1,3 +1,3 @@
 import 'package:in_100_days/provider/auth.dart';
 
-final rootStateProvider = firebaseAuthUserSetup;
+final rootStateProvider = firebaseCurrentUserProvider;
