@@ -79,6 +79,12 @@ class RecordAddSheet extends HookConsumerWidget {
               },
             ),
           ),
+          Row(
+            children: const [
+              Icon(Icons.photo),
+              Spacer(),
+            ],
+          )
         ],
       ),
     );
