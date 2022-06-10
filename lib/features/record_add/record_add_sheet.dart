@@ -86,8 +86,8 @@ class RecordAddSheet extends HookConsumerWidget {
               IconButton(
                 icon: const Icon(Icons.photo),
                 onPressed: () async {
-                  final ImagePicker _picker = ImagePicker();
-                  final List<XFile>? images = await _picker.pickMultiImage();
+                  final _picker = ImagePicker();
+                  final images = await _picker.pickMultiImage();
                   print("[DEBUG] images: $images");
                 },
               ),
