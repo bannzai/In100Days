@@ -54,6 +54,7 @@ class RecordAddSheet extends HookConsumerWidget {
               },
               onEditingComplete: () async {
                 FocusManager.instance.primaryFocus?.unfocus();
+
                 if (text.value.isEmpty) {
                   return;
                 }
