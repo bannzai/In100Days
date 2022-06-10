@@ -45,12 +45,14 @@ class LoginAsyncAction {
     final twitterAPIMe =
         await twitterAPIClient.userService.usersShow(userId: twitterUID);
     final user = User(
-        id: firebaseUserCredential.user!.uid,
-        twitterUserID: twitterAPIMe.idStr!,
-        name: twitterAPIMe.name!,
-        screenName: twitterAPIMe.screenName!,
-        profileURL: twitterAPIMe.url!,
-        profileImageURL: twitterAPIMe.profileImageUrlHttps!);
+      id: firebaseUserCredential.user!.uid,
+      twitterUserID: twitterAPIMe.idStr!,
+      name: twitterAPIMe.name!,
+      screenName: twitterAPIMe.screenName!,
+      profileURL: twitterAPIMe.url!,
+      profileImageURL: twitterAPIMe.profileImageUrlHttps!,
+      createdDateTime: DateTime.now(),
+    );
 
     return user;
   }

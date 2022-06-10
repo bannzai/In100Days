@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:in_100_days/entity/timestam_converter.dart';
 
 part 'record.codegen.freezed.dart';
 part 'record.codegen.g.dart';
