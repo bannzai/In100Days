@@ -15,13 +15,14 @@ class RecordListPage extends HookConsumerWidget {
     final state = ref.watch(recordsAsyncStateProvider(goal));
 
     return state.when(
-        data: (state) => Scaffold(
-              body: SafeArea(
-                child: _body(state),
-              ),
-            ),
-        error: (error, _) => ErrorPage(error: error),
-        loading: () => const Center(child: CircularProgressIndicator()));
+      data: (state) => Scaffold(
+        body: SafeArea(
+          child: _body(state),
+        ),
+      ),
+      error: (error, _) => ErrorPage(error: error),
+      loading: () => const Center(child: CircularProgressIndicator()),
+    );
   }
 
   Widget _body(RecordsState state) {
