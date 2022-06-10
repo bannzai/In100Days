@@ -16,14 +16,14 @@ final homeAsyncStateProvider =
     return const AsyncValue.loading();
   }
 
-  final userValue = user.value;
-  final goalsValue = goals.value;
-  if (userValue == null || goalsValue == null) {
-    return const AsyncValue.error(
-        FormatException('unexpected user or goals is null for home state'));
-  }
-
   try {
+    final userValue = user.value;
+    final goalsValue = goals.value;
+    if (userValue == null || goalsValue == null) {
+      return const AsyncValue.error(
+          FormatException('unexpected user or goals is null for home state'));
+    }
+
     return AsyncValue.data(HomeState(
       user: userValue,
       goals: goalsValue,

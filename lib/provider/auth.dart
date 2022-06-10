@@ -45,7 +45,7 @@ final authInfoProvider = FutureProvider<AuthInfo?>((ref) async {
     return null;
   }
 
-  final firebaseAuthUser = firebaseAuthUserAsyncValue.value;
+  final firebaseAuthUser = firebaseAuthUserAsyncValue.asData?.value;
   if (firebaseAuthUser == null) {
     throw const FormatException("User is not found");
   }

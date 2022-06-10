@@ -21,7 +21,7 @@ final userStreamProvider = StreamProvider<User?>((ref) {
     return const Stream.empty();
   }
 
-  final authInfoValue = authInfo.value;
+  final authInfoValue = authInfo.asData?.value;
   if (authInfoValue == null) {
     return Stream.value(null);
   }
