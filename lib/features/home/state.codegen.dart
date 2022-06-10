@@ -16,10 +16,17 @@ final homeAsyncStateProvider =
     return const AsyncValue.loading();
   }
 
+  final userValue = user.value;
+  final goalsValue = goals.value;
+  if (userValue == null || goalsValue == null) {
+    return const AsyncValue.error(
+        FormatException('unexpected user or goals is null for home state'));
+  }
+
   try {
     return AsyncValue.data(HomeState(
-      user: user.value!,
-      goals: goals.value!,
+      user: userValue,
+      goals: goalsValue,
     ));
   } catch (error, stackTrace) {
     return AsyncValue.error(error, stackTrace: stackTrace);
