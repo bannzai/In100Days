@@ -79,9 +79,9 @@ class RecordAddSheet extends HookConsumerWidget {
                     goalID: goal.id!,
                   ).doc().set(record, SetOptions(merge: true));
 
-                  final mediaIDs = await _mediaIDs(images.value);
-                  await twitterAPIClient.tweetService
-                      .update(status: hashTag, mediaIds: mediaIDs);
+                  // final mediaIDs = await _mediaIDs(images.value);
+                  // await twitterAPIClient.tweetService
+                  //     .update(status: hashTag, mediaIds: mediaIDs);
                   Navigator.of(context).pop();
                 } catch (error) {
                   showErrorAlert(context, error: error);
