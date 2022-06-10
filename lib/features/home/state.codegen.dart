@@ -9,16 +9,16 @@ part 'state.codegen.freezed.dart';
 
 final homeAsyncStateProvider =
     Provider.autoDispose<AsyncValue<HomeState>>((ref) {
-  final user = ref.watch(userStreamProvider);
-  final goals = ref.watch(goalsStreamProvider);
-
-  if (user is AsyncLoading || goals is AsyncLoading) {
-    return const AsyncValue.loading();
-  }
-
   try {
-    final userValue = user.value;
-    final goalsValue = goals.value;
+    final user = ref.watch(userStreamProvider);
+    final goals = ref.watch(goalsStreamProvider);
+
+    if (user is AsyncLoading || goals is AsyncLoading) {
+      return const AsyncValue.loading();
+    }
+
+    final userValue = user.asData?.value;
+    final goalsValue = goals.asData?.value;
     if (userValue == null || goalsValue == null) {
       return const AsyncValue.error(
           FormatException('unexpected user or goals is null for home state'));
