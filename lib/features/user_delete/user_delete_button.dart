@@ -37,7 +37,7 @@ class UserDeleteButton extends StatelessWidget {
               height: 15,
             ),
             Text("ユーザーが削除されるとアプリ内にあるデータもすべて消えます",
-                style: const TextStyle(color: Colors.grey, fontSize: 16),
+                style: TextStyle(color: Colors.black, fontSize: 16),
                 textAlign: TextAlign.center),
           ],
         ),

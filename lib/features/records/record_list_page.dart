@@ -5,6 +5,7 @@ import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/records/record_list.dart';
 import 'package:in_100_days/features/records/record_list_empty.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
+import 'package:in_100_days/features/user/user_page.dart';
 
 class RecordListPage extends HookConsumerWidget {
   final Goal goal;
@@ -21,7 +22,7 @@ class RecordListPage extends HookConsumerWidget {
             IconButton(
               icon: const Icon(Icons.person),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).push(UserPageRoute.route());
               },
             ),
           ],

@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/home/home.dart';
 import 'package:in_100_days/features/login/login_page.dart';
-import 'package:in_100_days/features/user_delete/user_delete_button.dart';
 import 'package:in_100_days/provider/auth.dart';
 
 class Root extends HookConsumerWidget {
