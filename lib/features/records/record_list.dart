@@ -9,7 +9,7 @@ class RecordList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return ListView(children: [
       RecordsHeader(state: state),
       ...state.records.map((record) {
         return Container(
