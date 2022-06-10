@@ -16,13 +16,15 @@ class RecordListPage extends HookConsumerWidget {
 
     return state.when(
         data: (state) => Scaffold(
-              body: () {
-                if (state.records.isEmpty) {
-                  return RecordListEmpty(state: state);
-                } else {
-                  return RecordList(state: state);
-                }
-              }(),
+              body: SafeArea(
+                child: () {
+                  if (state.records.isEmpty) {
+                    return RecordListEmpty(state: state);
+                  } else {
+                    return RecordList(state: state);
+                  }
+                }(),
+              ),
             ),
         error: (error, _) => ErrorPage(error: error),
         loading: () => const Center(child: CircularProgressIndicator()));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/features/record_add/record_add_sheet.dart';
+import 'package:in_100_days/features/records/records_header.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
 
@@ -15,18 +16,7 @@ class RecordListEmpty extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Column(
-            children: [
-              CircleAvatar(
-                backgroundImage: NetworkImage(state.user.profileImageURL),
-                backgroundColor: Colors.black,
-              ),
-              const SizedBox(height: 20),
-              Text(state.goal.goalAction),
-              Text(state.goal.fullHashTag),
-              Text("作成日: ${state.goal.createdDateTime}"),
-            ],
-          ),
+          RecordsHeader(state: state),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
