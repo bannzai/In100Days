@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/user/user_delete_row.dart';
 import 'package:in_100_days/provider/user.dart';
+import 'package:in_100_days/style/color.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserPage extends HookConsumerWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -25,6 +27,14 @@ class UserPage extends HookConsumerWidget {
               CircleAvatar(
                 backgroundImage: NetworkImage(user.profileImageURL),
                 backgroundColor: Colors.black,
+              ),
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: () {
+                  launchUrl(Uri.parse(user.profileURL));
+                },
+                child: Text(user.screenName,
+                    style: const TextStyle(fontSize: 14, color: AppColor.link)),
               ),
               const SizedBox(height: 20),
               Expanded(
