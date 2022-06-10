@@ -9,6 +9,7 @@ import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/record.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:in_100_days/provider/twitter_api_client.dart';
 
 class RecordAddSheet extends HookConsumerWidget {
   final User user;
@@ -23,6 +24,7 @@ class RecordAddSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final text = useState("");
+    final images = useState<List<XFile>>([]);
     final textFieldController = useTextEditingController(text: "");
 
     const double paddingHorizontal = 20;
@@ -60,6 +62,16 @@ class RecordAddSheet extends HookConsumerWidget {
                   return;
                 }
 
+                if (images.value.isNotEmpty) {
+                  for (final image in images.value) {
+                    
+            final bytes = await image.readAsBytes();
+            final totalBytes = bytes.length;
+            final mediaType = mime(file.path);
+                  }
+                  twitterAPIClient.mediaService.uploadInit(totalBytes: totalBytes, mediaType: mediaType)
+                }
+
                 final record = Record(
                   message: text.value,
                   hashTag: hashTag,
@@ -86,9 +98,13 @@ class RecordAddSheet extends HookConsumerWidget {
               IconButton(
                 icon: const Icon(Icons.photo),
                 onPressed: () async {
-                  final _picker = ImagePicker();
-                  final images = await _picker.pickMultiImage();
-                  print("[DEBUG] images: $images");
+                  try {
+                    final picker = ImagePicker();
+                    images.value = await picker.pickMultiImage() ?? [];
+                  } catch (error) {
+                    showErrorAlert(context,
+                        error: "写真を選択できませんでした。アプリの設定から写真のアクセスの許可をしてください");
+                  }
                 },
               ),
               const Spacer(),
