@@ -47,6 +47,7 @@ dependencies:
   firebase_auth: ^3.3.4
   cloud_firestore: ^3.1.5
   dart_twitter_api: ^0.5.6+1
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
