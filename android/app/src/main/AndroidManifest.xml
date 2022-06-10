@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.in_100_days">
+    package="com.bannzai.in100days">
    <application
         android:label="in_100_days"
         android:name="${applicationName}"
