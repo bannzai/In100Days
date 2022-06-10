@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:in_100_days/features/user/user_delete_button.dart';
+import 'package:in_100_days/features/user/user_delete_row.dart';
 import 'package:in_100_days/provider/user.dart';
 
 class UserPage extends HookConsumerWidget {
@@ -27,7 +27,7 @@ class UserPage extends HookConsumerWidget {
                 backgroundColor: Colors.black,
               ),
               const SizedBox(height: 20),
-              const UserDeleteButton()
+              const UserDeleteRow()
             ],
           ),
         ),

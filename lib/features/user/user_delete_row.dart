@@ -5,8 +5,8 @@ import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/secure_storage.dart';
 import 'package:in_100_days/style/color.dart';
 
-class UserDeleteButton extends StatelessWidget {
-  const UserDeleteButton({Key? key}) : super(key: key);
+class UserDeleteRow extends StatelessWidget {
+  const UserDeleteRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
