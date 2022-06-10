@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/error/error_page.dart';
+import 'package:in_100_days/features/record_add/record_add_sheet.dart';
 import 'package:in_100_days/features/records/record_list.dart';
 import 'package:in_100_days/features/records/record_list_empty.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
@@ -19,6 +20,16 @@ class RecordListPage extends HookConsumerWidget {
       data: (state) => Scaffold(
         appBar: AppBar(
           actions: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (_) =>
+                      RecordAddSheet(user: state.user, goal: state.goal),
+                );
+              },
+            ),
             IconButton(
               icon: const Icon(Icons.person),
               onPressed: () {
