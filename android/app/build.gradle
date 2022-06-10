@@ -51,6 +51,7 @@ android {
         versionName flutterVersionName
     }
 
+    flavorDimensions "flavor-type"
     productFlavors {
         development {
             dimension "flavor-type"
