@@ -8,6 +8,7 @@ import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/record.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RecordAddSheet extends HookConsumerWidget {
   final User user;
@@ -81,11 +82,19 @@ class RecordAddSheet extends HookConsumerWidget {
             ),
           ),
           Row(
-            children: const [
-              Icon(Icons.photo),
-              Spacer(),
+            children: [
+              IconButton(
+                icon: const Icon(Icons.photo),
+                onPressed: () async {
+                  final ImagePicker _picker = ImagePicker();
+                  final List<XFile>? images = await _picker.pickMultiImage();
+                  print("[DEBUG] images: $images");
+                },
+              ),
+              const Spacer(),
             ],
-          )
+          ),
+          const Spacer(),
         ],
       ),
     );
