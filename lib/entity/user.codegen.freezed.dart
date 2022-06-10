@@ -28,7 +28,9 @@ class _$UserTearOff {
       required String name,
       required String screenName,
       required String profileURL,
-      required String profileImageURL}) {
+      required String profileImageURL,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) {
     return _User(
       id: id,
       twitterUserID: twitterUserID,
@@ -36,6 +38,7 @@ class _$UserTearOff {
       screenName: screenName,
       profileURL: profileURL,
       profileImageURL: profileImageURL,
+      createdDateTime: createdDateTime,
     );
   }
 
@@ -55,6 +58,10 @@ mixin _$User {
   String get screenName => throw _privateConstructorUsedError;
   String get profileURL => throw _privateConstructorUsedError;
   String get profileImageURL => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+  DateTime get createdDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,7 +78,9 @@ abstract class $UserCopyWith<$Res> {
       String name,
       String screenName,
       String profileURL,
-      String profileImageURL});
+      String profileImageURL,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -90,6 +99,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? screenName = freezed,
     Object? profileURL = freezed,
     Object? profileImageURL = freezed,
+    Object? createdDateTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -116,6 +126,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.profileImageURL
           : profileImageURL // ignore: cast_nullable_to_non_nullable
               as String,
+      createdDateTime: createdDateTime == freezed
+          ? _value.createdDateTime
+          : createdDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -131,7 +145,9 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       String screenName,
       String profileURL,
-      String profileImageURL});
+      String profileImageURL,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -151,6 +167,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? screenName = freezed,
     Object? profileURL = freezed,
     Object? profileImageURL = freezed,
+    Object? createdDateTime = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -177,6 +194,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.profileImageURL
           : profileImageURL // ignore: cast_nullable_to_non_nullable
               as String,
+      createdDateTime: createdDateTime == freezed
+          ? _value.createdDateTime
+          : createdDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -191,7 +212,9 @@ class _$_User extends _User {
       required this.name,
       required this.screenName,
       required this.profileURL,
-      required this.profileImageURL})
+      required this.profileImageURL,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required this.createdDateTime})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -208,10 +231,15 @@ class _$_User extends _User {
   final String profileURL;
   @override
   final String profileImageURL;
+  @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+  final DateTime createdDateTime;
 
   @override
   String toString() {
-    return 'User(id: $id, twitterUserID: $twitterUserID, name: $name, screenName: $screenName, profileURL: $profileURL, profileImageURL: $profileImageURL)';
+    return 'User(id: $id, twitterUserID: $twitterUserID, name: $name, screenName: $screenName, profileURL: $profileURL, profileImageURL: $profileImageURL, createdDateTime: $createdDateTime)';
   }
 
   @override
@@ -228,7 +256,9 @@ class _$_User extends _User {
             const DeepCollectionEquality()
                 .equals(other.profileURL, profileURL) &&
             const DeepCollectionEquality()
-                .equals(other.profileImageURL, profileImageURL));
+                .equals(other.profileImageURL, profileImageURL) &&
+            const DeepCollectionEquality()
+                .equals(other.createdDateTime, createdDateTime));
   }
 
   @override
@@ -239,7 +269,8 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(screenName),
       const DeepCollectionEquality().hash(profileURL),
-      const DeepCollectionEquality().hash(profileImageURL));
+      const DeepCollectionEquality().hash(profileImageURL),
+      const DeepCollectionEquality().hash(createdDateTime));
 
   @JsonKey(ignore: true)
   @override
@@ -259,7 +290,9 @@ abstract class _User extends User {
       required String name,
       required String screenName,
       required String profileURL,
-      required String profileImageURL}) = _$_User;
+      required String profileImageURL,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -276,6 +309,11 @@ abstract class _User extends User {
   String get profileURL;
   @override
   String get profileImageURL;
+  @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+  DateTime get createdDateTime;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

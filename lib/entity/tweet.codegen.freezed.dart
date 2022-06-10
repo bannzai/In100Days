@@ -24,7 +24,8 @@ class _$TweetSearchTearOff {
 
   _TweetSearch call(
       {required TwitterTweetAPIResponse response,
-      required DateTime createdDateTime}) {
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) {
     return _TweetSearch(
       response: response,
       createdDateTime: createdDateTime,
@@ -42,6 +43,9 @@ const $TweetSearch = _$TweetSearchTearOff();
 /// @nodoc
 mixin _$TweetSearch {
   TwitterTweetAPIResponse get response => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +59,10 @@ abstract class $TweetSearchCopyWith<$Res> {
   factory $TweetSearchCopyWith(
           TweetSearch value, $Res Function(TweetSearch) then) =
       _$TweetSearchCopyWithImpl<$Res>;
-  $Res call({TwitterTweetAPIResponse response, DateTime createdDateTime});
+  $Res call(
+      {TwitterTweetAPIResponse response,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 
   $TwitterTweetAPIResponseCopyWith<$Res> get response;
 }
@@ -100,7 +107,10 @@ abstract class _$TweetSearchCopyWith<$Res>
           _TweetSearch value, $Res Function(_TweetSearch) then) =
       __$TweetSearchCopyWithImpl<$Res>;
   @override
-  $Res call({TwitterTweetAPIResponse response, DateTime createdDateTime});
+  $Res call(
+      {TwitterTweetAPIResponse response,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 
   @override
   $TwitterTweetAPIResponseCopyWith<$Res> get response;
@@ -138,7 +148,10 @@ class __$TweetSearchCopyWithImpl<$Res> extends _$TweetSearchCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_TweetSearch implements _TweetSearch {
-  _$_TweetSearch({required this.response, required this.createdDateTime});
+  _$_TweetSearch(
+      {required this.response,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required this.createdDateTime});
 
   factory _$_TweetSearch.fromJson(Map<String, dynamic> json) =>
       _$$_TweetSearchFromJson(json);
@@ -146,6 +159,9 @@ class _$_TweetSearch implements _TweetSearch {
   @override
   final TwitterTweetAPIResponse response;
   @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   final DateTime createdDateTime;
 
   @override
@@ -183,7 +199,8 @@ class _$_TweetSearch implements _TweetSearch {
 abstract class _TweetSearch implements TweetSearch {
   factory _TweetSearch(
       {required TwitterTweetAPIResponse response,
-      required DateTime createdDateTime}) = _$_TweetSearch;
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) = _$_TweetSearch;
 
   factory _TweetSearch.fromJson(Map<String, dynamic> json) =
       _$_TweetSearch.fromJson;
@@ -191,6 +208,9 @@ abstract class _TweetSearch implements TweetSearch {
   @override
   TwitterTweetAPIResponse get response;
   @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime;
   @override
   @JsonKey(ignore: true)

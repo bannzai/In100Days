@@ -13,6 +13,8 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       screenName: json['screenName'] as String,
       profileURL: json['profileURL'] as String,
       profileImageURL: json['profileImageURL'] as String,
+      createdDateTime: NonNullTimestampConverter.timestampToDateTime(
+          json['createdDateTime'] as Timestamp),
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -22,4 +24,6 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'screenName': instance.screenName,
       'profileURL': instance.profileURL,
       'profileImageURL': instance.profileImageURL,
+      'createdDateTime': NonNullTimestampConverter.dateTimeToTimestamp(
+          instance.createdDateTime),
     };

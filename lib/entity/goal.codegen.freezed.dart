@@ -26,7 +26,8 @@ class _$GoalTearOff {
       {String? id,
       required String goalAction,
       required String fullHashTag,
-      required DateTime createdDateTime}) {
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) {
     return _Goal(
       id: id,
       goalAction: goalAction,
@@ -48,6 +49,9 @@ mixin _$Goal {
   String? get id => throw _privateConstructorUsedError;
   String get goalAction => throw _privateConstructorUsedError;
   String get fullHashTag => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,7 +67,8 @@ abstract class $GoalCopyWith<$Res> {
       {String? id,
       String goalAction,
       String fullHashTag,
-      DateTime createdDateTime});
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -111,7 +116,8 @@ abstract class _$GoalCopyWith<$Res> implements $GoalCopyWith<$Res> {
       {String? id,
       String goalAction,
       String fullHashTag,
-      DateTime createdDateTime});
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -159,7 +165,8 @@ class _$_Goal implements _Goal {
       {this.id,
       required this.goalAction,
       required this.fullHashTag,
-      required this.createdDateTime});
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required this.createdDateTime});
 
   factory _$_Goal.fromJson(Map<String, dynamic> json) => _$$_GoalFromJson(json);
 
@@ -170,6 +177,9 @@ class _$_Goal implements _Goal {
   @override
   final String fullHashTag;
   @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   final DateTime createdDateTime;
 
   @override
@@ -215,7 +225,8 @@ abstract class _Goal implements Goal {
       {String? id,
       required String goalAction,
       required String fullHashTag,
-      required DateTime createdDateTime}) = _$_Goal;
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) = _$_Goal;
 
   factory _Goal.fromJson(Map<String, dynamic> json) = _$_Goal.fromJson;
 
@@ -226,6 +237,9 @@ abstract class _Goal implements Goal {
   @override
   String get fullHashTag;
   @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime;
   @override
   @JsonKey(ignore: true)

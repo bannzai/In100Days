@@ -25,7 +25,8 @@ class _$RecordTearOff {
   _Record call(
       {required String message,
       required String hashTag,
-      required DateTime createdDateTime}) {
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) {
     return _Record(
       message: message,
       hashTag: hashTag,
@@ -45,6 +46,9 @@ const $Record = _$RecordTearOff();
 mixin _$Record {
   String get message => throw _privateConstructorUsedError;
   String get hashTag => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,7 +60,11 @@ mixin _$Record {
 abstract class $RecordCopyWith<$Res> {
   factory $RecordCopyWith(Record value, $Res Function(Record) then) =
       _$RecordCopyWithImpl<$Res>;
-  $Res call({String message, String hashTag, DateTime createdDateTime});
+  $Res call(
+      {String message,
+      String hashTag,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -95,7 +103,11 @@ abstract class _$RecordCopyWith<$Res> implements $RecordCopyWith<$Res> {
   factory _$RecordCopyWith(_Record value, $Res Function(_Record) then) =
       __$RecordCopyWithImpl<$Res>;
   @override
-  $Res call({String message, String hashTag, DateTime createdDateTime});
+  $Res call(
+      {String message,
+      String hashTag,
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -137,7 +149,8 @@ class _$_Record implements _Record {
   _$_Record(
       {required this.message,
       required this.hashTag,
-      required this.createdDateTime});
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required this.createdDateTime});
 
   factory _$_Record.fromJson(Map<String, dynamic> json) =>
       _$$_RecordFromJson(json);
@@ -147,6 +160,9 @@ class _$_Record implements _Record {
   @override
   final String hashTag;
   @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   final DateTime createdDateTime;
 
   @override
@@ -187,7 +203,8 @@ abstract class _Record implements Record {
   factory _Record(
       {required String message,
       required String hashTag,
-      required DateTime createdDateTime}) = _$_Record;
+      @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
+          required DateTime createdDateTime}) = _$_Record;
 
   factory _Record.fromJson(Map<String, dynamic> json) = _$_Record.fromJson;
 
@@ -196,6 +213,9 @@ abstract class _Record implements Record {
   @override
   String get hashTag;
   @override
+  @JsonKey(
+      fromJson: NonNullTimestampConverter.timestampToDateTime,
+      toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime;
   @override
   @JsonKey(ignore: true)
