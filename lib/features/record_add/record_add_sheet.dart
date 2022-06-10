@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -14,6 +13,7 @@ import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/utility/chunk.dart';
 import 'package:mime_type/mime_type.dart';
 
+// ignore: constant_identifier_names
 const _1MB = 1024 * 1024;
 
 class RecordAddSheet extends HookConsumerWidget {
@@ -67,7 +67,6 @@ class RecordAddSheet extends HookConsumerWidget {
                   return;
                 }
 
-                final mediaIDs = _mediaIDs(images.value);
                 final record = Record(
                   message: text.value,
                   hashTag: hashTag,
@@ -79,9 +78,10 @@ class RecordAddSheet extends HookConsumerWidget {
                         firebase_auth.FirebaseAuth.instance.currentUser!.uid,
                     goalID: goal.id!,
                   ).doc().set(record, SetOptions(merge: true));
-//                      await twitterAPIClient.tweetService.update(status: """
-//#100日後に${text.value}$twitterIDName
-//                        """);
+
+                  final mediaIDs = await _mediaIDs(images.value);
+                  await twitterAPIClient.tweetService
+                      .update(status: hashTag, mediaIds: mediaIDs);
                   Navigator.of(context).pop();
                 } catch (error) {
                   showErrorAlert(context, error: error);
