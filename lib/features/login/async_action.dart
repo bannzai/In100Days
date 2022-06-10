@@ -49,8 +49,8 @@ class LoginAsyncAction {
         twitterUserID: twitterAPIMe.idStr!,
         name: twitterAPIMe.name!,
         screenName: twitterAPIMe.screenName!,
-        profileURL: twitterAPIMe.profileBannerUrl!,
-        profileImageURL: twitterAPIMe.profileImageUrlHttps!);
+        profileURL: twitterAPIMe.url!,
+        profileImageURL: twitterAPIMe.profileBannerUrl!);
 
     return user;
   }

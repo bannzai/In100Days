@@ -16,6 +16,16 @@ class RecordListPage extends HookConsumerWidget {
 
     return state.when(
       data: (state) => Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
         body: SafeArea(
           child: _body(state),
         ),
