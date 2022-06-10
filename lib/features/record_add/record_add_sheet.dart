@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -10,6 +11,10 @@ import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/record.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
+import 'package:in_100_days/utility/chunk.dart';
+import 'package:mime_type/mime_type.dart';
+
+const _1MB = 1024 * 1024;
 
 class RecordAddSheet extends HookConsumerWidget {
   final User user;
@@ -62,16 +67,7 @@ class RecordAddSheet extends HookConsumerWidget {
                   return;
                 }
 
-                if (images.value.isNotEmpty) {
-                  for (final image in images.value) {
-                    
-            final bytes = await image.readAsBytes();
-            final totalBytes = bytes.length;
-            final mediaType = mime(file.path);
-                  }
-                  twitterAPIClient.mediaService.uploadInit(totalBytes: totalBytes, mediaType: mediaType)
-                }
-
+                final mediaIDs = _mediaIDs(images.value);
                 final record = Record(
                   message: text.value,
                   hashTag: hashTag,
@@ -114,5 +110,63 @@ class RecordAddSheet extends HookConsumerWidget {
         ],
       ),
     );
+  }
+
+  // Upload media https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/overview
+  Future<List<String>> _mediaIDs(List<XFile> images) async {
+    final mediaIDFutures = images.map((image) async {
+      final bytes = await image.readAsBytes();
+      final totalBytes = bytes.length;
+      final mediaType = mime(image.path);
+      if (totalBytes <= 0 || mediaType == null) {
+        throw const FormatException("Invalid image");
+      }
+
+      final uploadInit = await twitterAPIClient.mediaService
+          .uploadInit(totalBytes: totalBytes, mediaType: mediaType);
+      final mediaID = uploadInit.mediaIdString!;
+
+      final List<Future<dynamic>> tasks = [];
+      chunk(bytes, size: _1MB).asMap().forEach((segmentIndex, mediaChunk) {
+        tasks.add(
+          twitterAPIClient.mediaService.uploadAppend(
+            mediaId: mediaID,
+            media: mediaChunk,
+            segmentIndex: segmentIndex,
+          ),
+        );
+      });
+      await Future.wait(tasks);
+
+      await twitterAPIClient.mediaService.uploadFinalize(mediaId: mediaID);
+      await _waitUploadCompletion(mediaId: mediaID);
+
+      return mediaID;
+    }).toList();
+    final mediaIDs = await Future.wait(mediaIDFutures);
+    return mediaIDs;
+  }
+
+  Future<void> _waitUploadCompletion({
+    required String mediaId,
+  }) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+
+    final uploadStatus = await twitterAPIClient.mediaService.uploadStatus(
+      mediaId: mediaId,
+    );
+    final processingInfo = uploadStatus.processingInfo;
+    if (processingInfo == null) {
+      throw const FormatException("ProcessInfo is missed");
+    }
+
+    if (processingInfo.inProgress) {
+      return _waitUploadCompletion(mediaId: mediaId);
+    }
+    if (processingInfo.succeeded) {
+      return;
+    }
+
+    throw const FormatException("Upload failed");
   }
 }
