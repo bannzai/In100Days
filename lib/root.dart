@@ -3,19 +3,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/home/home.dart';
 import 'package:in_100_days/features/login/login_page.dart';
-import 'package:in_100_days/provider/auth.dart';
+import 'package:in_100_days/provider/user.dart';
 
 class Root extends HookConsumerWidget {
   const Root({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authInfo = ref.watch(authInfoProvider);
+    final user = ref.watch(userStreamProvider);
 
-    return authInfo.when(
-      data: (authInfo) {
-        if (authInfo != null) {
-          return AppHome(authInfo: authInfo);
+    return user.when(
+      data: (user) {
+        if (user != null) {
+          return AppHome(user: user);
         } else {
           return const LoginPage();
         }

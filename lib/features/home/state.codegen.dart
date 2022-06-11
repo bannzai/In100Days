@@ -3,30 +3,21 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/provider/goal.dart';
-import 'package:in_100_days/provider/user.dart';
 
 part 'state.codegen.freezed.dart';
 
 final homeAsyncStateProvider =
-    Provider.autoDispose<AsyncValue<HomeState>>((ref) {
+    Provider.autoDispose.family<AsyncValue<HomeState>, User>((ref, user) {
   try {
-    final user = ref.watch(userStreamProvider);
     final goals = ref.watch(goalsStreamProvider);
 
     if (user is AsyncLoading || goals is AsyncLoading) {
       return const AsyncValue.loading();
     }
 
-    final userValue = user.asData?.value;
-    final goalsValue = goals.asData?.value;
-    if (userValue == null || goalsValue == null) {
-      return const AsyncValue.error(
-          FormatException('unexpected user or goals is null for home state'));
-    }
-
     return AsyncValue.data(HomeState(
-      user: userValue,
-      goals: goalsValue,
+      user: user,
+      goals: goals.value ?? [],
     ));
   } catch (error, stackTrace) {
     return AsyncValue.error(error, stackTrace: stackTrace);

@@ -27,13 +27,9 @@ final firebaseCurrentUserProvider = FutureProvider((ref) async {
     });
     return completer.future;
   });
-
   await waitForFirebaseAuthSetup;
-  final currentUser = FirebaseAuth.instance.currentUser;
-  if (currentUser == null) {
-    throw const FormatException("currentUser is null");
-  }
-  return currentUser;
+
+  return FirebaseAuth.instance.currentUser;
 });
 
 final authInfoProvider = FutureProvider<AuthInfo?>((ref) async {

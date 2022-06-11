@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/goal/goal_input_sheet.dart';
 import 'package:in_100_days/features/home/state_notifier.dart';
 import 'package:in_100_days/features/records/record_list_page.dart';
-import 'package:in_100_days/provider/auth.dart';
 
 class AppHome extends HookConsumerWidget {
-  final AuthInfo authInfo;
-  const AppHome({Key? key, required this.authInfo}) : super(key: key);
+  final User user;
+  const AppHome({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(homeStateNotifierProvider);
+    final state = ref.watch(homeStateNotifierProvider(user));
     return state.when(
         data: (state) {
           if (state.goals.isEmpty) {
