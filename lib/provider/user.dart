@@ -29,5 +29,5 @@ final userStreamProvider = StreamProvider<User?>((ref) {
   return ref
       .watch(userDocumentReferenceProvider(twitterAuthTokenSecretValue.uid))
       .snapshots()
-      .map((event) => event.data()!);
+      .map((event) => event.data());
 });
