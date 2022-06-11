@@ -31,7 +31,8 @@ class UserPage extends HookConsumerWidget {
               const SizedBox(height: 8),
               GestureDetector(
                 onTap: () {
-                  launchUrl(Uri.parse(user.profileURL));
+                  launchUrl(
+                      Uri.parse("https://twitter.com/${user.screenName}"));
                 },
                 child: Text(user.screenName,
                     style: const TextStyle(fontSize: 14, color: AppColor.link)),
