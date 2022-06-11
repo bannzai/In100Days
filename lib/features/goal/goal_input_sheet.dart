@@ -78,9 +78,6 @@ class GoalInputSheet extends HookConsumerWidget {
                               userID: FirebaseAuth.instance.currentUser!.uid)
                           .doc()
                           .set(goal, SetOptions(merge: true));
-//                      await twitterAPIClient.tweetService.update(status: """
-//#100日後に${text.value}$twitterIDName
-//                        """);
                       Navigator.of(context).pop();
                     } catch (error) {
                       showErrorAlert(context, error: error);
