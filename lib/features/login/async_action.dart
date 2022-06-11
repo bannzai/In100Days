@@ -25,18 +25,12 @@ class LoginAsyncAction {
       throw const FormatException("authToken or authTokenSecret is null");
     }
 
+    // Store twitter authorized token and secret before setupTwitterAPIClient
     await secureStorageWrite(
         authToken: authToken, authTokenSecret: authTokenSecret);
 
     // Side effect Instantiate twitter API Client for app
-    twitterAPIClient = twitter_api.TwitterApi(
-      client: twitter_api.TwitterClient(
-        consumerKey: TwitterAPISecret.apiKey,
-        consumerSecret: TwitterAPISecret.apiKeySecret,
-        token: authToken,
-        secret: authTokenSecret,
-      ),
-    );
+    await setupTwitterAPIClient();
 
     final firebaseUserCredential = await firebaseSignInWithTwitter(
         authToken: authToken, authTokenSecret: authTokenSecret);

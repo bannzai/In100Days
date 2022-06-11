@@ -1,8 +1,26 @@
 import 'package:dart_twitter_api/twitter_api.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:in_100_days/provider/secure_storage.dart';
+import 'package:in_100_days/secret/secret.dart';
 
 late TwitterApi twitterAPIClient;
 
-final twitterAPIClientProvider = Provider((ref) {
-  return twitterAPIClient;
-});
+Future<void> setupTwitterAPIClient() async {
+  const secureStorage = FlutterSecureStorage();
+  final twitterAuthToken =
+      await secureStorage.read(key: SecuretStorageKeys.twitterAuthToken);
+  final twitterAuthTokenSecret =
+      await secureStorage.read(key: SecuretStorageKeys.twitterAuthTokenSecret);
+  if (twitterAuthToken == null || twitterAuthTokenSecret == null) {
+    return;
+  }
+
+  twitterAPIClient = TwitterApi(
+    client: TwitterClient(
+      consumerKey: TwitterAPISecret.apiKey,
+      consumerSecret: TwitterAPISecret.apiKeySecret,
+      token: twitterAuthToken,
+      secret: twitterAuthTokenSecret,
+    ),
+  );
+}
