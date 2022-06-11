@@ -73,16 +73,20 @@ class RecordAddSheet extends HookConsumerWidget {
                   createdDateTime: DateTime.now(),
                 );
                 try {
+                  final mediaIDs = await _mediaIDs(images.value);
+                  await twitterAPIClient.tweetService.update(
+                    status: """
+${text.value}
+$hashTag""",
+                    mediaIds: mediaIDs,
+                  );
+
                   await recordCollectionReference(
                     userID:
                         firebase_auth.FirebaseAuth.instance.currentUser!.uid,
                     goalID: goal.id!,
                   ).doc().set(record, SetOptions(merge: true));
 
-                  final mediaIDs = await _mediaIDs(images.value);
-                  await twitterAPIClient.tweetService.update(status: """
-${text.value}
-$hashTag""", mediaIds: mediaIDs);
                   Navigator.of(context).pop();
                 } catch (error) {
                   showErrorAlert(context, error: error);
@@ -115,7 +119,8 @@ $hashTag""", mediaIds: mediaIDs);
 
   // Upload media https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/overview
   Future<List<String>> _mediaIDs(List<XFile> images) async {
-    final mediaIDFutures = images.map((image) async {
+    var mediaIDs = <String>[];
+    for (final image in images) {
       final bytes = await image.readAsBytes();
       final totalBytes = bytes.length;
       final mediaType = mime(image.path);
@@ -127,24 +132,24 @@ $hashTag""", mediaIds: mediaIDs);
           .uploadInit(totalBytes: totalBytes, mediaType: mediaType);
       final mediaID = uploadInit.mediaIdString!;
 
-      final List<Future<dynamic>> tasks = [];
-      chunk(bytes, size: _1MB).asMap().forEach((segmentIndex, mediaChunk) {
-        tasks.add(
-          twitterAPIClient.mediaService.uploadAppend(
-            mediaId: mediaID,
-            media: mediaChunk,
-            segmentIndex: segmentIndex,
-          ),
+      var segmentIndex = 0;
+      final mediaChunks = chunk(bytes, size: _1MB);
+      for (final mediaChunk in mediaChunks) {
+        await twitterAPIClient.mediaService.uploadAppend(
+          mediaId: mediaID,
+          media: mediaChunk,
+          segmentIndex: segmentIndex,
         );
-      });
-      await Future.wait(tasks);
+
+        segmentIndex = segmentIndex + 1;
+      }
 
       await twitterAPIClient.mediaService.uploadFinalize(mediaId: mediaID);
       await _waitUploadCompletion(mediaId: mediaID);
 
-      return mediaID;
-    }).toList();
-    final mediaIDs = await Future.wait(mediaIDFutures);
+      mediaIDs.add(mediaID);
+    }
+
     return mediaIDs;
   }
 
@@ -162,7 +167,7 @@ $hashTag""", mediaIds: mediaIDs);
     }
 
     if (processingInfo.inProgress) {
-      return _waitUploadCompletion(mediaId: mediaId);
+      return await _waitUploadCompletion(mediaId: mediaId);
     }
     if (processingInfo.succeeded) {
       return;

@@ -45,7 +45,8 @@ void showErrorAlert(BuildContext context,
     builder: (_) {
       return ErrorAlert(
         title: title,
-        errorMessage: error.toString(),
+        errorMessage:
+            (error is FormatException) ? error.message : error.toString(),
       );
     },
   );
