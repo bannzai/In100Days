@@ -144,8 +144,12 @@ $hashTag""",
         segmentIndex = segmentIndex + 1;
       }
 
-      await twitterAPIClient.mediaService.uploadFinalize(mediaId: mediaID);
-      await _waitUploadCompletion(mediaId: mediaID);
+      final uploadFinalizeResult =
+          await twitterAPIClient.mediaService.uploadFinalize(mediaId: mediaID);
+      if (uploadFinalizeResult.processingInfo != null &&
+          uploadFinalizeResult.processingInfo!.pending) {
+        await _waitUploadCompletion(mediaId: mediaID);
+      }
 
       mediaIDs.add(mediaID);
     }
