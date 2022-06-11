@@ -49,7 +49,6 @@ class LoginAsyncAction {
       twitterUserID: twitterAPIMe.idStr!,
       name: twitterAPIMe.name!,
       screenName: twitterAPIMe.screenName!,
-      profileURL: twitterAPIMe.url!,
       profileImageURL: twitterAPIMe.profileImageUrlHttps!,
       createdDateTime: DateTime.now(),
     );

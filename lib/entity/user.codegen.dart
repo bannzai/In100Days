@@ -13,7 +13,6 @@ class User with _$User {
     required String twitterUserID,
     required String name,
     required String screenName,
-    required String profileURL,
     required String profileImageURL,
     @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
