@@ -16,18 +16,18 @@ final userDocumentReferenceProvider = Provider.family(
 );
 
 final userStreamProvider = StreamProvider<User?>((ref) {
-  final authInfo = ref.watch(authInfoProvider);
-  if (authInfo is AsyncLoading) {
+  final firebaseCurrentUser = ref.watch(firebaseCurrentUserProvider);
+  if (firebaseCurrentUser is AsyncLoading) {
     return const Stream.empty();
   }
 
-  final authInfoValue = authInfo.asData?.value;
-  if (authInfoValue == null) {
+  final twitterAuthTokenSecretValue = firebaseCurrentUser.asData?.value;
+  if (twitterAuthTokenSecretValue == null) {
     return Stream.value(null);
   }
 
   return ref
-      .watch(userDocumentReferenceProvider(authInfoValue.firebaseUserID))
+      .watch(userDocumentReferenceProvider(twitterAuthTokenSecretValue.uid))
       .snapshots()
       .map((event) => event.data()!);
 });
