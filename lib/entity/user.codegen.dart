@@ -23,4 +23,6 @@ class User with _$User {
   User._();
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  String get twitterID => screenName;
 }

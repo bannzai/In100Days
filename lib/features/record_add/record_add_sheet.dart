@@ -33,7 +33,7 @@ class RecordAddSheet extends HookConsumerWidget {
     final textFieldController = useTextEditingController(text: "");
 
     const double paddingHorizontal = 20;
-    final hashTag = "#100日後に${text.value}${user.screenName}";
+    final hashTag = "#100日後に${text.value}${user.twitterID}";
 
     return Container(
       padding: const EdgeInsets.symmetric(

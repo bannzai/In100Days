@@ -23,7 +23,7 @@ class AppHome extends HookConsumerWidget {
                 isDismissible: false,
                 enableDrag: false,
                 builder: (context) {
-                  return GoalInputSheet(twitterIDName: state.user.screenName);
+                  return GoalInputSheet(twitterIDName: state.user.twitterID);
                 },
               );
             });
