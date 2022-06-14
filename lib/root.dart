@@ -17,7 +17,7 @@ class Root extends HookConsumerWidget {
         if (user != null) {
           return AppHome(user: user);
         } else {
-          return const LoginPage();
+          return const SignInPage();
         }
       },
       error: (error, st) => ErrorPage(error: error),

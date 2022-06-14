@@ -6,8 +6,8 @@ import 'package:in_100_days/provider/user.dart';
 
 import 'state_notifier.dart';
 
-class LoginPage extends HookConsumerWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignInPage extends HookConsumerWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
