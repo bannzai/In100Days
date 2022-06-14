@@ -15,45 +15,45 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$LoginStateTearOff {
-  const _$LoginStateTearOff();
+class _$SignInStateTearOff {
+  const _$SignInStateTearOff();
 
-  _LoginState call({required User? user}) {
-    return _LoginState(
+  _SignInState call({required User? user}) {
+    return _SignInState(
       user: user,
     );
   }
 }
 
 /// @nodoc
-const $LoginState = _$LoginStateTearOff();
+const $SignInState = _$SignInStateTearOff();
 
 /// @nodoc
-mixin _$LoginState {
+mixin _$SignInState {
   User? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LoginStateCopyWith<LoginState> get copyWith =>
+  $SignInStateCopyWith<SignInState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res>;
+abstract class $SignInStateCopyWith<$Res> {
+  factory $SignInStateCopyWith(
+          SignInState value, $Res Function(SignInState) then) =
+      _$SignInStateCopyWithImpl<$Res>;
   $Res call({User? user});
 
   $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
+class _$SignInStateCopyWithImpl<$Res> implements $SignInStateCopyWith<$Res> {
+  _$SignInStateCopyWithImpl(this._value, this._then);
 
-  final LoginState _value;
+  final SignInState _value;
   // ignore: unused_field
-  final $Res Function(LoginState) _then;
+  final $Res Function(SignInState) _then;
 
   @override
   $Res call({
@@ -80,10 +80,11 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
-  factory _$LoginStateCopyWith(
-          _LoginState value, $Res Function(_LoginState) then) =
-      __$LoginStateCopyWithImpl<$Res>;
+abstract class _$SignInStateCopyWith<$Res>
+    implements $SignInStateCopyWith<$Res> {
+  factory _$SignInStateCopyWith(
+          _SignInState value, $Res Function(_SignInState) then) =
+      __$SignInStateCopyWithImpl<$Res>;
   @override
   $Res call({User? user});
 
@@ -92,20 +93,20 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements _$LoginStateCopyWith<$Res> {
-  __$LoginStateCopyWithImpl(
-      _LoginState _value, $Res Function(_LoginState) _then)
-      : super(_value, (v) => _then(v as _LoginState));
+class __$SignInStateCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
+    implements _$SignInStateCopyWith<$Res> {
+  __$SignInStateCopyWithImpl(
+      _SignInState _value, $Res Function(_SignInState) _then)
+      : super(_value, (v) => _then(v as _SignInState));
 
   @override
-  _LoginState get _value => super._value as _LoginState;
+  _SignInState get _value => super._value as _SignInState;
 
   @override
   $Res call({
     Object? user = freezed,
   }) {
-    return _then(_LoginState(
+    return _then(_SignInState(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -116,22 +117,22 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginState extends _LoginState {
-  _$_LoginState({required this.user}) : super._();
+class _$_SignInState extends _SignInState {
+  _$_SignInState({required this.user}) : super._();
 
   @override
   final User? user;
 
   @override
   String toString() {
-    return 'LoginState(user: $user)';
+    return 'SignInState(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LoginState &&
+            other is _SignInState &&
             const DeepCollectionEquality().equals(other.user, user));
   }
 
@@ -141,18 +142,18 @@ class _$_LoginState extends _LoginState {
 
   @JsonKey(ignore: true)
   @override
-  _$LoginStateCopyWith<_LoginState> get copyWith =>
-      __$LoginStateCopyWithImpl<_LoginState>(this, _$identity);
+  _$SignInStateCopyWith<_SignInState> get copyWith =>
+      __$SignInStateCopyWithImpl<_SignInState>(this, _$identity);
 }
 
-abstract class _LoginState extends LoginState {
-  factory _LoginState({required User? user}) = _$_LoginState;
-  _LoginState._() : super._();
+abstract class _SignInState extends SignInState {
+  factory _SignInState({required User? user}) = _$_SignInState;
+  _SignInState._() : super._();
 
   @override
   User? get user;
   @override
   @JsonKey(ignore: true)
-  _$LoginStateCopyWith<_LoginState> get copyWith =>
+  _$SignInStateCopyWith<_SignInState> get copyWith =>
       throw _privateConstructorUsedError;
 }

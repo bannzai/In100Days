@@ -7,7 +7,6 @@ import 'package:riverpod/riverpod.dart';
 import 'package:in_100_days/secret/secret.dart';
 import 'package:twitter_login/entity/auth_result.dart';
 import 'package:twitter_login/twitter_login.dart';
-import 'package:dart_twitter_api/twitter_api.dart' as twitter_api;
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import '../../provider/twitter_api_client.dart';
@@ -51,7 +50,7 @@ class SignInAsyncAction {
   }
 
   Future<AuthResult> twitterSignIn() {
-    final twitterSignIn = TwitterSignIn(
+    final twitterSignIn = TwitterLogin(
       apiKey: TwitterAPISecret.apiKey,
       apiSecretKey: TwitterAPISecret.apiKeySecret,
       redirectURI: 'in100days://',
