@@ -12,13 +12,13 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import '../../provider/twitter_api_client.dart';
 
-class LoginAsyncAction {
+class SignInAsyncAction {
   final FlutterSecureStorage secureStorage;
 
-  LoginAsyncAction({required this.secureStorage});
+  SignInAsyncAction({required this.secureStorage});
 
   Future<User> signIn() async {
-    final authResult = await twitterLogin();
+    final authResult = await twitterSignIn();
     final authToken = authResult.authToken;
     final authTokenSecret = authResult.authTokenSecret;
     if (authToken == null || authTokenSecret == null) {
@@ -50,13 +50,13 @@ class LoginAsyncAction {
     return user;
   }
 
-  Future<AuthResult> twitterLogin() {
-    final twitterLogin = TwitterLogin(
+  Future<AuthResult> twitterSignIn() {
+    final twitterSignIn = TwitterSignIn(
       apiKey: TwitterAPISecret.apiKey,
       apiSecretKey: TwitterAPISecret.apiKeySecret,
       redirectURI: 'in100days://',
     );
-    return twitterLogin.login();
+    return twitterSignIn.login();
   }
 
   Future<void> secureStorageWrite(
@@ -83,7 +83,7 @@ class LoginAsyncAction {
 }
 
 final loginAsyncActionProvider = Provider(
-  (ref) => LoginAsyncAction(
+  (ref) => SignInAsyncAction(
     secureStorage: ref.watch(secureStorageProvider),
   ),
 );

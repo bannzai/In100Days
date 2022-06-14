@@ -5,18 +5,18 @@ import 'async_action.dart';
 import 'state.codegen.dart';
 
 final loginStateNotifierProvider =
-    StateNotifierProvider.autoDispose<LoginStateNotifier, LoginState>(
-  (ref) => LoginStateNotifier(
+    StateNotifierProvider.autoDispose<SignInStateNotifier, SignInState>(
+  (ref) => SignInStateNotifier(
     asyncAction: ref.watch(loginAsyncActionProvider),
     initialState: ref.watch(loginAsyncStateProvider),
   ),
 );
 
-class LoginStateNotifier extends StateNotifier<LoginState> {
-  final LoginAsyncAction asyncAction;
-  LoginStateNotifier({
+class SignInStateNotifier extends StateNotifier<SignInState> {
+  final SignInAsyncAction asyncAction;
+  SignInStateNotifier({
     required this.asyncAction,
-    required LoginState initialState,
+    required SignInState initialState,
   }) : super(initialState);
 
   void setUser(User user) {

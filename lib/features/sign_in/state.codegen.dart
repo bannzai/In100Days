@@ -5,12 +5,12 @@ import 'package:in_100_days/entity/user.codegen.dart';
 part 'state.codegen.freezed.dart';
 
 final loginAsyncStateProvider =
-    Provider.autoDispose<LoginState>((ref) => LoginState(user: null));
+    Provider.autoDispose<SignInState>((ref) => SignInState(user: null));
 
 @freezed
-class LoginState with _$LoginState {
-  factory LoginState({
+class SignInState with _$SignInState {
+  factory SignInState({
     required User? user,
-  }) = _LoginState;
-  LoginState._();
+  }) = _SignInState;
+  SignInState._();
 }
