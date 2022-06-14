@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/home/home.dart';
-import 'package:in_100_days/features/login/login_page.dart';
+import 'package:in_100_days/features/login/sign_in_page.dart';
 import 'package:in_100_days/provider/user.dart';
 
 class Root extends HookConsumerWidget {
