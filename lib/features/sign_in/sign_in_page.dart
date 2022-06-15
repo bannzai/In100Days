@@ -59,6 +59,7 @@ class SignInPage extends HookConsumerWidget {
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.normal,
+                      color: AppColor.textMain,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -68,6 +69,7 @@ class SignInPage extends HookConsumerWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.normal,
+                      color: AppColor.textNote,
                     ),
                   ),
                 ]),
