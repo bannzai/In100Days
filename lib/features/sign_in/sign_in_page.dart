@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/user.dart';
+import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 
 import 'state_notifier.dart';
@@ -72,8 +73,8 @@ class SignInPage extends HookConsumerWidget {
                 ]),
               ),
               const Spacer(),
-              ElevatedButton(
-                child: const Text('Sign in with Twitter'),
+              TwitterLikeButton(
+                text: 'Twitterでログイン',
                 onPressed: () async {
                   try {
                     final user = await stateNotifier.asyncAction.signIn();
