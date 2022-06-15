@@ -6,5 +6,5 @@ class AppColor {
   static const Color link = Colors.blueAccent;
   static const Color twitterHashTag = Color(0xFF6194E3);
   static const Color textMain = Colors.black87;
-  static const Color textNote = Colors.black54;
+  static const Color textNote = Color(0x8F000000);
 }
