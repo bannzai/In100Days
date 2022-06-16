@@ -20,7 +20,7 @@ class RecordListEmpty extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               const Text("初めての記録をしましょう",
-                  style: TextStyle(fontSize: 20, color: Colors.black)),
+                  style: TextStyle(fontSize: 20, color: AppColor.textMain)),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
