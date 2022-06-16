@@ -27,7 +27,7 @@ class _$UserTearOff {
       required String twitterUserID,
       required String name,
       required String screenName,
-      required String profileImageURL,
+      required String twitterAPIProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime}) {
     return _User(
@@ -35,7 +35,7 @@ class _$UserTearOff {
       twitterUserID: twitterUserID,
       name: name,
       screenName: screenName,
-      profileImageURL: profileImageURL,
+      twitterAPIProfileImageURL: twitterAPIProfileImageURL,
       createdDateTime: createdDateTime,
     );
   }
@@ -54,7 +54,7 @@ mixin _$User {
   String get twitterUserID => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get screenName => throw _privateConstructorUsedError;
-  String get profileImageURL => throw _privateConstructorUsedError;
+  String get twitterAPIProfileImageURL => throw _privateConstructorUsedError;
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
@@ -74,7 +74,7 @@ abstract class $UserCopyWith<$Res> {
       String twitterUserID,
       String name,
       String screenName,
-      String profileImageURL,
+      String twitterAPIProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime});
 }
@@ -93,7 +93,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? twitterUserID = freezed,
     Object? name = freezed,
     Object? screenName = freezed,
-    Object? profileImageURL = freezed,
+    Object? twitterAPIProfileImageURL = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_value.copyWith(
@@ -113,9 +113,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.screenName
           : screenName // ignore: cast_nullable_to_non_nullable
               as String,
-      profileImageURL: profileImageURL == freezed
-          ? _value.profileImageURL
-          : profileImageURL // ignore: cast_nullable_to_non_nullable
+      twitterAPIProfileImageURL: twitterAPIProfileImageURL == freezed
+          ? _value.twitterAPIProfileImageURL
+          : twitterAPIProfileImageURL // ignore: cast_nullable_to_non_nullable
               as String,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
@@ -135,7 +135,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String twitterUserID,
       String name,
       String screenName,
-      String profileImageURL,
+      String twitterAPIProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime});
 }
@@ -155,7 +155,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? twitterUserID = freezed,
     Object? name = freezed,
     Object? screenName = freezed,
-    Object? profileImageURL = freezed,
+    Object? twitterAPIProfileImageURL = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_User(
@@ -175,9 +175,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.screenName
           : screenName // ignore: cast_nullable_to_non_nullable
               as String,
-      profileImageURL: profileImageURL == freezed
-          ? _value.profileImageURL
-          : profileImageURL // ignore: cast_nullable_to_non_nullable
+      twitterAPIProfileImageURL: twitterAPIProfileImageURL == freezed
+          ? _value.twitterAPIProfileImageURL
+          : twitterAPIProfileImageURL // ignore: cast_nullable_to_non_nullable
               as String,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
@@ -196,7 +196,7 @@ class _$_User extends _User {
       required this.twitterUserID,
       required this.name,
       required this.screenName,
-      required this.profileImageURL,
+      required this.twitterAPIProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required this.createdDateTime})
       : super._();
@@ -212,7 +212,7 @@ class _$_User extends _User {
   @override
   final String screenName;
   @override
-  final String profileImageURL;
+  final String twitterAPIProfileImageURL;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
@@ -221,7 +221,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, twitterUserID: $twitterUserID, name: $name, screenName: $screenName, profileImageURL: $profileImageURL, createdDateTime: $createdDateTime)';
+    return 'User(id: $id, twitterUserID: $twitterUserID, name: $name, screenName: $screenName, twitterAPIProfileImageURL: $twitterAPIProfileImageURL, createdDateTime: $createdDateTime)';
   }
 
   @override
@@ -235,8 +235,8 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.screenName, screenName) &&
-            const DeepCollectionEquality()
-                .equals(other.profileImageURL, profileImageURL) &&
+            const DeepCollectionEquality().equals(
+                other.twitterAPIProfileImageURL, twitterAPIProfileImageURL) &&
             const DeepCollectionEquality()
                 .equals(other.createdDateTime, createdDateTime));
   }
@@ -248,7 +248,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(twitterUserID),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(screenName),
-      const DeepCollectionEquality().hash(profileImageURL),
+      const DeepCollectionEquality().hash(twitterAPIProfileImageURL),
       const DeepCollectionEquality().hash(createdDateTime));
 
   @JsonKey(ignore: true)
@@ -268,7 +268,7 @@ abstract class _User extends User {
       required String twitterUserID,
       required String name,
       required String screenName,
-      required String profileImageURL,
+      required String twitterAPIProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime}) = _$_User;
   _User._() : super._();
@@ -284,7 +284,7 @@ abstract class _User extends User {
   @override
   String get screenName;
   @override
-  String get profileImageURL;
+  String get twitterAPIProfileImageURL;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
