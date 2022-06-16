@@ -37,12 +37,16 @@ class SignInAsyncAction {
     final twitterUID = firebaseUserCredential.user!.providerData.first.uid;
     final twitterAPIMe =
         await twitterAPIClient.userService.usersShow(userId: twitterUID);
+
+    final twitterAPIProfileImageURL = twitterAPIMe.profileImageUrlHttps!;
     final user = User(
       id: firebaseUserCredential.user!.uid,
       twitterUserID: twitterAPIMe.idStr!,
       name: twitterAPIMe.name!,
       screenName: twitterAPIMe.screenName!,
-      twitterAPIProfileImageURL: twitterAPIMe.profileImageUrlHttps!,
+      twitterAPIProfileImageURL: twitterAPIProfileImageURL,
+      orignalProfileImageURL:
+          twitterAPIProfileImageURL.replaceFirst("_normal", ""),
       createdDateTime: DateTime.now(),
     );
 

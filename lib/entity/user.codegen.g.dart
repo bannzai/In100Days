@@ -12,6 +12,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       name: json['name'] as String,
       screenName: json['screenName'] as String,
       twitterAPIProfileImageURL: json['twitterAPIProfileImageURL'] as String,
+      orignalProfileImageURL: json['orignalProfileImageURL'] as String,
       createdDateTime: NonNullTimestampConverter.timestampToDateTime(
           json['createdDateTime'] as Timestamp),
     );
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'name': instance.name,
       'screenName': instance.screenName,
       'twitterAPIProfileImageURL': instance.twitterAPIProfileImageURL,
+      'orignalProfileImageURL': instance.orignalProfileImageURL,
       'createdDateTime': NonNullTimestampConverter.dateTimeToTimestamp(
           instance.createdDateTime),
     };
