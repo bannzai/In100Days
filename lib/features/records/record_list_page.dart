@@ -19,42 +19,35 @@ class RecordListPage extends HookConsumerWidget {
 
     return state.when(
       data: (state) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          elevation: 0,
-          title: UserInfo(user: state.user, hashTag: state.goal.fullHashTag),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (_) =>
-                      RecordAddSheet(user: state.user, goal: state.goal),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.person),
-              onPressed: () {
-                Navigator.of(context).push(UserPageRoute.route());
-              },
-            ),
-          ],
-        ),
         body: SafeArea(
-          child: () {
-            if (state.records.isEmpty) {
-              return RecordListEmpty(state: state);
-            } else {
-              return RecordList(state: state);
-            }
-          }(),
+          child: Stack(
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    UserInfo(
+                      user: state.user,
+                      hashTag: state.goal.fullHashTag,
+                    ),
+                    _content(state),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       error: (error, _) => ErrorPage(error: error),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
+  }
+
+  Widget _content(RecordsState state) {
+    if (state.records.isEmpty) {
+      return RecordListEmpty(state: state);
+    } else {
+      return RecordList(state: state);
+    }
   }
 }

@@ -18,6 +18,7 @@ class RecordListEmpty extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: 40),
               const Text("初めての記録をしましょう",
                   style: TextStyle(fontSize: 20, color: Colors.black)),
               const SizedBox(height: 20),
@@ -39,7 +40,11 @@ class RecordListEmpty extends StatelessWidget {
                     color: AppColor.primary,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.add),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 48,
+                  ),
                 ),
               ),
             ],
