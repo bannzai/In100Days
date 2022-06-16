@@ -30,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
             if (statuses.contains(MaterialState.disabled)) {
               return Colors.grey;
             }
-            return AppColor.twitterAppColor;
+            return AppColor.primary;
           })),
       onPressed: onPressed == null
           ? null
