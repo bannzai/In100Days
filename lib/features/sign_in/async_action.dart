@@ -45,6 +45,7 @@ class SignInAsyncAction {
       name: twitterAPIMe.name!,
       screenName: twitterAPIMe.screenName!,
       twitterAPIProfileImageURL: twitterAPIProfileImageURL,
+      // Remove _normal. Reference: https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/user-profile-images-and-banners
       orignalProfileImageURL:
           twitterAPIProfileImageURL.replaceFirst("_normal", ""),
       createdDateTime: DateTime.now(),
