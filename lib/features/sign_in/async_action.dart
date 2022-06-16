@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/painting.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/provider/secure_storage.dart';
-import 'package:palette_generator/palette_generator.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:in_100_days/secret/secret.dart';
 import 'package:twitter_login/entity/auth_result.dart';
@@ -41,7 +39,6 @@ class SignInAsyncAction {
         await twitterAPIClient.userService.usersShow(userId: twitterUID);
 
     final twitterAPIProfileImageURL = twitterAPIMe.profileImageUrlHttps!;
-    final color = await _extractDominateColor(twitterAPIProfileImageURL);
     final user = User(
       id: firebaseUserCredential.user!.uid,
       twitterUserID: twitterAPIMe.idStr!,
@@ -52,16 +49,9 @@ class SignInAsyncAction {
       orignalProfileImageURL:
           twitterAPIProfileImageURL.replaceFirst("_normal", ""),
       createdDateTime: DateTime.now(),
-      colorString: color.toString(),
     );
 
     return user;
-  }
-
-  Future<Color?> _extractDominateColor(String url) async {
-    final paletteGenerator =
-        await PaletteGenerator.fromImageProvider(NetworkImage(url));
-    return paletteGenerator.dominantColor?.color;
   }
 
   Future<AuthResult> twitterSignIn() {
