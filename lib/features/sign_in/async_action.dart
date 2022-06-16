@@ -52,8 +52,7 @@ class SignInAsyncAction {
       orignalProfileImageURL:
           twitterAPIProfileImageURL.replaceFirst("_normal", ""),
       createdDateTime: DateTime.now(),
-      // ignore: prefer_null_aware_operators
-      colorString: color == null ? null : color.toString(),
+      colorString: color.toString(),
     );
 
     return user;

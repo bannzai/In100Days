@@ -15,7 +15,6 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       orignalProfileImageURL: json['orignalProfileImageURL'] as String,
       createdDateTime: NonNullTimestampConverter.timestampToDateTime(
           json['createdDateTime'] as Timestamp),
-      colorString: json['colorString'] as String?,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -27,5 +26,4 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'orignalProfileImageURL': instance.orignalProfileImageURL,
       'createdDateTime': NonNullTimestampConverter.dateTimeToTimestamp(
           instance.createdDateTime),
-      'colorString': instance.colorString,
     };

@@ -22,7 +22,6 @@ class User with _$User {
       toJson: NonNullTimestampConverter.dateTimeToTimestamp,
     )
         required DateTime createdDateTime,
-    required String? colorString,
   }) = _User;
   User._();
 

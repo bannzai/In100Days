@@ -30,8 +30,7 @@ class _$UserTearOff {
       required String twitterAPIProfileImageURL,
       required String orignalProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          required DateTime createdDateTime,
-      required String? colorString}) {
+          required DateTime createdDateTime}) {
     return _User(
       id: id,
       twitterUserID: twitterUserID,
@@ -40,7 +39,6 @@ class _$UserTearOff {
       twitterAPIProfileImageURL: twitterAPIProfileImageURL,
       orignalProfileImageURL: orignalProfileImageURL,
       createdDateTime: createdDateTime,
-      colorString: colorString,
     );
   }
 
@@ -65,7 +63,6 @@ mixin _$User {
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime => throw _privateConstructorUsedError;
-  String? get colorString => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -84,8 +81,7 @@ abstract class $UserCopyWith<$Res> {
       String twitterAPIProfileImageURL,
       String orignalProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          DateTime createdDateTime,
-      String? colorString});
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -105,7 +101,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? twitterAPIProfileImageURL = freezed,
     Object? orignalProfileImageURL = freezed,
     Object? createdDateTime = freezed,
-    Object? colorString = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -136,10 +131,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.createdDateTime
           : createdDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      colorString: colorString == freezed
-          ? _value.colorString
-          : colorString // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -157,8 +148,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String twitterAPIProfileImageURL,
       String orignalProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          DateTime createdDateTime,
-      String? colorString});
+          DateTime createdDateTime});
 }
 
 /// @nodoc
@@ -179,7 +169,6 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? twitterAPIProfileImageURL = freezed,
     Object? orignalProfileImageURL = freezed,
     Object? createdDateTime = freezed,
-    Object? colorString = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -210,10 +199,6 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.createdDateTime
           : createdDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      colorString: colorString == freezed
-          ? _value.colorString
-          : colorString // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -230,8 +215,7 @@ class _$_User extends _User {
       required this.twitterAPIProfileImageURL,
       required this.orignalProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          required this.createdDateTime,
-      required this.colorString})
+          required this.createdDateTime})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -253,12 +237,10 @@ class _$_User extends _User {
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   final DateTime createdDateTime;
-  @override
-  final String? colorString;
 
   @override
   String toString() {
-    return 'User(id: $id, twitterUserID: $twitterUserID, name: $name, screenName: $screenName, twitterAPIProfileImageURL: $twitterAPIProfileImageURL, orignalProfileImageURL: $orignalProfileImageURL, createdDateTime: $createdDateTime, colorString: $colorString)';
+    return 'User(id: $id, twitterUserID: $twitterUserID, name: $name, screenName: $screenName, twitterAPIProfileImageURL: $twitterAPIProfileImageURL, orignalProfileImageURL: $orignalProfileImageURL, createdDateTime: $createdDateTime)';
   }
 
   @override
@@ -277,9 +259,7 @@ class _$_User extends _User {
             const DeepCollectionEquality()
                 .equals(other.orignalProfileImageURL, orignalProfileImageURL) &&
             const DeepCollectionEquality()
-                .equals(other.createdDateTime, createdDateTime) &&
-            const DeepCollectionEquality()
-                .equals(other.colorString, colorString));
+                .equals(other.createdDateTime, createdDateTime));
   }
 
   @override
@@ -291,8 +271,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(screenName),
       const DeepCollectionEquality().hash(twitterAPIProfileImageURL),
       const DeepCollectionEquality().hash(orignalProfileImageURL),
-      const DeepCollectionEquality().hash(createdDateTime),
-      const DeepCollectionEquality().hash(colorString));
+      const DeepCollectionEquality().hash(createdDateTime));
 
   @JsonKey(ignore: true)
   @override
@@ -314,8 +293,7 @@ abstract class _User extends User {
       required String twitterAPIProfileImageURL,
       required String orignalProfileImageURL,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          required DateTime createdDateTime,
-      required String? colorString}) = _$_User;
+          required DateTime createdDateTime}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -337,8 +315,6 @@ abstract class _User extends User {
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime;
-  @override
-  String? get colorString;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
