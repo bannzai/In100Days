@@ -24,14 +24,10 @@ class PrimaryButton extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(const Size.fromHeight(44)),
-          backgroundColor: MaterialStateProperty.resolveWith((statuses) {
-            if (statuses.contains(MaterialState.disabled)) {
-              return Colors.grey;
-            }
-            return AppColor.primary;
-          })),
+      style: ElevatedButton.styleFrom(
+        primary: Theme.of(context).primaryColor,
+        minimumSize: const Size.fromHeight(44),
+      ),
       onPressed: onPressed == null
           ? null
           : () async {
