@@ -25,7 +25,7 @@ class UserPage extends HookConsumerWidget {
             children: [
               const SizedBox(height: 20),
               CircleAvatar(
-                backgroundImage: NetworkImage(user.profileImageURL),
+                backgroundImage: NetworkImage(user.twitterAPIProfileImageURL),
                 backgroundColor: Colors.black,
               ),
               const SizedBox(height: 8),

@@ -42,7 +42,7 @@ class SignInAsyncAction {
       twitterUserID: twitterAPIMe.idStr!,
       name: twitterAPIMe.name!,
       screenName: twitterAPIMe.screenName!,
-      profileImageURL: twitterAPIMe.profileImageUrlHttps!,
+      twitterAPIProfileImageURL: twitterAPIMe.profileImageUrlHttps!,
       createdDateTime: DateTime.now(),
     );
 

@@ -11,7 +11,7 @@ class RecordsHeader extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(state.user.profileImageURL),
+          backgroundImage: NetworkImage(state.user.twitterAPIProfileImageURL),
           backgroundColor: Colors.black,
         ),
         const SizedBox(height: 20),

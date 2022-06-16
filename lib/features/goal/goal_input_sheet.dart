@@ -55,7 +55,7 @@ class GoalInputSheet extends HookConsumerWidget {
               ),
             ),
             CircleAvatar(
-              backgroundImage: NetworkImage(user.profileImageURL),
+              backgroundImage: NetworkImage(user.twitterAPIProfileImageURL),
               backgroundColor: Colors.black,
             ),
             Row(
