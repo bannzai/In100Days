@@ -16,7 +16,7 @@ class RecordList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           child: Row(
             children: [
-              Image.network(state.user.twitterAPIProfileImageURL),
+              Image.network(state.user.orignalProfileImageURL),
               Column(
                 children: [
                   Text(record.message),
