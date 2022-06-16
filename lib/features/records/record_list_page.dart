@@ -41,19 +41,17 @@ class RecordListPage extends HookConsumerWidget {
           ],
         ),
         body: SafeArea(
-          child: _body(state),
+          child: () {
+            if (state.records.isEmpty) {
+              return RecordListEmpty(state: state);
+            } else {
+              return RecordList(state: state);
+            }
+          }(),
         ),
       ),
       error: (error, _) => ErrorPage(error: error),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
-  }
-
-  Widget _body(RecordsState state) {
-    if (state.records.isEmpty) {
-      return RecordListEmpty(state: state);
-    } else {
-      return RecordList(state: state);
-    }
   }
 }
