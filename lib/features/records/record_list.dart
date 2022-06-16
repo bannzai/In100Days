@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:in_100_days/features/records/records_header.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 
 class RecordList extends StatelessWidget {
@@ -10,7 +9,6 @@ class RecordList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
-      RecordsHeader(state: state),
       ...state.records.map((record) {
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),

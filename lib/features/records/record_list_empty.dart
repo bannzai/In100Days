@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/features/record_add/record_add_sheet.dart';
-import 'package:in_100_days/features/records/records_header.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
 
@@ -16,7 +15,6 @@ class RecordListEmpty extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          RecordsHeader(state: state),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
