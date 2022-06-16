@@ -12,31 +12,6 @@ class AppHome extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final color = _userColor();
-    if (color == null) {
-      return _build(context, ref);
-    } else {
-      return Theme(
-          data: ThemeData(primaryColor: color), child: _build(context, ref));
-    }
-  }
-
-  Color? _userColor() {
-    final colorString = user.colorString;
-    if (colorString == null) {
-      return null;
-    }
-
-    try {
-      String valueString = colorString.split('(0x')[1].split(')')[0];
-      int colorValue = int.parse(valueString, radix: 16);
-      return Color(colorValue);
-    } catch (_) {
-      return null;
-    }
-  }
-
-  Widget _build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(homeStateNotifierProvider(user));
     return state.when(
         data: (state) {
