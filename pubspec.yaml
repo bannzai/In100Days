@@ -49,6 +49,7 @@ dependencies:
   dart_twitter_api: ^0.5.6+1
   image_picker: ^0.8.5+3
   mime_type: ^1.0.0
+  palette_generator: ^0.3.3+1
 
 dev_dependencies:
   flutter_test:
