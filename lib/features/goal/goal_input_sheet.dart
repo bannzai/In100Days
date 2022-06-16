@@ -8,6 +8,7 @@ import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/provider/goal.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:in_100_days/utility/random_element.dart';
 
 class GoalInputSheet extends HookConsumerWidget {
   final User user;
@@ -114,8 +115,16 @@ class GoalInputSheet extends HookConsumerWidget {
                         color: AppColor.textMain,
                       ),
                       textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.only(bottom: 8),
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(bottom: 8),
+                        hintText: pickRandomElement<String>([
+                          "海賊王になる",
+                          "Twitterを辞める",
+                          "100Kgのバーベルをあげる",
+                          "猫を飼う",
+                          "家を買う",
+                          "お腹いっぱいにご飯を食べる"
+                        ]),
                       ),
                       onChanged: (_text) {
                         text.value = _text;
