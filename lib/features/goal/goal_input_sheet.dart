@@ -143,26 +143,27 @@ class GoalInputSheet extends HookConsumerWidget {
               ),
               const Spacer(),
               PrimaryButton(
-                  onPressed: text.value.isEmpty
-                      ? null
-                      : () async {
-                          if (text.value.isEmpty) {
-                            return;
-                          }
-                          try {
-                            final goal = Goal(
-                                goalAction: text.value,
-                                fullHashTag: hashTag,
-                                createdDateTime: DateTime.now());
-                            await goalCollectionReference(userID: user.id!)
-                                .doc()
-                                .set(goal, SetOptions(merge: true));
-                            Navigator.of(context).pop();
-                          } catch (error) {
-                            showErrorAlert(context, error: error);
-                          }
-                        },
-                  text: "目標を設定する")
+                onPressed: text.value.isEmpty
+                    ? null
+                    : () async {
+                        if (text.value.isEmpty) {
+                          return;
+                        }
+                        try {
+                          final goal = Goal(
+                              goalAction: text.value,
+                              fullHashTag: hashTag,
+                              createdDateTime: DateTime.now());
+                          await goalCollectionReference(userID: user.id!)
+                              .doc()
+                              .set(goal, SetOptions(merge: true));
+                          Navigator.of(context).pop();
+                        } catch (error) {
+                          showErrorAlert(context, error: error);
+                        }
+                      },
+                text: "目標を設定する",
+              )
             ],
           ),
         ),
