@@ -105,11 +105,13 @@ class GoalInputSheet extends HookConsumerWidget {
                           paddingHorizontal * 2,
                     ),
                     child: TextField(
+                      maxLength: 20,
                       textInputAction: TextInputAction.done,
                       controller: textFieldController,
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 44,
+                        fontSize: 30,
+                        color: AppColor.textMain,
                       ),
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
@@ -141,23 +143,25 @@ class GoalInputSheet extends HookConsumerWidget {
               ),
               const Spacer(),
               PrimaryButton(
-                  onPressed: () async {
-                    if (text.value.isEmpty) {
-                      return;
-                    }
-                    try {
-                      final goal = Goal(
-                          goalAction: text.value,
-                          fullHashTag: hashTag,
-                          createdDateTime: DateTime.now());
-                      await goalCollectionReference(userID: user.id!)
-                          .doc()
-                          .set(goal, SetOptions(merge: true));
-                      Navigator.of(context).pop();
-                    } catch (error) {
-                      showErrorAlert(context, error: error);
-                    }
-                  },
+                  onPressed: text.value.isEmpty
+                      ? null
+                      : () async {
+                          if (text.value.isEmpty) {
+                            return;
+                          }
+                          try {
+                            final goal = Goal(
+                                goalAction: text.value,
+                                fullHashTag: hashTag,
+                                createdDateTime: DateTime.now());
+                            await goalCollectionReference(userID: user.id!)
+                                .doc()
+                                .set(goal, SetOptions(merge: true));
+                            Navigator.of(context).pop();
+                          } catch (error) {
+                            showErrorAlert(context, error: error);
+                          }
+                        },
                   text: "目標を設定する")
             ],
           ),
