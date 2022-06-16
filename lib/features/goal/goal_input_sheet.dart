@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
@@ -58,31 +59,7 @@ class GoalInputSheet extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Column(
-                children: [
-                  CircleAvatar(
-                    radius: 62,
-                    backgroundImage: NetworkImage(user.orignalProfileImageURL),
-                    backgroundColor: Colors.black,
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    "@${user.twitterID}",
-                    style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.textMain),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    hashTag,
-                    style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.twitterHashTag),
-                  ),
-                ],
-              ),
+              UserInfo(user: user, hashTag: hashTag),
               const SizedBox(height: 40.5),
               Column(
                 children: [

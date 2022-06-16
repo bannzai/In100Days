@@ -19,6 +19,8 @@ class RecordListPage extends HookConsumerWidget {
     return state.when(
       data: (state) => Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
           actions: [
             IconButton(
               icon: const Icon(Icons.add),
