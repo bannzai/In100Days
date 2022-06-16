@@ -107,11 +107,13 @@ class GoalInputSheet extends HookConsumerWidget {
                     ),
                     child: TextField(
                       maxLength: 20,
+                      minLines: 1,
+                      maxLines: 2,
                       textInputAction: TextInputAction.done,
                       controller: textFieldController,
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 30,
+                        fontSize: 24,
                         color: AppColor.textMain,
                       ),
                       textAlign: TextAlign.center,
@@ -125,6 +127,11 @@ class GoalInputSheet extends HookConsumerWidget {
                           "家を買う",
                           "お腹いっぱいにご飯を食べる"
                         ]),
+                        hintStyle: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24,
+                          color: AppColor.textNote,
+                        ),
                       ),
                       onChanged: (_text) {
                         text.value = _text;
