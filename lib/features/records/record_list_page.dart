@@ -34,9 +34,30 @@ class RecordListPage extends HookConsumerWidget {
                   ],
                 ),
               ),
+              Positioned(
+                right: 20,
+                child: IconButton(
+                  icon: const Icon(Icons.settings),
+                  onPressed: () {
+                    Navigator.of(context).push(UserPageRoute.route());
+                  },
+                ),
+              )
             ],
           ),
         ),
+        floatingActionButton: state.records.isEmpty
+            ? null
+            : IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (_) =>
+                        RecordAddSheet(user: state.user, goal: state.goal),
+                  );
+                },
+              ),
       ),
       error: (error, _) => ErrorPage(error: error),
       loading: () => const Center(child: CircularProgressIndicator()),
