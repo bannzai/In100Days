@@ -51,37 +51,67 @@ class RecordAddSheet extends HookConsumerWidget {
       ),
       child: Column(
         children: [
-          Row(children: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                "キャンセル",
-                style: TextStyle(
-                  color: AppColor.textNote,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
+          Row(
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  "キャンセル",
+                  style: TextStyle(
+                    color: AppColor.textNote,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.left,
               ),
-            ),
-            const Spacer(),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                "投稿",
-                style: TextStyle(
-                  color: AppColor.textMain,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
+              const Spacer(),
+              TextButton(
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  if (text.value.isEmpty) {
+                    return;
+                  }
+
+                  final record = Record(
+                    message: text.value,
+                    hashTag: hashTag,
+                    createdDateTime: DateTime.now(),
+                  );
+                  try {
+                    final mediaIDs = await _mediaIDs(images.value);
+                    await twitterAPIClient.tweetService.update(
+                      status: """
+${text.value}
+$hashTag""",
+                      mediaIds: mediaIDs,
+                    );
+
+                    await recordCollectionReference(
+                      userID:
+                          firebase_auth.FirebaseAuth.instance.currentUser!.uid,
+                      goalID: goal.id!,
+                    ).doc().set(record, SetOptions(merge: true));
+
+                    Navigator.of(context).pop();
+                  } catch (error) {
+                    showErrorAlert(context, error: error);
+                  }
+                },
+                child: const Text(
+                  "投稿",
+                  style: TextStyle(
+                    color: AppColor.textMain,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.right,
                 ),
-                textAlign: TextAlign.right,
               ),
-            ),
-          ]),
+            ],
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
