@@ -44,159 +44,156 @@ class RecordAddSheet extends HookConsumerWidget {
 
     final textFieldController = useTextEditingController(text: """
 
-${goal.fullHashTag}
-""");
 
-    return DraggableScrollableSheet(
-      initialChildSize: 0.7,
-      maxChildSize: 1,
-      builder: (context, scrollController) {
-        return Container(
-          color: Colors.white,
-          padding: EdgeInsets.only(
-            left: paddingHorizontal,
-            top: 20,
-            right: paddingHorizontal,
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: Column(
+${goal.fullHashTag}""");
+    textFieldController.selection =
+        TextSelection.fromPosition(const TextPosition(offset: 0));
+
+    return Container(
+      color: Colors.white,
+      height: MediaQuery.of(context).size.height * 0.7 +
+          MediaQuery.of(context).viewInsets.bottom,
+      padding: EdgeInsets.only(
+        left: paddingHorizontal,
+        top: 20,
+        right: paddingHorizontal,
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: Column(
+        children: [
+          Row(
             children: [
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text(
-                      "キャンセル",
-                      style: TextStyle(
-                        color: AppColor.textNote,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  "キャンセル",
+                  style: TextStyle(
+                    color: AppColor.textNote,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
                   ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () async {
-                      Navigator.of(context).pop();
-                      if (text.value.isEmpty) {
-                        return;
-                      }
-
-                      final record = Record(
-                        message: text.value,
-                        hashTag: goal.fullHashTag,
-                        createdDateTime: DateTime.now(),
-                      );
-                      try {
-                        final mediaIDs = await _mediaIDs(images.value);
-                        await twitterAPIClient.tweetService.update(
-                          status: textFieldController.text,
-                          mediaIds: mediaIDs,
-                        );
-
-                        await recordCollectionReference(
-                          userID: firebase_auth
-                              .FirebaseAuth.instance.currentUser!.uid,
-                          goalID: goal.id!,
-                        ).doc().set(record, SetOptions(merge: true));
-
-                        Navigator.of(context).pop();
-                      } catch (error) {
-                        showErrorAlert(context, error: error);
-                      }
-                    },
-                    child: const Text(
-                      "投稿",
-                      style: TextStyle(
-                        color: AppColor.textMain,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                ],
+                  textAlign: TextAlign.left,
+                ),
               ),
-              const SizedBox(height: 10),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: CircleAvatar(
-                      radius: profileImageRadius,
-                      backgroundImage:
-                          NetworkImage(user.orignalProfileImageURL),
-                      backgroundColor: Colors.black,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xff7c94b6),
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: profileImageBorderWidth,
-                      ),
-                    ),
+              const Spacer(),
+              GestureDetector(
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  if (text.value.isEmpty) {
+                    return;
+                  }
+
+                  final record = Record(
+                    message: text.value,
+                    hashTag: goal.fullHashTag,
+                    createdDateTime: DateTime.now(),
+                  );
+                  try {
+                    final mediaIDs = await _mediaIDs(images.value);
+                    await twitterAPIClient.tweetService.update(
+                      status: textFieldController.text,
+                      mediaIds: mediaIDs,
+                    );
+
+                    await recordCollectionReference(
+                      userID:
+                          firebase_auth.FirebaseAuth.instance.currentUser!.uid,
+                      goalID: goal.id!,
+                    ).doc().set(record, SetOptions(merge: true));
+
+                    Navigator.of(context).pop();
+                  } catch (error) {
+                    showErrorAlert(context, error: error);
+                  }
+                },
+                child: const Text(
+                  "投稿",
+                  style: TextStyle(
+                    color: AppColor.textMain,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
                   ),
-                  const SizedBox(
-                      width: paddingBetweenProfileImageAndTextField),
-                  SizedBox(
-                    height: 200,
-                    width: textFieldWidth,
-                    child: TextField(
-                      maxLength: 140,
-                      minLines: 2,
-                      maxLines: 6,
-                      textInputAction: TextInputAction.newline,
-                      controller: textFieldController,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        color: AppColor.textMain,
-                      ),
-                      textAlign: TextAlign.left,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.only(bottom: 8),
-                        hintStyle: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24,
-                          color: AppColor.textNote,
-                        ),
-                      ),
-                      onChanged: (_text) {
-                        text.value = _text;
-                      },
-                      onEditingComplete: () async {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                      },
-                    ),
-                  ),
-                ],
+                  textAlign: TextAlign.right,
+                ),
               ),
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.photo),
-                    onPressed: () async {
-                      try {
-                        final picker = ImagePicker();
-                        images.value = await picker.pickMultiImage() ?? [];
-                      } catch (error) {
-                        showErrorAlert(context,
-                            error: "写真を選択できませんでした。アプリの設定から写真のアクセスの許可をしてください");
-                      }
-                    },
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: CircleAvatar(
+                  radius: profileImageRadius,
+                  backgroundImage: NetworkImage(user.orignalProfileImageURL),
+                  backgroundColor: Colors.black,
+                ),
+                decoration: BoxDecoration(
+                  color: const Color(0xff7c94b6),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: profileImageBorderWidth,
                   ),
-                  const Spacer(),
-                ],
+                ),
+              ),
+              const SizedBox(width: paddingBetweenProfileImageAndTextField),
+              SizedBox(
+                height: 200,
+                width: textFieldWidth,
+                child: TextField(
+                  autofocus: true,
+                  maxLength: 140,
+                  minLines: 3,
+                  maxLines: 20,
+                  textInputAction: TextInputAction.newline,
+                  controller: textFieldController,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    color: AppColor.textMain,
+                  ),
+                  textAlign: TextAlign.left,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.only(bottom: 8),
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      color: AppColor.textNote,
+                    ),
+                  ),
+                  onChanged: (_text) {
+                    text.value = _text;
+                  },
+                  onEditingComplete: () async {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.photo),
+                onPressed: () async {
+                  try {
+                    final picker = ImagePicker();
+                    images.value = await picker.pickMultiImage() ?? [];
+                  } catch (error) {
+                    showErrorAlert(context,
+                        error: "写真を選択できませんでした。アプリの設定から写真のアクセスの許可をしてください");
+                  }
+                },
               ),
               const Spacer(),
             ],
           ),
-        );
-      },
+          const Spacer(),
+        ],
+      ),
     );
   }
 
