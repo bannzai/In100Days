@@ -23,13 +23,8 @@ class RecordListEmpty extends StatelessWidget {
                   style: TextStyle(fontSize: 20, color: AppColor.textMain)),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (_) =>
-                        RecordAddSheet(user: state.user, goal: state.goal),
-                  );
-                },
+                onPressed: () => showRecordAddSheet(context,
+                    goal: state.goal, user: state.user),
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),
                 ),

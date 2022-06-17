@@ -50,13 +50,8 @@ class RecordListPage extends HookConsumerWidget {
             ? null
             : IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (_) =>
-                        RecordAddSheet(user: state.user, goal: state.goal),
-                  );
-                },
+                onPressed: () => showRecordAddSheet(context,
+                    goal: state.goal, user: state.user),
               ),
       ),
       error: (error, _) => ErrorPage(error: error),
