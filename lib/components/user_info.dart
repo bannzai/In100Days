@@ -16,10 +16,20 @@ class UserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: 62,
-          backgroundImage: NetworkImage(user.orignalProfileImageURL),
-          backgroundColor: Colors.black,
+        Container(
+          child: CircleAvatar(
+            radius: 62,
+            backgroundImage: NetworkImage(user.orignalProfileImageURL),
+            backgroundColor: Colors.black,
+          ),
+          decoration: BoxDecoration(
+            color: const Color(0xff7c94b6),
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.black,
+              width: 0.5,
+            ),
+          ),
         ),
         const SizedBox(height: 10),
         Text(
