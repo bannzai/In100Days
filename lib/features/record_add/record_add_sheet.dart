@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
@@ -194,6 +197,31 @@ class RecordAddSheet extends HookConsumerWidget {
                 ),
               ],
             ),
+            if (images.value.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              SingleChildScrollView(
+                clipBehavior: Clip.none,
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ...images.value
+                        .map((xFile) {
+                          return [
+                            const SizedBox(width: 10),
+                            Image(
+                              image: FileImage(File(xFile.path)),
+                              height: 130,
+                              width: 180,
+                              fit: BoxFit.fill,
+                            )
+                          ];
+                        })
+                        .expand((x) => x)
+                        .toList(),
+                  ],
+                ),
+              ),
+            ],
             const Spacer(),
             Row(
               children: [
