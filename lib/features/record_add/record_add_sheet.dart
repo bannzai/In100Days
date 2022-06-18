@@ -51,10 +51,11 @@ class RecordAddSheet extends HookConsumerWidget {
 
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.only(
+      padding: EdgeInsets.only(
         left: paddingHorizontal,
         top: 60,
         right: paddingHorizontal,
+        bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
       child: SafeArea(
         bottom: false,
