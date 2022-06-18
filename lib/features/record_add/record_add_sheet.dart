@@ -29,7 +29,6 @@ class RecordAddSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final text = useState("");
     final images = useState<List<XFile>>([]);
 
     const double profileImageRadius = 16;
@@ -60,160 +59,158 @@ class RecordAddSheet extends HookConsumerWidget {
         right: paddingHorizontal,
         bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  "キャンセル",
-                  style: TextStyle(
-                    color: AppColor.textNote,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-              const Spacer(),
-              GestureDetector(
-                onTap: () async {
-                  Navigator.of(context).pop();
-                  if (text.value.isEmpty) {
-                    return;
-                  }
-
-                  final record = Record(
-                    message: text.value,
-                    hashTag: goal.fullHashTag,
-                    createdDateTime: DateTime.now(),
-                  );
-                  try {
-                    final mediaIDs = await _mediaIDs(images.value);
-                    await twitterAPIClient.tweetService.update(
-                      status: textFieldController.text,
-                      mediaIds: mediaIDs,
-                    );
-
-                    await recordCollectionReference(
-                      userID:
-                          firebase_auth.FirebaseAuth.instance.currentUser!.uid,
-                      goalID: goal.id!,
-                    ).doc().set(record, SetOptions(merge: true));
-
+      child: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
                     Navigator.of(context).pop();
-                  } catch (error) {
-                    showErrorAlert(context, error: error);
-                  }
-                },
-                child: const Text(
-                  "投稿",
-                  style: TextStyle(
-                    color: AppColor.textMain,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                child: CircleAvatar(
-                  radius: profileImageRadius,
-                  backgroundImage: NetworkImage(user.orignalProfileImageURL),
-                  backgroundColor: Colors.black,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xff7c94b6),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: profileImageBorderWidth,
-                  ),
-                ),
-              ),
-              const SizedBox(width: paddingBetweenProfileImageAndTextField),
-              SizedBox(
-                width: textFieldWidth,
-                child: Stack(
-                  children: [
-                    TextField(
-                      autofocus: true,
-                      scrollPhysics: const NeverScrollableScrollPhysics(),
-                      maxLength: 140 - goal.fullHashTag.length,
-                      minLines: 2,
-                      maxLines: textFieldLineCount,
-                      textInputAction: TextInputAction.newline,
-                      controller: textFieldController,
-                      style: baseTextStyle
-                          .merge(const TextStyle(color: AppColor.textMain)),
-                      textAlign: TextAlign.left,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24,
-                          color: AppColor.textNote,
-                        ),
-                        counter: Column(
-                          children: [
-                            const SizedBox(height: 10),
-                            Text(
-                              "${textFieldController.text.length + goal.fullHashTag.length}/140",
-                              style: const TextStyle(
-                                  color: AppColor.textNote, fontSize: 11),
-                            ),
-                          ],
-                        ),
-                      ),
-                      onChanged: (_text) {
-                        text.value = _text;
-                      },
-                      onEditingComplete: () async {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                      },
+                  },
+                  child: const Text(
+                    "キャンセル",
+                    style: TextStyle(
+                      color: AppColor.textNote,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
                     ),
-                    Positioned(
-                      bottom: 16,
-                      child: Text(
-                        goal.fullHashTag,
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: textFieldController.text.isEmpty
+                      ? null
+                      : () async {
+                          Navigator.of(context).pop();
+                          if (textFieldController.text.isEmpty) {
+                            return;
+                          }
+
+                          final record = Record(
+                            message: textFieldController.text,
+                            hashTag: goal.fullHashTag,
+                            createdDateTime: DateTime.now(),
+                          );
+                          try {
+                            final mediaIDs = await _mediaIDs(images.value);
+                            await twitterAPIClient.tweetService.update(
+                              status: textFieldController.text,
+                              mediaIds: mediaIDs,
+                            );
+
+                            await recordCollectionReference(
+                              userID: firebase_auth
+                                  .FirebaseAuth.instance.currentUser!.uid,
+                              goalID: goal.id!,
+                            ).doc().set(record, SetOptions(merge: true));
+
+                            Navigator.of(context).pop();
+                          } catch (error) {
+                            showErrorAlert(context, error: error);
+                          }
+                        },
+                  child: const Text(
+                    "投稿",
+                    style: TextStyle(
+                      color: AppColor.textMain,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: CircleAvatar(
+                    radius: profileImageRadius,
+                    backgroundImage: NetworkImage(user.orignalProfileImageURL),
+                    backgroundColor: Colors.black,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xff7c94b6),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: profileImageBorderWidth,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: paddingBetweenProfileImageAndTextField),
+                SizedBox(
+                  width: textFieldWidth,
+                  child: Stack(
+                    children: [
+                      TextField(
+                        autofocus: true,
+                        scrollPhysics: const NeverScrollableScrollPhysics(),
+                        maxLength: 140 - goal.fullHashTag.length,
+                        minLines: 2,
+                        maxLines: textFieldLineCount,
+                        textInputAction: TextInputAction.newline,
+                        controller: textFieldController,
+                        style: baseTextStyle
+                            .merge(const TextStyle(color: AppColor.textMain)),
                         textAlign: TextAlign.left,
-                        style: baseTextStyle.merge(
-                            const TextStyle(color: AppColor.twitterHashTag)),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintStyle: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24,
+                            color: AppColor.textNote,
+                          ),
+                          counter: Column(
+                            children: [
+                              const SizedBox(height: 10),
+                              Text(
+                                "${textFieldController.text.length + goal.fullHashTag.length}/140",
+                                style: const TextStyle(
+                                    color: AppColor.textNote, fontSize: 11),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        bottom: 16,
+                        child: Text(
+                          goal.fullHashTag,
+                          textAlign: TextAlign.left,
+                          style: baseTextStyle.merge(
+                              const TextStyle(color: AppColor.twitterHashTag)),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.photo),
-                onPressed: () async {
-                  try {
-                    final picker = ImagePicker();
-                    images.value = await picker.pickMultiImage() ?? [];
-                  } catch (error) {
-                    showErrorAlert(context,
-                        error: "写真を選択できませんでした。アプリの設定から写真のアクセスの許可をしてください");
-                  }
-                },
-              ),
-              const Spacer(),
-            ],
-          ),
-          const Spacer(),
-        ],
+              ],
+            ),
+            const Spacer(),
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.photo),
+                  onPressed: () async {
+                    try {
+                      final picker = ImagePicker();
+                      images.value = await picker.pickMultiImage() ?? [];
+                    } catch (error) {
+                      showErrorAlert(context,
+                          error: "写真を選択できませんでした。アプリの設定から写真のアクセスの許可をしてください");
+                    }
+                  },
+                ),
+                const Spacer(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
