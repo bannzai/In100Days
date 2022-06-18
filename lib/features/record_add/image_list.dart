@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:in_100_days/style/color.dart';
 
 class RecordAddSheetImageList extends StatelessWidget {
   const RecordAddSheetImageList({
@@ -67,6 +68,15 @@ class RecordAddSheetImageList extends StatelessWidget {
                   .toList(),
             ],
           ),
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          "実際ツイートされる画像とは切り取られ方が違います\n必要があれば写真の加工をお願いします",
+          style: TextStyle(
+            color: AppColor.danger,
+            fontSize: 10,
+          ),
+          textAlign: TextAlign.center,
         ),
       ],
     );
