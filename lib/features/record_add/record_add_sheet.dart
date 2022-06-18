@@ -152,7 +152,7 @@ class RecordAddSheet extends HookConsumerWidget {
                         autofocus: true,
                         scrollPhysics: const NeverScrollableScrollPhysics(),
                         maxLength: 140 - goal.fullHashTag.length,
-                        minLines: 2,
+                        minLines: 1,
                         maxLines: textFieldLineCount,
                         textInputAction: TextInputAction.newline,
                         controller: textFieldController,
