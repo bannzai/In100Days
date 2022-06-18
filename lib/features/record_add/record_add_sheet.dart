@@ -92,7 +92,7 @@ class RecordAddSheet extends HookConsumerWidget {
                             final mediaIDs = await _mediaIDs(images.value);
                             final tweet =
                                 await twitterAPIClient.tweetService.update(
-                              status: text.value,
+                              status: text.value + "\n" + goal.fullHashTag,
                               mediaIds: mediaIDs,
                             );
                             final record = Record(
