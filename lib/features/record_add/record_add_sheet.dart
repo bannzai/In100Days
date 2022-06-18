@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
@@ -9,6 +7,7 @@ import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
+import 'package:in_100_days/features/record_add/image_list.dart';
 import 'package:in_100_days/provider/record.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
@@ -196,61 +195,8 @@ class RecordAddSheet extends HookConsumerWidget {
                 ),
               ],
             ),
-            if (images.value.isNotEmpty) ...[
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                clipBehavior: Clip.none,
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...images.value
-                        .map((xFile) {
-                          return [
-                            const SizedBox(width: 14),
-                            Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                Image(
-                                  image: FileImage(File(xFile.path)),
-                                  height: 130,
-                                  width: 180,
-                                  fit: BoxFit.fill,
-                                ),
-                                Positioned(
-                                  right: -12,
-                                  top: -12,
-                                  child: Container(
-                                    width: 24,
-                                    height: 24,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey.shade400,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        images.value = images.value
-                                            .where((x) => x != xFile)
-                                            .toList();
-                                      },
-                                      padding: EdgeInsets.zero,
-                                      iconSize: 20,
-                                      icon: const Icon(
-                                        Icons.close,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ];
-                        })
-                        .expand((x) => x)
-                        .toList(),
-                  ],
-                ),
-              ),
-            ],
+            if (images.value.isNotEmpty)
+              RecordAddSheetImageList(images: images),
             const Spacer(),
             Row(
               children: [
