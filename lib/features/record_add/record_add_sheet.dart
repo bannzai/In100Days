@@ -42,8 +42,13 @@ class RecordAddSheet extends HookConsumerWidget {
         profileImageBorderWidth * 2 -
         paddingBetweenProfileImageAndTextField;
 
-    const textFieldLineCount = 100;
+    const textFieldLineCount = 20;
     final textFieldController = useTextEditingController(text: "");
+
+    const baseTextStyle = TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 12,
+    );
 
     return Container(
       color: Colors.white,
@@ -143,23 +148,30 @@ class RecordAddSheet extends HookConsumerWidget {
                     TextField(
                       autofocus: true,
                       scrollPhysics: const NeverScrollableScrollPhysics(),
-                      maxLength: 140,
+                      maxLength: 140 - goal.fullHashTag.length,
                       minLines: 2,
                       maxLines: textFieldLineCount,
                       textInputAction: TextInputAction.newline,
                       controller: textFieldController,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        color: AppColor.textMain,
-                      ),
+                      style: baseTextStyle
+                          .merge(const TextStyle(color: AppColor.textMain)),
                       textAlign: TextAlign.left,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.only(bottom: 20),
-                        hintStyle: TextStyle(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintStyle: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 24,
                           color: AppColor.textNote,
+                        ),
+                        counter: Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            Text(
+                              "${textFieldController.text.length + goal.fullHashTag.length}/140",
+                              style: const TextStyle(
+                                  color: AppColor.textNote, fontSize: 11),
+                            ),
+                          ],
                         ),
                       ),
                       onChanged: (_text) {
@@ -169,13 +181,13 @@ class RecordAddSheet extends HookConsumerWidget {
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
                     ),
-                    Text(
-                      textFieldController.text + "\n" + goal.fullHashTag,
-                      maxLines: textFieldLineCount + 1,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        color: AppColor.textMain,
+                    Positioned(
+                      bottom: 16,
+                      child: Text(
+                        goal.fullHashTag,
+                        textAlign: TextAlign.left,
+                        style: baseTextStyle.merge(
+                            const TextStyle(color: AppColor.twitterHashTag)),
                       ),
                     ),
                   ],
