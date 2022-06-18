@@ -29,6 +29,7 @@ class RecordAddSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final text = useState("");
     final images = useState<List<XFile>>([]);
 
     const double profileImageRadius = 16;
@@ -79,23 +80,23 @@ class RecordAddSheet extends HookConsumerWidget {
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: textFieldController.text.isEmpty
+                  onTap: text.value.isEmpty
                       ? null
                       : () async {
                           Navigator.of(context).pop();
-                          if (textFieldController.text.isEmpty) {
+                          if (text.value.isEmpty) {
                             return;
                           }
 
                           final record = Record(
-                            message: textFieldController.text,
+                            message: text.value,
                             hashTag: goal.fullHashTag,
                             createdDateTime: DateTime.now(),
                           );
                           try {
                             final mediaIDs = await _mediaIDs(images.value);
                             await twitterAPIClient.tweetService.update(
-                              status: textFieldController.text,
+                              status: text.value,
                               mediaIds: mediaIDs,
                             );
 
@@ -168,13 +169,16 @@ class RecordAddSheet extends HookConsumerWidget {
                             children: [
                               const SizedBox(height: 10),
                               Text(
-                                "${textFieldController.text.length + goal.fullHashTag.length}/140",
+                                "${text.value.length + goal.fullHashTag.length}/140",
                                 style: const TextStyle(
                                     color: AppColor.textNote, fontSize: 11),
                               ),
                             ],
                           ),
                         ),
+                        onChanged: (_text) {
+                          text.value = _text;
+                        },
                       ),
                       Positioned(
                         bottom: 16,
