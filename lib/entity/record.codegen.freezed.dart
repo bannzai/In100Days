@@ -23,11 +23,13 @@ class _$RecordTearOff {
   const _$RecordTearOff();
 
   _Record call(
-      {required String message,
+      {required String tweetID,
+      required String message,
       required String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime}) {
     return _Record(
+      tweetID: tweetID,
       message: message,
       hashTag: hashTag,
       createdDateTime: createdDateTime,
@@ -44,6 +46,7 @@ const $Record = _$RecordTearOff();
 
 /// @nodoc
 mixin _$Record {
+  String get tweetID => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get hashTag => throw _privateConstructorUsedError;
   @JsonKey(
@@ -61,7 +64,8 @@ abstract class $RecordCopyWith<$Res> {
   factory $RecordCopyWith(Record value, $Res Function(Record) then) =
       _$RecordCopyWithImpl<$Res>;
   $Res call(
-      {String message,
+      {String tweetID,
+      String message,
       String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime});
@@ -77,11 +81,16 @@ class _$RecordCopyWithImpl<$Res> implements $RecordCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? tweetID = freezed,
     Object? message = freezed,
     Object? hashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_value.copyWith(
+      tweetID: tweetID == freezed
+          ? _value.tweetID
+          : tweetID // ignore: cast_nullable_to_non_nullable
+              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -104,7 +113,8 @@ abstract class _$RecordCopyWith<$Res> implements $RecordCopyWith<$Res> {
       __$RecordCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String message,
+      {String tweetID,
+      String message,
       String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime});
@@ -121,11 +131,16 @@ class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? tweetID = freezed,
     Object? message = freezed,
     Object? hashTag = freezed,
     Object? createdDateTime = freezed,
   }) {
     return _then(_Record(
+      tweetID: tweetID == freezed
+          ? _value.tweetID
+          : tweetID // ignore: cast_nullable_to_non_nullable
+              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -147,7 +162,8 @@ class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_Record implements _Record {
   _$_Record(
-      {required this.message,
+      {required this.tweetID,
+      required this.message,
       required this.hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required this.createdDateTime});
@@ -155,6 +171,8 @@ class _$_Record implements _Record {
   factory _$_Record.fromJson(Map<String, dynamic> json) =>
       _$$_RecordFromJson(json);
 
+  @override
+  final String tweetID;
   @override
   final String message;
   @override
@@ -167,7 +185,7 @@ class _$_Record implements _Record {
 
   @override
   String toString() {
-    return 'Record(message: $message, hashTag: $hashTag, createdDateTime: $createdDateTime)';
+    return 'Record(tweetID: $tweetID, message: $message, hashTag: $hashTag, createdDateTime: $createdDateTime)';
   }
 
   @override
@@ -175,6 +193,7 @@ class _$_Record implements _Record {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Record &&
+            const DeepCollectionEquality().equals(other.tweetID, tweetID) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.hashTag, hashTag) &&
             const DeepCollectionEquality()
@@ -184,6 +203,7 @@ class _$_Record implements _Record {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(tweetID),
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(hashTag),
       const DeepCollectionEquality().hash(createdDateTime));
@@ -201,13 +221,16 @@ class _$_Record implements _Record {
 
 abstract class _Record implements Record {
   factory _Record(
-      {required String message,
+      {required String tweetID,
+      required String message,
       required String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime}) = _$_Record;
 
   factory _Record.fromJson(Map<String, dynamic> json) = _$_Record.fromJson;
 
+  @override
+  String get tweetID;
   @override
   String get message;
   @override

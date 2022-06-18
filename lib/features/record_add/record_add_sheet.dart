@@ -88,16 +88,18 @@ class RecordAddSheet extends HookConsumerWidget {
                             return;
                           }
 
-                          final record = Record(
-                            message: text.value,
-                            hashTag: goal.fullHashTag,
-                            createdDateTime: DateTime.now(),
-                          );
                           try {
                             final mediaIDs = await _mediaIDs(images.value);
-                            await twitterAPIClient.tweetService.update(
+                            final tweet =
+                                await twitterAPIClient.tweetService.update(
                               status: text.value,
                               mediaIds: mediaIDs,
+                            );
+                            final record = Record(
+                              tweetID: tweet.idStr!,
+                              message: text.value,
+                              hashTag: goal.fullHashTag,
+                              createdDateTime: DateTime.now(),
                             );
 
                             await recordCollectionReference(

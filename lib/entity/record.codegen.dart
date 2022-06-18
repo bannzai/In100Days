@@ -9,6 +9,7 @@ part 'record.codegen.g.dart';
 class Record with _$Record {
   @JsonSerializable(explicitToJson: true)
   factory Record({
+    required String tweetID,
     required String message,
     required String hashTag,
     @JsonKey(
