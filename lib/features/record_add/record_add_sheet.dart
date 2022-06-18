@@ -101,8 +101,7 @@ class RecordAddSheet extends HookConsumerWidget {
                             );
 
                             await recordCollectionReference(
-                              userID: firebase_auth
-                                  .FirebaseAuth.instance.currentUser!.uid,
+                              userID: user.id!,
                               goalID: goal.id!,
                             ).doc().set(record, SetOptions(merge: true));
 
