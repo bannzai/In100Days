@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
@@ -207,12 +206,42 @@ class RecordAddSheet extends HookConsumerWidget {
                     ...images.value
                         .map((xFile) {
                           return [
-                            const SizedBox(width: 10),
-                            Image(
-                              image: FileImage(File(xFile.path)),
-                              height: 130,
-                              width: 180,
-                              fit: BoxFit.fill,
+                            const SizedBox(width: 14),
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Image(
+                                  image: FileImage(File(xFile.path)),
+                                  height: 130,
+                                  width: 180,
+                                  fit: BoxFit.fill,
+                                ),
+                                Positioned(
+                                  right: -12,
+                                  top: -12,
+                                  child: Container(
+                                    width: 24,
+                                    height: 24,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade400,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: IconButton(
+                                      onPressed: () {
+                                        images.value = images.value
+                                            .where((x) => x != xFile)
+                                            .toList();
+                                      },
+                                      padding: EdgeInsets.zero,
+                                      iconSize: 20,
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             )
                           ];
                         })
