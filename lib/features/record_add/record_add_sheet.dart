@@ -42,12 +42,8 @@ class RecordAddSheet extends HookConsumerWidget {
         profileImageBorderWidth * 2 -
         paddingBetweenProfileImageAndTextField;
 
-    final textFieldController = useTextEditingController(text: """
-
-
-${goal.fullHashTag}""");
-    textFieldController.selection =
-        TextSelection.fromPosition(const TextPosition(offset: 0));
+    const textFieldLineCount = 100;
+    final textFieldController = useTextEditingController(text: "");
 
     return Container(
       color: Colors.white,
@@ -141,35 +137,48 @@ ${goal.fullHashTag}""");
               ),
               const SizedBox(width: paddingBetweenProfileImageAndTextField),
               SizedBox(
-                height: 200,
                 width: textFieldWidth,
-                child: TextField(
-                  autofocus: true,
-                  maxLength: 140,
-                  minLines: 3,
-                  maxLines: 20,
-                  textInputAction: TextInputAction.newline,
-                  controller: textFieldController,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                    color: AppColor.textMain,
-                  ),
-                  textAlign: TextAlign.left,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 8),
-                    hintStyle: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 24,
-                      color: AppColor.textNote,
+                child: Stack(
+                  children: [
+                    TextField(
+                      autofocus: true,
+                      scrollPhysics: const NeverScrollableScrollPhysics(),
+                      maxLength: 140,
+                      minLines: 2,
+                      maxLines: textFieldLineCount,
+                      textInputAction: TextInputAction.newline,
+                      controller: textFieldController,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: AppColor.textMain,
+                      ),
+                      textAlign: TextAlign.left,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.only(bottom: 20),
+                        hintStyle: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24,
+                          color: AppColor.textNote,
+                        ),
+                      ),
+                      onChanged: (_text) {
+                        text.value = _text;
+                      },
+                      onEditingComplete: () async {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
                     ),
-                  ),
-                  onChanged: (_text) {
-                    text.value = _text;
-                  },
-                  onEditingComplete: () async {
-                    FocusManager.instance.primaryFocus?.unfocus();
-                  },
+                    Text(
+                      textFieldController.text + "\n" + goal.fullHashTag,
+                      maxLines: textFieldLineCount + 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: AppColor.textMain,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
