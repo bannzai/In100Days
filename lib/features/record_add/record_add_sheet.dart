@@ -84,7 +84,6 @@ class RecordAddSheet extends HookConsumerWidget {
                   onTap: text.value.isEmpty
                       ? null
                       : () async {
-                          Navigator.of(context).pop();
                           if (text.value.isEmpty) {
                             return;
                           }
