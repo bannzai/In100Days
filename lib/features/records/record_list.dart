@@ -90,6 +90,8 @@ class RecordList extends StatelessWidget {
                                   fontWeight: FontWeight.w600)),
                         ],
                       ),
+                      // FIXME: Can not use Spacer
+                      const SizedBox(width: 10),
                       GestureDetector(
                           child: const Icon(Icons.open_in_new, size: 20)),
                     ],
