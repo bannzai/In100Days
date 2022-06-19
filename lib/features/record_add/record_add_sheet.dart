@@ -12,7 +12,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/chunk.dart';
-import 'package:in_100_days/utility/full_tweet.dart';
 import 'package:mime_type/mime_type.dart';
 
 // ignore: constant_identifier_names
@@ -92,9 +91,7 @@ class RecordAddSheet extends HookConsumerWidget {
                             final mediaIDs = await _mediaIDs(images.value);
                             final tweet =
                                 await twitterAPIClient.tweetService.update(
-                              status: buildTweetWithHashTag(
-                                  message: text.value,
-                                  fullHashTag: goal.fullHashTag),
+                              status: text.value + "\n" + goal.fullHashTag,
                               mediaIds: mediaIDs,
                             );
                             final record = Record(
@@ -153,9 +150,7 @@ class RecordAddSheet extends HookConsumerWidget {
                       TextField(
                         autofocus: true,
                         scrollPhysics: const NeverScrollableScrollPhysics(),
-                        maxLength: 140 -
-                            (goal.fullHashTag.length +
-                                lineBreakCountForBuilTweetHashTag),
+                        maxLength: 140 - goal.fullHashTag.length,
                         minLines: 1,
                         maxLines: textFieldLineCount,
                         textInputAction: TextInputAction.newline,
@@ -174,7 +169,7 @@ class RecordAddSheet extends HookConsumerWidget {
                             children: [
                               const SizedBox(height: 10),
                               Text(
-                                "${buildTweetWithHashTag(message: text.value, fullHashTag: goal.fullHashTag).length}/140",
+                                "${text.value.length + goal.fullHashTag.length}/140",
                                 style: const TextStyle(
                                     color: AppColor.textNote, fontSize: 11),
                               ),

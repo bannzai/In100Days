@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
-import 'package:in_100_days/utility/full_tweet.dart';
 import 'package:intl/intl.dart';
 
 class RecordList extends StatelessWidget {
@@ -65,8 +64,7 @@ class RecordList extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      buildTweetWithHashTag(
-                          message: record.message, fullHashTag: record.hashTag),
+                      record.message,
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
