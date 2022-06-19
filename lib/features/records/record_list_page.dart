@@ -22,11 +22,9 @@ class RecordListPage extends HookConsumerWidget {
         body: SafeArea(
           child: Stack(
             children: [
-              Center(
-                child: _content(state),
-              ),
+              _content(state),
               Positioned(
-                right: 20,
+                right: 10,
                 child: IconButton(
                   icon: const Icon(Icons.settings),
                   onPressed: () {

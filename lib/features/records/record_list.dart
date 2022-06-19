@@ -15,28 +15,23 @@ class RecordList extends StatelessWidget {
     final goalDate =
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
 
-    return Column(
+    return ListView(
+      shrinkWrap: true,
       children: [
-        Expanded(
-          child: ListView(
-            children: [
-              const SizedBox(height: 10),
-              UserInfo(
-                user: state.user,
-                hashTag: state.goal.fullHashTag,
-              ),
-              const SizedBox(height: 20),
-              ...state.records.asMap().entries.map((entry) {
-                final index = entry.key;
-                final record = state.records[index];
-                final recordNumber =
-                    100 - goalDate.difference(record.createdDateTime).inDays;
-                return _element(context,
-                    record: record, recordNumber: recordNumber, index: index);
-              }),
-            ],
-          ),
+        const SizedBox(height: 10),
+        UserInfo(
+          user: state.user,
+          hashTag: state.goal.fullHashTag,
         ),
+        const SizedBox(height: 20),
+        ...state.records.asMap().entries.map((entry) {
+          final index = entry.key;
+          final record = state.records[index];
+          final recordNumber =
+              100 - goalDate.difference(record.createdDateTime).inDays;
+          return _element(context,
+              record: record, recordNumber: recordNumber, index: index);
+        }),
       ],
     );
   }
@@ -47,7 +42,7 @@ class RecordList extends StatelessWidget {
       children: [
         if (index == 0) const Divider(color: Colors.grey),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
           child: Row(
             children: [
               Container(
@@ -71,29 +66,34 @@ class RecordList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(state.user.name,
-                          style: const TextStyle(
-                              color: AppColor.textMain,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600)),
-                      const SizedBox(width: 5),
-                      Text("@" + state.user.twitterID,
-                          style: const TextStyle(
-                              color: AppColor.textNote,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600)),
-                      const SizedBox(width: 5),
-                      Text("$recordNumber日目",
-                          style: const TextStyle(
-                              color: AppColor.textNote,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600)),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Text(state.user.name,
+                              style: const TextStyle(
+                                  color: AppColor.textMain,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600)),
+                          const SizedBox(width: 5),
+                          Text("@" + state.user.twitterID,
+                              style: const TextStyle(
+                                  color: AppColor.textNote,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600)),
+                          const SizedBox(width: 5),
+                          Text("$recordNumber日目",
+                              style: const TextStyle(
+                                  color: AppColor.textNote,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      ),
+                      GestureDetector(
+                          child: const Icon(Icons.open_in_new, size: 20)),
                     ],
                   ),
-                  const SizedBox(height: 8),
                   RichText(
                     text: TextSpan(
                       children: [
