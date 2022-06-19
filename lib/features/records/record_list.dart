@@ -10,9 +10,14 @@ class RecordList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final goalDate =
+        state.goal.createdDateTime.add(const Duration(days: 100 - 1));
+
     return Expanded(
       child: ListView(children: [
         ...state.records.map((record) {
+          final recordNumber =
+              100 - goalDate.difference(record.createdDateTime).inDays;
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Row(
@@ -53,9 +58,7 @@ class RecordList extends StatelessWidget {
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600)),
                         const SizedBox(width: 5),
-                        Text(
-                            DateFormat('yyyy-MM-dd')
-                                .format(record.createdDateTime),
+                        Text("$recordNumber日目",
                             style: const TextStyle(
                                 color: AppColor.textNote,
                                 fontSize: 10,
