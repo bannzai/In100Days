@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:intl/intl.dart';
 
 class RecordList extends StatelessWidget {
   final RecordsState state;
@@ -13,7 +14,7 @@ class RecordList extends StatelessWidget {
       child: ListView(children: [
         ...state.records.map((record) {
           return Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Row(
               children: [
                 Container(
@@ -34,8 +35,11 @@ class RecordList extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.ideographic,
                       children: [
                         Text(state.user.name,
                             style: const TextStyle(
@@ -45,18 +49,28 @@ class RecordList extends StatelessWidget {
                         const SizedBox(width: 5),
                         Text("@" + state.user.twitterID,
                             style: const TextStyle(
-                                color: AppColor.textMain,
-                                fontSize: 12,
+                                color: AppColor.textNote,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w600)),
                         const SizedBox(width: 5),
-                        Text("@" + Dateformat record.createdDateTime,
+                        Text(
+                            DateFormat('yyyy-MM-dd')
+                                .format(record.createdDateTime),
                             style: const TextStyle(
-                                color: AppColor.textMain,
-                                fontSize: 12,
+                                color: AppColor.textNote,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w600)),
                       ],
                     ),
-                    Text(record.message),
+                    const SizedBox(height: 10),
+                    Text(
+                      record.message,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.normal,
+                        color: AppColor.textNote,
+                      ),
+                    ),
                   ],
                 )
               ],
