@@ -150,7 +150,8 @@ class RecordAddSheet extends HookConsumerWidget {
                       TextField(
                         autofocus: true,
                         scrollPhysics: const NeverScrollableScrollPhysics(),
-                        maxLength: 140 - goal.fullHashTag.length,
+                        maxLength:
+                            140 - (goal.fullHashTag.length + "\n".length),
                         minLines: 1,
                         maxLines: textFieldLineCount,
                         textInputAction: TextInputAction.newline,
@@ -169,7 +170,7 @@ class RecordAddSheet extends HookConsumerWidget {
                             children: [
                               const SizedBox(height: 10),
                               Text(
-                                "${text.value.length + goal.fullHashTag.length}/140",
+                                "${text.value.length + goal.fullHashTag.length + "\n".length}/140",
                                 style: const TextStyle(
                                     color: AppColor.textNote, fontSize: 11),
                               ),
