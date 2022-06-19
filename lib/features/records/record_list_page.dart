@@ -30,6 +30,7 @@ class RecordListPage extends HookConsumerWidget {
                       user: state.user,
                       hashTag: state.goal.fullHashTag,
                     ),
+                    const SizedBox(height: 20),
                     _content(state),
                   ],
                 ),
