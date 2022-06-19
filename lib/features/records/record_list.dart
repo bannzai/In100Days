@@ -65,16 +65,16 @@ class RecordList extends StatelessWidget {
                                 fontWeight: FontWeight.w600)),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 8),
                     RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: record.message + "\n",
+                            text: record.message + "\n\n",
                             style: const TextStyle(
                               color: AppColor.textMain,
                               fontSize: 12,
-                              fontWeight: FontWeight.normal,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           TextSpan(
@@ -82,7 +82,7 @@ class RecordList extends StatelessWidget {
                             style: const TextStyle(
                               color: AppColor.twitterHashTag,
                               fontSize: 12,
-                              fontWeight: FontWeight.normal,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],

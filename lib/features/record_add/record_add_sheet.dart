@@ -91,7 +91,7 @@ class RecordAddSheet extends HookConsumerWidget {
                             final mediaIDs = await _mediaIDs(images.value);
                             final tweet =
                                 await twitterAPIClient.tweetService.update(
-                              status: text.value + "\n" + goal.fullHashTag,
+                              status: text.value + "\n\n" + goal.fullHashTag,
                               mediaIds: mediaIDs,
                             );
                             final record = Record(
@@ -151,7 +151,7 @@ class RecordAddSheet extends HookConsumerWidget {
                         autofocus: true,
                         scrollPhysics: const NeverScrollableScrollPhysics(),
                         maxLength:
-                            140 - (goal.fullHashTag.length + "\n".length),
+                            140 - (goal.fullHashTag.length + "\n\n".length),
                         minLines: 1,
                         maxLines: textFieldLineCount,
                         textInputAction: TextInputAction.newline,
@@ -170,9 +170,11 @@ class RecordAddSheet extends HookConsumerWidget {
                             children: [
                               const SizedBox(height: 10),
                               Text(
-                                "${text.value.length + goal.fullHashTag.length + "\n".length}/140",
+                                "${text.value.length + goal.fullHashTag.length + "\n\n".length}/140",
                                 style: const TextStyle(
-                                    color: AppColor.textNote, fontSize: 11),
+                                    color: AppColor.textNote,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
