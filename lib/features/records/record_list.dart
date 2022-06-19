@@ -39,7 +39,7 @@ class RecordList extends StatelessWidget {
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.ideographic,
+                      textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(state.user.name,
                             style: const TextStyle(
@@ -68,7 +68,7 @@ class RecordList extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
-                        color: AppColor.textNote,
+                        color: AppColor.textMain,
                       ),
                     ),
                   ],
