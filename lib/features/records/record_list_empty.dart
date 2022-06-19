@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/features/record_add/record_add_sheet.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
@@ -15,6 +16,12 @@ class RecordListEmpty extends StatelessWidget {
     return Center(
       child: Column(
         children: [
+          const SizedBox(height: 10),
+          UserInfo(
+            user: state.user,
+            hashTag: state.goal.fullHashTag,
+          ),
+          const SizedBox(height: 20),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

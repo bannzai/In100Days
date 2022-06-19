@@ -23,17 +23,7 @@ class RecordListPage extends HookConsumerWidget {
           child: Stack(
             children: [
               Center(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    UserInfo(
-                      user: state.user,
-                      hashTag: state.goal.fullHashTag,
-                    ),
-                    const SizedBox(height: 20),
-                    _content(state),
-                  ],
-                ),
+                child: _content(state),
               ),
               Positioned(
                 right: 20,
