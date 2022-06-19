@@ -4,6 +4,7 @@ import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RecordList extends StatelessWidget {
   final RecordsState state;
@@ -93,6 +94,11 @@ class RecordList extends StatelessWidget {
                       // FIXME: Can not use Spacer
                       const SizedBox(width: 10),
                       GestureDetector(
+                          onTap: () {
+                            final url =
+                                "https://twitter.com/${state.user.twitterID}/status/${record.tweetID}";
+                            launchUrl(Uri.parse(url));
+                          },
                           child: const Icon(Icons.open_in_new, size: 20)),
                     ],
                   ),
