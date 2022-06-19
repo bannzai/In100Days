@@ -17,22 +17,24 @@ class RecordList extends StatelessWidget {
 
     return Column(
       children: [
-        const SizedBox(height: 10),
-        UserInfo(
-          user: state.user,
-          hashTag: state.goal.fullHashTag,
-        ),
-        const SizedBox(height: 20),
         Expanded(
-          child: ListView.builder(
-            itemCount: state.records.length,
-            itemBuilder: (context, index) {
-              final record = state.records[index];
-              final recordNumber =
-                  100 - goalDate.difference(record.createdDateTime).inDays;
-              return _element(context,
-                  record: record, recordNumber: recordNumber, index: index);
-            },
+          child: ListView(
+            children: [
+              const SizedBox(height: 10),
+              UserInfo(
+                user: state.user,
+                hashTag: state.goal.fullHashTag,
+              ),
+              const SizedBox(height: 20),
+              ...state.records.asMap().entries.map((entry) {
+                final index = entry.key;
+                final record = state.records[index];
+                final recordNumber =
+                    100 - goalDate.difference(record.createdDateTime).inDays;
+                return _element(context,
+                    record: record, recordNumber: recordNumber, index: index);
+              }),
+            ],
           ),
         ),
       ],
