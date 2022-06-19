@@ -118,7 +118,7 @@ class RecordList extends StatelessWidget {
                           style: const TextStyle(
                             color: AppColor.twitterHashTag,
                             fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
