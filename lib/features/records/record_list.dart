@@ -63,12 +63,26 @@ class RecordList extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      record.message,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal,
-                        color: AppColor.textMain,
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: record.message + "\n",
+                            style: const TextStyle(
+                              color: AppColor.textMain,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          TextSpan(
+                            text: record.hashTag,
+                            style: const TextStyle(
+                              color: AppColor.twitterHashTag,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
