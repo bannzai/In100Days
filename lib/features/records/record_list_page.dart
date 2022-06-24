@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/record_add/record_add_sheet.dart';
