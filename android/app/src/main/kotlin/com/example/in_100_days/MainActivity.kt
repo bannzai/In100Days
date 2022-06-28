@@ -1,4 +1,4 @@
-package com.example.in_100_days
+package com.bannzai.in100days
 
 import io.flutter.embedding.android.FlutterActivity
 
