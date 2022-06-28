@@ -49,7 +49,7 @@ class SignInPage extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              SvgPicture.asset("images/creater.svg"),
+              Image.asset("images/kids_chuunibyou_boy.png"),
               const SizedBox(height: 10),
               SizedBox(
                 height: 118,
