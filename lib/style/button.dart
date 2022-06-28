@@ -71,39 +71,45 @@ class TwitterLikeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isProcessing = false;
+    var isProcessing = useState(false);
 
     return ElevatedButton(
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 17,
-          color: Colors.white,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+            maxHeight: 44, minHeight: 44, minWidth: 180, maxWidth: 180),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Text(
+              text,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            ),
+            if (isProcessing.value) _Loading(),
+          ],
         ),
       ),
-      style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(const Size.fromHeight(44)),
-          backgroundColor: MaterialStateProperty.resolveWith((statuses) {
-            if (statuses.contains(MaterialState.disabled)) {
-              return Colors.grey;
-            }
-            return AppColor.twitterAppColor;
-          })),
+      style: ElevatedButton.styleFrom(
+        primary: AppColor.twitterAppColor,
+        minimumSize: const Size.fromHeight(44),
+      ),
       onPressed: onPressed == null
           ? null
           : () async {
-              if (isProcessing) {
+              if (isProcessing.value) {
                 return;
               }
-              isProcessing = true;
+              isProcessing.value = true;
 
               try {
                 await onPressed?.call();
               } catch (error) {
                 rethrow;
               } finally {
-                isProcessing = false;
+                isProcessing.value = false;
               }
             },
     );
