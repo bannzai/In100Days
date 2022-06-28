@@ -16,7 +16,6 @@ class RecordList extends StatelessWidget {
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
 
     return ListView(
-      shrinkWrap: true,
       children: [
         const SizedBox(height: 10),
         UserInfo(
