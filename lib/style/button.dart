@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:in_100_days/style/color.dart';
 
-class PrimaryButton extends StatelessWidget {
+class PrimaryButton extends HookWidget {
   final String text;
   final Future<void> Function()? onPressed;
 
@@ -13,15 +14,25 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isProcessing = false;
+    var isProcessing = useState(false);
 
     return ElevatedButton(
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 17,
-          color: Colors.white,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+            maxHeight: 44, minHeight: 44, minWidth: 180, maxWidth: 180),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Text(
+              text,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            ),
+            if (isProcessing.value) _Loading(),
+          ],
         ),
       ),
       style: ElevatedButton.styleFrom(
@@ -31,17 +42,17 @@ class PrimaryButton extends StatelessWidget {
       onPressed: onPressed == null
           ? null
           : () async {
-              if (isProcessing) {
+              if (isProcessing.value) {
                 return;
               }
-              isProcessing = true;
+              isProcessing.value = true;
 
               try {
                 await onPressed?.call();
               } catch (error) {
                 rethrow;
               } finally {
-                isProcessing = false;
+                isProcessing.value = false;
               }
             },
     );
@@ -95,6 +106,20 @@ class TwitterLikeButton extends StatelessWidget {
                 isProcessing = false;
               }
             },
+    );
+  }
+}
+
+class _Loading extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      width: 20,
+      height: 20,
+      child: CircularProgressIndicator(
+        strokeWidth: 1,
+        valueColor: AlwaysStoppedAnimation(Colors.grey),
+      ),
     );
   }
 }
