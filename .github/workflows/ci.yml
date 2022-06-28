@@ -6,75 +6,74 @@ name: CI
 # events but only for the main branch
 on:
   push:
-    branches: [ main, feature/* ]
+    branches: [main, feature/*]
   pull_request:
-    branches: [ main, feature/* ]
+    branches: [main, feature/*]
 
 jobs:
   build-ios-debug:
     runs-on: macos-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '12.x'
-    - name: Prepare firebase config
-      run: make secret
-      env:
-        FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-        FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
-    - uses: subosito/flutter-action@v1
-      with:
-        flutter-version: '3.0.1'
-    - run: flutter pub get
-    - name: Run iOS
-      run: flutter build ios --debug --no-codesign --flavor development --target lib/main.dart --no-sound-null-safety
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - name: Prepare firebase config
+        run: make secret
+        env:
+          FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.0.1"
+      - run: flutter pub get
+      - name: Run iOS
+        run: flutter build ios --debug --no-codesign --flavor development --target lib/main.dart --no-sound-null-safety
   build-android-debug:
     runs-on: macos-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '12.x'
-    - name: Prepare firebase config
-      run: make secret
-      env:
-        FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-        FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
-    - uses: subosito/flutter-action@v1
-      with:
-        flutter-version: '3.0.1'
-    - run: flutter pub get
-    - run: flutter build apk --debug --flavor development --target lib/main.dart --no-sound-null-safety
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - name: Prepare firebase config
+        run: make secret
+        env:
+          FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.0.1"
+      - run: flutter pub get
+      - run: flutter build apk --debug --flavor development --target lib/main.dart --no-sound-null-safety
   test:
     runs-on: macos-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '12.x'
-    - uses: subosito/flutter-action@v1
-      with:
-        flutter-version: '3.0.1'
-    - run: make secret
-    - run: flutter pub get
-    - run: flutter test 
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.0.1"
+      - run: make secret
+      - run: flutter pub get
+      - run: flutter test
   codegen:
     runs-on: macos-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '12.x'
-    - uses: subosito/flutter-action@v1
-      with:
-        flutter-version: '3.0.1'
-    - run: make secret
-    - run: flutter pub get
-    - run: flutter pub run build_runner build --delete-conflicting-outputs
-    - run: git diff --quiet --exit-code
-
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.0.1"
+      - run: make secret
+      - run: flutter pub get
+      - run: flutter pub run build_runner build --delete-conflicting-outputs
+      - run: git diff --quiet --exit-code
