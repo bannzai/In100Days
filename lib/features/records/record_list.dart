@@ -4,7 +4,7 @@ import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
-import 'package:in_100_days/utility/twitter_hash_tag.dart';
+import 'package:in_100_days/utility/open_twitter_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RecordList extends StatelessWidget {
@@ -46,21 +46,26 @@ class RecordList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
           child: Row(
             children: [
-              Container(
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundImage:
-                      NetworkImage(state.user.orignalProfileImageURL),
-                  backgroundColor: Colors.black,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xff7c94b6),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 0.5,
+              GestureDetector(
+                child: Container(
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage:
+                        NetworkImage(state.user.orignalProfileImageURL),
+                    backgroundColor: Colors.black,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xff7c94b6),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 0.5,
+                    ),
                   ),
                 ),
+                onTap: () {
+                  openTwitterUser(state.user.twitterID);
+                },
               ),
               const SizedBox(width: 10),
               Column(

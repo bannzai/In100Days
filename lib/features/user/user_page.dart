@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/user/user_delete_row.dart';
 import 'package:in_100_days/provider/user.dart';
 import 'package:in_100_days/style/color.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:in_100_days/utility/open_twitter_page.dart';
 
 class UserPage extends HookConsumerWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -24,14 +24,19 @@ class UserPage extends HookConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              CircleAvatar(
-                backgroundImage: NetworkImage(user.orignalProfileImageURL),
-                backgroundColor: Colors.black,
+              GestureDetector(
+                onTap: () {
+                  openTwitterUser(user.twitterID);
+                },
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(user.orignalProfileImageURL),
+                  backgroundColor: Colors.black,
+                ),
               ),
               const SizedBox(height: 8),
               GestureDetector(
                 onTap: () {
-                  launchUrl(Uri.parse("https://twitter.com/${user.twitterID}"));
+                  openTwitterUser(user.twitterID);
                 },
                 child: Text(user.twitterID,
                     style: const TextStyle(fontSize: 14, color: AppColor.link)),

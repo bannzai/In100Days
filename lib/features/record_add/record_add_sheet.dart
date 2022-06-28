@@ -13,7 +13,7 @@ import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/chunk.dart';
-import 'package:in_100_days/utility/twitter_hash_tag.dart';
+import 'package:in_100_days/utility/open_twitter_page.dart';
 import 'package:mime_type/mime_type.dart';
 
 // ignore: constant_identifier_names

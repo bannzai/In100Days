@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/style/color.dart';
-import 'package:in_100_days/utility/twitter_hash_tag.dart';
+import 'package:in_100_days/utility/open_twitter_page.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({
@@ -18,11 +18,15 @@ class UserInfo extends StatelessWidget {
     return Column(
       children: [
         Container(
-          child: CircleAvatar(
-            radius: 44,
-            backgroundImage: NetworkImage(user.orignalProfileImageURL),
-            backgroundColor: Colors.black,
-          ),
+          child: GestureDetector(
+              child: CircleAvatar(
+                radius: 44,
+                backgroundImage: NetworkImage(user.orignalProfileImageURL),
+                backgroundColor: Colors.black,
+              ),
+              onTap: () {
+                openTwitterUser(user.twitterID);
+              }),
           decoration: BoxDecoration(
             color: const Color(0xff7c94b6),
             shape: BoxShape.circle,
@@ -33,12 +37,17 @@ class UserInfo extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Text(
-          "@${user.twitterID}",
-          style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: AppColor.textMain),
+        GestureDetector(
+          child: Text(
+            "@${user.twitterID}",
+            style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColor.textMain),
+          ),
+          onTap: () {
+            openTwitterUser(user.twitterID);
+          },
         ),
         const SizedBox(height: 10),
         GestureDetector(
