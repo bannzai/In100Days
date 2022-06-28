@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const MaterialColor primary = Colors.lightGreen;
+  static const Color primary = twitterAppColor;
   static const Color danger = Colors.red;
   static const Color twitterAppColor = Color(0xFF51A5E4);
   static const Color link = Colors.blueAccent;
