@@ -116,6 +116,54 @@ class TwitterLikeButton extends StatelessWidget {
   }
 }
 
+class BlackTextButton extends HookWidget {
+  final Text text;
+  final Future<void> Function()? onPressed;
+
+  const BlackTextButton({
+    Key? key,
+    required this.onPressed,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var isProcessing = useState(false);
+    return SizedBox(
+      height: 44,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          padding: EdgeInsets.zero,
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            text,
+            if (isProcessing.value) _Loading(),
+          ],
+        ),
+        onPressed: isProcessing.value || onPressed == null
+            ? null
+            : () async {
+                if (isProcessing.value) {
+                  return;
+                }
+                isProcessing.value = true;
+
+                try {
+                  await onPressed?.call();
+                } catch (error) {
+                  rethrow;
+                } finally {
+                  isProcessing.value = false;
+                }
+              },
+      ),
+    );
+  }
+}
+
 class _Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

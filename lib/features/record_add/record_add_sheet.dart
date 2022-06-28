@@ -10,6 +10,7 @@ import 'package:in_100_days/features/record_add/image_list.dart';
 import 'package:in_100_days/provider/record.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
+import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/chunk.dart';
 import 'package:mime_type/mime_type.dart';
@@ -60,11 +61,11 @@ class RecordAddSheet extends HookConsumerWidget {
           children: [
             Row(
               children: [
-                GestureDetector(
-                  onTap: () {
+                BlackTextButton(
+                  onPressed: () async {
                     Navigator.of(context).pop();
                   },
-                  child: const Text(
+                  text: const Text(
                     "キャンセル",
                     style: TextStyle(
                       color: AppColor.textNote,
@@ -75,8 +76,8 @@ class RecordAddSheet extends HookConsumerWidget {
                   ),
                 ),
                 const Spacer(),
-                GestureDetector(
-                  onTap: text.value.isEmpty
+                BlackTextButton(
+                  onPressed: text.value.isEmpty
                       ? null
                       : () async {
                           if (text.value.isEmpty) {
@@ -107,7 +108,7 @@ class RecordAddSheet extends HookConsumerWidget {
                             showErrorAlert(context, error: error);
                           }
                         },
-                  child: const Text(
+                  text: const Text(
                     "投稿",
                     style: TextStyle(
                       color: AppColor.textMain,
