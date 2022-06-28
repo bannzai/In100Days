@@ -43,6 +43,7 @@ class RecordAddSheet extends HookConsumerWidget {
         paddingBetweenProfileImageAndTextField;
 
     const textFieldLineCount = 20;
+    // TODO: Fill store link if record is empty after first release
     final textFieldController = useTextEditingController(text: "");
 
     return Container(
