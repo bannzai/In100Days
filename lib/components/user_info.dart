@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:in_100_days/utility/twitter_hash_tag.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({
@@ -40,12 +41,17 @@ class UserInfo extends StatelessWidget {
               color: AppColor.textMain),
         ),
         const SizedBox(height: 10),
-        Text(
-          hashTag,
-          style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: AppColor.twitterHashTag),
+        GestureDetector(
+          onTap: () {
+            openTwitterHashTag(hashTag);
+          },
+          child: Text(
+            hashTag,
+            style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColor.twitterHashTag),
+          ),
         ),
       ],
     );
