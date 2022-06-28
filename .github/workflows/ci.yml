@@ -23,6 +23,7 @@ jobs:
       run: make secret
       env:
         FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+        FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '3.0.1'
@@ -40,6 +41,7 @@ jobs:
     - name: Prepare firebase config
       run: make secret
       env:
+        FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
         FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
     - uses: subosito/flutter-action@v1
       with:
