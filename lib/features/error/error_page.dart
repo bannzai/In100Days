@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ErrorPage extends StatelessWidget {
   final Object error;
@@ -11,7 +10,7 @@ class ErrorPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SvgPicture.asset("images/error.svg"),
+          Image.asset("images/computer_sagi_error.png"),
           Text(error.toString()),
         ],
       ),
