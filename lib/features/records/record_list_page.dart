@@ -6,6 +6,7 @@ import 'package:in_100_days/features/record_add/record_add_sheet.dart';
 import 'package:in_100_days/features/records/record_list.dart';
 import 'package:in_100_days/features/records/record_list_empty.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
+import 'package:in_100_days/features/user/user_page.dart';
 
 class RecordListPage extends HookConsumerWidget {
   final Goal goal;
@@ -18,9 +19,20 @@ class RecordListPage extends HookConsumerWidget {
     return state.when(
       data: (state) => Scaffold(
         body: SafeArea(
-          child: state.records.isEmpty
-              ? RecordListEmpty(state: state)
-              : RecordList(state: state),
+          child: Stack(
+            children: [
+              _content(state),
+              Positioned(
+                right: 10,
+                child: IconButton(
+                  icon: const Icon(Icons.settings),
+                  onPressed: () {
+                    Navigator.of(context).push(UserPageRoute.route());
+                  },
+                ),
+              )
+            ],
+          ),
         ),
         floatingActionButton: state.records.isEmpty
             ? null
@@ -33,5 +45,13 @@ class RecordListPage extends HookConsumerWidget {
       error: (error, _) => ErrorPage(error: error),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
+  }
+
+  Widget _content(RecordsState state) {
+    if (state.records.isEmpty) {
+      return RecordListEmpty(state: state);
+    } else {
+      return RecordList(state: state);
+    }
   }
 }

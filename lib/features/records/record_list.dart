@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
-import 'package:in_100_days/features/user/user_page.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,23 +19,9 @@ class RecordList extends StatelessWidget {
       shrinkWrap: true,
       children: [
         const SizedBox(height: 10),
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            UserInfo(
-              user: state.user,
-              hashTag: state.goal.fullHashTag,
-            ),
-            Positioned(
-              right: 10,
-              child: IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () {
-                  Navigator.of(context).push(UserPageRoute.route());
-                },
-              ),
-            )
-          ],
+        UserInfo(
+          user: state.user,
+          hashTag: state.goal.fullHashTag,
         ),
         const SizedBox(height: 20),
         ...state.records.asMap().entries.map((entry) {
