@@ -45,11 +45,6 @@ class RecordAddSheet extends HookConsumerWidget {
     const textFieldLineCount = 20;
     final textFieldController = useTextEditingController(text: "");
 
-    const baseTextStyle = TextStyle(
-      fontWeight: FontWeight.w600,
-      fontSize: 12,
-    );
-
     return Container(
       color: Colors.white,
       padding: EdgeInsets.only(
@@ -156,8 +151,10 @@ class RecordAddSheet extends HookConsumerWidget {
                         maxLines: textFieldLineCount,
                         textInputAction: TextInputAction.newline,
                         controller: textFieldController,
-                        style: baseTextStyle
-                            .merge(const TextStyle(color: AppColor.textMain)),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            color: AppColor.textMain),
                         textAlign: TextAlign.left,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -188,8 +185,10 @@ class RecordAddSheet extends HookConsumerWidget {
                         child: Text(
                           goal.fullHashTag,
                           textAlign: TextAlign.left,
-                          style: baseTextStyle.merge(
-                              const TextStyle(color: AppColor.twitterHashTag)),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                              color: AppColor.twitterHashTag),
                         ),
                       ),
                     ],
