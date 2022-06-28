@@ -18,7 +18,7 @@ class UserInfo extends StatelessWidget {
       children: [
         Container(
           child: CircleAvatar(
-            radius: 62,
+            radius: 44,
             backgroundImage: NetworkImage(user.orignalProfileImageURL),
             backgroundColor: Colors.black,
           ),
