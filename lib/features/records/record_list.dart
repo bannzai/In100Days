@@ -27,17 +27,17 @@ class RecordList extends StatelessWidget {
         ...state.records.asMap().entries.map((entry) {
           final index = entry.key;
           final record = state.records[index];
-          final recordNumber =
-              100 - goalDate.difference(record.createdDateTime).inDays;
+          final dateNumber =
+              (100 - 1) - goalDate.difference(record.createdDateTime).inDays;
           return _element(context,
-              record: record, recordNumber: recordNumber, index: index);
+              record: record, dateNumber: dateNumber, index: index);
         }),
       ],
     );
   }
 
   Widget _element(BuildContext context,
-      {required Record record, required int recordNumber, required int index}) {
+      {required Record record, required int dateNumber, required int index}) {
     return Column(
       children: [
         if (index == 0) const Divider(color: Colors.grey),
@@ -83,7 +83,7 @@ class RecordList extends StatelessWidget {
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600)),
                           const SizedBox(width: 5),
-                          Text("$recordNumber日目",
+                          Text("$dateNumber日目",
                               style: const TextStyle(
                                   color: AppColor.textNote,
                                   fontSize: 10,
