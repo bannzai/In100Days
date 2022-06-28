@@ -15,7 +15,7 @@ class UserPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: const Text("ユーザーページ"),
+        title: const Text("設定"),
       ),
       body: SafeArea(
         child: Center(
