@@ -61,7 +61,7 @@ class RecordAddSheet extends HookConsumerWidget {
           children: [
             Row(
               children: [
-                BlackTextButton(
+                AppTextButton(
                   onPressed: () async {
                     Navigator.of(context).pop();
                   },
@@ -76,7 +76,7 @@ class RecordAddSheet extends HookConsumerWidget {
                   ),
                 ),
                 const Spacer(),
-                BlackTextButton(
+                AppTextButton(
                   onPressed: text.value.isEmpty
                       ? null
                       : () async {

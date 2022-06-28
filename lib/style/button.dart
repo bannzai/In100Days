@@ -116,11 +116,11 @@ class TwitterLikeButton extends StatelessWidget {
   }
 }
 
-class BlackTextButton extends HookWidget {
+class AppTextButton extends HookWidget {
   final Text text;
   final Future<void> Function()? onPressed;
 
-  const BlackTextButton({
+  const AppTextButton({
     Key? key,
     required this.onPressed,
     required this.text,
