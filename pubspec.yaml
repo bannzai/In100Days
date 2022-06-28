@@ -107,3 +107,24 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+  flavors:
+    dev:
+      app:
+        name: "100日後に-dev"
+      android:
+        applicationId: "com.bannzai.in100days.dev"
+      ios:
+        bundleId: "com.bannzai.in100days.dev"
+    prod:
+      app:
+        name: "100日後に"
+      android:
+        applicationId: "com.bannzai.in100days"
+      ios:
+        bundleId: "com.bannzai.in100days"
