@@ -492,6 +492,7 @@
 		};
 		20441FC42854B0FC0082263C /* Debug-Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FAC29BC20FA84B085A08790 /* Pods-Runner.debug-development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -569,6 +570,7 @@
 		};
 		20441FC62854B1050082263C /* Debug-Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1979D6235BC0A309CA5DCE54 /* Pods-Runner.debug-production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -643,6 +645,7 @@
 		};
 		20441FC82854B10E0082263C /* Release-Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDD367CBA2583813CF834C48 /* Pods-Runner.release-development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -716,6 +719,7 @@
 		};
 		20441FCA2854B1160082263C /* Release-Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 269E2249D1EFF6A4643D1BF6 /* Pods-Runner.release-production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -787,6 +791,7 @@
 		};
 		249021D4217E4FDB00AE95B9 /* Profile */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19C83CC483493C82C74EB09A /* Pods-Runner.profile.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1131,6 +1136,7 @@
 		};
 		97C147061CF9000F007C117D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB2381167DA14BD90A914EBD /* Pods-Runner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1153,6 +1159,7 @@
 		};
 		97C147071CF9000F007C117D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDA434103BD1BCCC9C1EF844 /* Pods-Runner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
