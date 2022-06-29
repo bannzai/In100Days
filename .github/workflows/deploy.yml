@@ -23,7 +23,7 @@ jobs:
           FILE_FIREBASE_IOS_DEV: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: "2.10.2"
+          flutter-version: "3.0.1"
       - run: flutter pub get
       - name: Set Provisioning Profile
         run: |
@@ -67,7 +67,7 @@ jobs:
         run: echo -n ${{ secrets.ANDROID_GOOGLE_SERVICE_ACCOUNT_JSON }} | base64 -d > android/service-account.json
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: "2.10.2"
+          flutter-version: "3.0.1"
       - run: flutter pub get
       - name: Prepare keystore file
         run: echo -n ${{ secrets.ANDROID_KEYSTORE_FILE }} | base64 -d > android/release.jks
