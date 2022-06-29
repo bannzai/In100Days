@@ -124,7 +124,7 @@ flavorizr:
       ios:
         bundleId: "com.bannzai.in100days.dev"
         firebase:
-          config: "ios/Firebase/GoogleService-Info-dev.plist"
+          config: "ios/Runner/Firebase/GoogleService-Info-dev.plist"
     prod:
       app:
         name: "100日後に"
@@ -135,4 +135,4 @@ flavorizr:
       ios:
         bundleId: "com.bannzai.in100days"
         firebase:
-          config: "ios/Firebase/GoogleService-Info-prod.plist"
+          config: "ios/Runner/Firebase/GoogleService-Info-prod.plist"
