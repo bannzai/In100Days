@@ -21,6 +21,11 @@ jobs:
         run: make secret
         env:
           FILE_FIREBASE_IOS_DEV: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_IOS_PROD: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID_DEV: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
+          SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.0.1"
@@ -59,7 +64,12 @@ jobs:
           export ANDROID_KEYSTORE_PATH=$(pwd -P)/android/release.jks
           make secret
         env:
+          FILE_FIREBASE_IOS_DEV: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_IOS_PROD: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
           FILE_FIREBASE_ANDROID_DEV: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
+          SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
           ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
