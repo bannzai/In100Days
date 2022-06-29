@@ -59,7 +59,7 @@ class PrimaryButton extends HookWidget {
   }
 }
 
-class TwitterLikeButton extends StatelessWidget {
+class TwitterLikeButton extends HookWidget {
   final String text;
   final Future<void> Function()? onPressed;
 
