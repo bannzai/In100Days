@@ -81,6 +81,7 @@ android {
           keyPassword keystoreProperties['keyPassword']
           storeFile rootProject.file(keystoreProperties['storeFile'])
           storePassword keystoreProperties['storePassword']
+        }
     }
 
     buildTypes {
