@@ -119,12 +119,20 @@ flavorizr:
         name: "100日後に-dev"
       android:
         applicationId: "com.bannzai.in100days.dev"
+        firebase:
+          config: "android/app/src/dev/google-services.json"
       ios:
         bundleId: "com.bannzai.in100days.dev"
+        firebase:
+          config: "ios/Firebase/GoogleService-Info-dev.plist"
     prod:
       app:
         name: "100日後に"
       android:
         applicationId: "com.bannzai.in100days"
+        firebase:
+          config: "android/app/src/prod/google-services.json"
       ios:
         bundleId: "com.bannzai.in100days"
+        firebase:
+          config: "ios/Firebase/GoogleService-Info-prod.plist"
