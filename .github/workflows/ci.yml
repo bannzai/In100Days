@@ -22,14 +22,18 @@ jobs:
       - name: Prepare firebase config
         run: make secret
         env:
-          FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-          FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          FILE_FIREBASE_IOS_DEV: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_IOS_PROD: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID_DEV: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
+          SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.0.1"
       - run: flutter pub get
       - name: Run iOS
-        run: flutter build ios --debug --no-codesign --flavor development --target lib/main.dev.dart --no-sound-null-safety
+        run: flutter build ios --debug --no-codesign --flavor dev --target lib/main_dev.dart
   build-android-debug:
     runs-on: macos-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
@@ -41,13 +45,17 @@ jobs:
       - name: Prepare firebase config
         run: make secret
         env:
-          FILE_FIREBASE_IOS: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-          FILE_FIREBASE_ANDROID: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          FILE_FIREBASE_IOS_DEV: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_IOS_PROD: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID_DEV: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
+          SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
+          SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.0.1"
       - run: flutter pub get
-      - run: flutter build apk --debug --flavor development --target lib/main.dev.dart --no-sound-null-safety
+      - run: flutter build apk --debug --flavor dev --target lib/main_dev.dart
   test:
     runs-on: macos-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
