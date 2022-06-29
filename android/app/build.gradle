@@ -92,10 +92,10 @@ android {
     // ref: https://stackoverflow.com/questions/72015115/no-signature-of-method-build-9to1cg5tnfrkz8e8n77tajtyd-android-is-applicable
     ndkVersion "23.1.7779620"
     
-    play {
-       track = 'internal'
-       serviceAccountCredentials.set(file('service-account.json'))
-    }
+//    play {
+//       track = 'internal'
+//       serviceAccountCredentials.set(file('service-account.json'))
+//    }
 }
 
 flutter {
