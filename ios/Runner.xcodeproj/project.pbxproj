@@ -383,8 +383,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9747B1ECA4240F6F69822494 /* Pods-Runner.debug-dev.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 			};
 			name = "Debug-dev";
 		};
@@ -392,8 +395,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1C2640633207E2AEBFB155FD /* Pods-Runner.profile-dev.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 			};
 			name = "Profile-dev";
 		};
@@ -401,8 +407,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E23D644D8B4312612CDA5BA7 /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 			};
 			name = "Release-dev";
 		};
@@ -410,8 +419,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 373B928F8A7744A9A2CB4B00 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Debug-prod";
 		};
@@ -419,8 +431,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 887FB5BA845E4CBE4AF61505 /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Profile-prod";
 		};
@@ -428,8 +443,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1A1B9AABD9748A44D456A3E /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-prod";
 		};
@@ -489,6 +507,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				ENABLE_BITCODE = NO;
@@ -499,6 +519,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bannzai.in100days.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -834,6 +855,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				ENABLE_BITCODE = NO;
@@ -844,6 +867,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bannzai.in100days.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -857,8 +881,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				ENABLE_BITCODE = NO;
@@ -869,7 +893,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bannzai.in100days.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
