@@ -5,8 +5,8 @@ import 'package:in_100_days/provider/user.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
 
-class UserPage extends HookConsumerWidget {
-  const UserPage({Key? key}) : super(key: key);
+class SettingPage extends HookConsumerWidget {
+  const SettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,11 +59,11 @@ class UserPage extends HookConsumerWidget {
   }
 }
 
-extension UserPageRoute on UserPage {
+extension UserPageRoute on SettingPage {
   static Route<dynamic> route() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: "UserPage"),
-      builder: (_) => const UserPage(),
+      builder: (_) => const SettingPage(),
     );
   }
 }
