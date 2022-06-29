@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'app.dart';
+import 'package:in_100_days/entrypoint.dart';
 import 'flavors.dart';
 
 void main() {
   F.appFlavor = Flavor.DEV;
-  runApp(App());
+  entrypoint();
 }
