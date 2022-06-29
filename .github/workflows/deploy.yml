@@ -51,7 +51,7 @@ jobs:
       - name: Upload to AppStoreConnect
         run: xcrun altool --upload-app --type ios -f "./build/ios/ipa/in100days-dev.ipa" -u "${{ secrets.IOS_APPLE_ID }}" -p "${{ secrets.IN100DAYS_APPLE_APP_PASSWORD }}"
   android-upload-googleplay-dev:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
