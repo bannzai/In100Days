@@ -7,6 +7,7 @@ import 'package:in_100_days/features/records/record_list.dart';
 import 'package:in_100_days/features/records/record_list_empty.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/features/user/user_page.dart';
+import 'package:in_100_days/style/color.dart';
 
 class RecordListPage extends HookConsumerWidget {
   final Goal goal;
@@ -36,10 +37,25 @@ class RecordListPage extends HookConsumerWidget {
         ),
         floatingActionButton: state.records.isEmpty
             ? null
-            : IconButton(
-                icon: const Icon(Icons.add),
+            : ElevatedButton(
                 onPressed: () => showRecordAddSheet(context,
                     goal: state.goal, user: state.user),
+                style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                ),
+                child: Container(
+                  width: 70,
+                  height: 70,
+                  decoration: const BoxDecoration(
+                    color: AppColor.primary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                ),
               ),
       ),
       error: (error, _) => ErrorPage(error: error),
