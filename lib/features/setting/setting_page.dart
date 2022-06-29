@@ -63,6 +63,7 @@ class SettingPage extends HookConsumerWidget {
                             "https://bannzai.github.io/In100Days/Terms"));
                       },
                     ),
+                    const Divider(color: Colors.black38, indent: 16),
                     ListTile(
                       title: Row(children: const [
                         Text(
@@ -77,6 +78,7 @@ class SettingPage extends HookConsumerWidget {
                             "https://bannzai.github.io/In100Days/PrivacyPolicy"));
                       },
                     ),
+                    const Divider(color: Colors.black38),
                   ],
                 ),
               )
