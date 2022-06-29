@@ -4,6 +4,7 @@ import 'package:in_100_days/features/setting/user_delete_row.dart';
 import 'package:in_100_days/provider/user.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends HookConsumerWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -44,10 +45,38 @@ class SettingPage extends HookConsumerWidget {
               const SizedBox(height: 20),
               Expanded(
                 child: ListView(
-                  children: const [
-                    Divider(color: Colors.black38),
-                    UserDeleteRow(),
-                    Divider(color: Colors.black38, indent: 16),
+                  children: [
+                    const Divider(color: Colors.black38),
+                    const UserDeleteRow(),
+                    const Divider(color: Colors.black38, indent: 16),
+                    ListTile(
+                      title: Row(children: const [
+                        Text(
+                          "利用規約",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 16),
+                        ),
+                        SizedBox(width: 8),
+                      ]),
+                      onTap: () {
+                        launchUrl(Uri.parse(
+                            "https://bannzai.github.io/In100Days/Terms"));
+                      },
+                    ),
+                    ListTile(
+                      title: Row(children: const [
+                        Text(
+                          "プライバシーポリシー",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 16),
+                        ),
+                        SizedBox(width: 8),
+                      ]),
+                      onTap: () {
+                        launchUrl(Uri.parse(
+                            "https://bannzai.github.io/In100Days/PrivacyPolicy"));
+                      },
+                    ),
                   ],
                 ),
               )
