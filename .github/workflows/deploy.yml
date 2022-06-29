@@ -47,7 +47,7 @@ jobs:
       - name: Create ipa
         run: |
           echo -n ${{ secrets.IOS_EXPORT_OPTIONS_PLIST_DEV }} | base64 -d > $(pwd -P)/ExportOptions.plist
-          flutter build ipa --flavor dev --target lib/main.dev.dart --export-options-plist=$(pwd -P)/ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
+          flutter build ipa --flavor dev --target lib/main_dev.dart --export-options-plist=$(pwd -P)/ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
       - name: Upload to AppStoreConnect
         run: xcrun altool --upload-app --type ios -f "./build/ios/ipa/in100days-dev.ipa" -u "${{ secrets.IOS_APPLE_ID }}" -p "${{ secrets.IN100DAYS_APPLE_APP_PASSWORD }}"
   android-upload-googleplay-dev:
@@ -81,7 +81,7 @@ jobs:
       - run: flutter pub get
       - name: Prepare keystore file
         run: echo -n ${{ secrets.ANDROID_KEYSTORE_FILE }} | base64 -d > android/release.jks
-      - run: flutter build appbundle --release --flavor dev --target lib/main.dev.dart --build-number ${GITHUB_RUN_NUMBER}
+      - run: flutter build appbundle --release --flavor dev --target lib/main_dev.dart --build-number ${GITHUB_RUN_NUMBER}
       - uses: r0adkll/upload-google-play@v1.0.16
         with:
           serviceAccountJson: android/service-account.json
