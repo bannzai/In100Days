@@ -33,7 +33,7 @@ jobs:
       - name: Set Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo -n ${{ secrets.FILE_PROVISIONING_PROFILE_DEV }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/In100Days.Dev.AppStore.mobileprovision
+          echo -n ${{ secrets.FILE_PROVISIONING_PROFILE_DEV }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/In100Days.AppStore.mobileprovision
       # workaround step. it is not copy when flutter build ipa -> xcodebuild. it is defined build phases on xcode.
       - name: copy firebase file
         run: cp ios/Runner/dev/GoogleService-Info.plist ios/Runner/GoogleService-Info.plist
