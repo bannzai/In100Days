@@ -6,7 +6,7 @@ import 'package:in_100_days/features/record_add/record_add_sheet.dart';
 import 'package:in_100_days/features/records/record_list.dart';
 import 'package:in_100_days/features/records/record_list_empty.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
-import 'package:in_100_days/features/user/user_page.dart';
+import 'package:in_100_days/features/setting/setting_page.dart';
 import 'package:in_100_days/style/color.dart';
 
 class RecordListPage extends HookConsumerWidget {
