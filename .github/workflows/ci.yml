@@ -28,6 +28,8 @@ jobs:
           FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
           SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
           SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
+          FILE_FIREBASE_OPTION: ${{ secrets.FILE_FIREBASE_OPTION }}
+          FILE_IOS_FIREBASE_APP_ID_FILE: ${{ secrets.FILE_IOS_FIREBASE_APP_ID_FILE }}
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.0.1"
@@ -51,6 +53,8 @@ jobs:
           FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
           SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
           SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
+          FILE_FIREBASE_OPTION: ${{ secrets.FILE_FIREBASE_OPTION }}
+          FILE_IOS_FIREBASE_APP_ID_FILE: ${{ secrets.FILE_IOS_FIREBASE_APP_ID_FILE }}
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.0.1"
