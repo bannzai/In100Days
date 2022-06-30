@@ -5,13 +5,10 @@ name: Deploy
 on:
   push:
     branches: [main, feature/*]
-  pull_request:
-    branches: [main, feature/*]
 
 jobs:
   ios-upload-testflight-dev:
     runs-on: macos-latest
-    if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-java@v1
@@ -55,7 +52,6 @@ jobs:
   android-upload-googleplay-dev:
     runs-on: macos-latest
 
-    if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-java@v1
