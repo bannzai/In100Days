@@ -4,7 +4,7 @@ name: Deploy
 # events but only for the main branch
 on:
   push:
-    branches: [a]
+    branches: [main, feature/*]
 
 jobs:
   ios-upload-testflight-dev:
