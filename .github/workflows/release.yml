@@ -5,8 +5,6 @@ name: Deploy
 on:
   push:
     branches: [main, feature/*]
-  pull_request:
-    branches: [main, feature/*]
 
 jobs:
   ios-upload-testflight-prod:
