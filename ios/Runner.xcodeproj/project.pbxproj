@@ -417,11 +417,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 373B928F8A7744A9A2CB4B00 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 			};
 			name = "Debug-prod";
 		};
@@ -429,11 +429,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 887FB5BA845E4CBE4AF61505 /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 			};
 			name = "Profile-prod";
 		};
@@ -441,11 +441,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1A1B9AABD9748A44D456A3E /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 			};
 			name = "Release-prod";
 		};
