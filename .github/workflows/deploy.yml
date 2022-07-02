@@ -17,10 +17,6 @@ jobs:
       - name: Prepare firebase config
         run: make secret
         env:
-          FILE_FIREBASE_IOS_DEV: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-          FILE_FIREBASE_IOS_PROD: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-          FILE_FIREBASE_ANDROID_DEV: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
-          FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
           SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
           SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
           FILE_FIREBASE_OPTION: ${{ secrets.FILE_FIREBASE_OPTION_DEV }}
@@ -62,10 +58,6 @@ jobs:
           export ANDROID_KEYSTORE_PATH=$(pwd -P)/android/release.jks
           make secret
         env:
-          FILE_FIREBASE_IOS_DEV: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-          FILE_FIREBASE_IOS_PROD: ${{ secrets.FILE_FIREBASE_IOS_DEVELOPMENT }}
-          FILE_FIREBASE_ANDROID_DEV: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
-          FILE_FIREBASE_ANDROID_PROD: ${{ secrets.FILE_FIREBASE_ANDROID_DEVELOPMENT }}
           SECRET_TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY_DEV }}
           SECRET_TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET_DEV }}
           FILE_FIREBASE_OPTION: ${{ secrets.FILE_FIREBASE_OPTION_DEV }}
