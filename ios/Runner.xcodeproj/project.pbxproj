@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		54F0BFE7DABD993223FE8782 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FE2710049ADFA7FC18AD20E /* GoogleService-Info.plist */; };
 		596B991A40C90792E2C02F3D /* prodDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E3FD6490B0481487CE4ADD44 /* prodDebug.xcconfig */; };
 		60EABFE5C9754D17E07CBB29 /* devLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95180B1C8BD7292E800ADD44 /* devLaunchScreen.storyboard */; };
 		63BA2D5548DB8330AAC7C934 /* prodProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7AFD8C26C24E37FEC50359CB /* prodProfile.xcconfig */; };
@@ -39,7 +38,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0FE2710049ADFA7FC18AD20E /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		19C83CC483493C82C74EB09A /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 				0B2FA230C109962F28F196C9 /* Frameworks */,
 				95180B1C8BD7292E800ADD44 /* devLaunchScreen.storyboard */,
 				3634C9C7F170A64E972E7B09 /* prodLaunchScreen.storyboard */,
-				0FE2710049ADFA7FC18AD20E /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,7 +234,6 @@
 				95A7B2A1F8D4A92A09C6041D /* prodRelease.xcconfig in Resources */,
 				60EABFE5C9754D17E07CBB29 /* devLaunchScreen.storyboard in Resources */,
 				BEC198F9E2ED3DCD041A406F /* prodLaunchScreen.storyboard in Resources */,
-				54F0BFE7DABD993223FE8782 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
