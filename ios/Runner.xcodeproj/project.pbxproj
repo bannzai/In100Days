@@ -327,7 +327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/FirebaseCrashlytics/upload-symbols\" --flutter-project \"$PROJECT_DIR/firebase_app_id_file.json\" ";
+			shellScript = "ls \"$PROJECT_DIR/firebase_app_id_file.json\"\n\n# No Google App ID or Google Services file provided と出るのでコメントアウト\n# このステップごと消しても Firebase が勝手に復活させてくるのでコメントアウトで対応\n# \"$PODS_ROOT/FirebaseCrashlytics/upload-symbols\" --flutter-project \"$PROJECT_DIR/firebase_app_id_file.json\" \n";
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
