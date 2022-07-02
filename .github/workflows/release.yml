@@ -9,7 +9,7 @@ on:
     branches: [main, feature/*]
 
 jobs:
-  ios-upload-testflight-dev:
+  ios-upload-testflight-prod:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
@@ -47,7 +47,7 @@ jobs:
           flutter build ipa --flavor prod --target lib/main_prod.dart --export-options-plist=$(pwd -P)/ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
       - name: Upload to AppStoreConnect
         run: xcrun altool --upload-app --type ios -f "./build/ios/ipa/100日後に.ipa" -u "${{ secrets.IOS_APPLE_ID }}" -p "${{ secrets.IN100DAYS_APPLE_APP_PASSWORD }}"
-  android-upload-googleplay-dev:
+  android-upload-googleplay-prod:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
@@ -80,7 +80,7 @@ jobs:
       - uses: r0adkll/upload-google-play@v1.0.16
         with:
           serviceAccountJson: android/service-account.json
-          packageName: com.bannzai.in100days.dev
-          releaseFiles: build/app/outputs/bundle/devRelease/app-dev-release.aab
+          packageName: com.bannzai.in100days
+          releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
           status: draft
           track: internal
