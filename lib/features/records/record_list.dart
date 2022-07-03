@@ -17,6 +17,8 @@ class RecordList extends StatelessWidget {
     final goalDate =
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
 
+    Future.microtask(() {});
+
     return ListView(
       children: [
         const SizedBox(height: 10),
