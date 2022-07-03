@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
+import 'package:in_100_days/features/game_over/game_over_page.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
@@ -17,7 +18,9 @@ class RecordList extends StatelessWidget {
     final goalDate =
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
 
-    Future.microtask(() {});
+    Future.microtask(() {
+      Navigator.of(context).push(GameOverPageRoute.route());
+    });
 
     return ListView(
       children: [
