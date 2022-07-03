@@ -9,6 +9,8 @@ import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/features/setting/setting_page.dart';
 import 'package:in_100_days/style/color.dart';
 
+import '../../utility/is_over.dart';
+
 class RecordListPage extends HookConsumerWidget {
   final Goal goal;
 
@@ -35,7 +37,7 @@ class RecordListPage extends HookConsumerWidget {
             ],
           ),
         ),
-        floatingActionButton: state.records.isEmpty
+        floatingActionButton: isOver(state.records) || state.records.isEmpty
             ? null
             : ElevatedButton(
                 onPressed: () => showRecordAddSheet(context,
