@@ -63,7 +63,7 @@ class GameOverPage extends StatelessWidget {
               Image.asset("images/omori_futan_woman.png"),
               const SizedBox(height: 10),
               const Text(
-                "本気で再会をするなら少しのお金くらい払えますよね？",
+                "本気で再開をするなら少しのお金くらい払えますよね？",
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.normal,
