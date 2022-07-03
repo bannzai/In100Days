@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_100_days/features/game_over/pugya.dart';
 import 'package:in_100_days/style/color.dart';
 
 import '../../style/button.dart';
@@ -57,15 +58,7 @@ class GameOverPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              const Text(
-                "m9(^Д^)ﾌﾟｷﾞｬｰ",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: AppColor.textMain,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              const Pugya(),
               const SizedBox(height: 10),
               Image.asset("images/omori_futan_woman.png"),
               const SizedBox(height: 10),
