@@ -76,6 +76,9 @@ class GameOverPage extends StatelessWidget {
                 text: '本気で再開する',
                 onPressed: () async {},
               ),
+              const SizedBox(height: 10),
+              GreyButton(
+                  text: "閉じる", onPressed: () => Navigator.of(context).pop()),
             ],
           ),
         ),
