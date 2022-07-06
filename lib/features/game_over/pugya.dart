@@ -33,6 +33,12 @@ class PugyaState extends State<Pugya> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Text(
       "m9(^Д^)ﾌﾟｷﾞｬｰ",

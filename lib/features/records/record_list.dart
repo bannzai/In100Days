@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/game_over/game_over_page.dart';
@@ -8,7 +9,7 @@ import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class RecordList extends StatelessWidget {
+class RecordList extends HookWidget {
   final RecordsState state;
 
   const RecordList({Key? key, required this.state}) : super(key: key);
@@ -17,9 +18,13 @@ class RecordList extends StatelessWidget {
   Widget build(BuildContext context) {
     final goalDate =
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
+    final gameOverIsShown = useState(false);
 
     Future.microtask(() {
-      Navigator.of(context).push(GameOverPageRoute.route());
+      if (!gameOverIsShown.value) {
+        Navigator.of(context).push(GameOverPageRoute.route());
+        gameOverIsShown.value = true;
+      }
     });
 
     return ListView(
