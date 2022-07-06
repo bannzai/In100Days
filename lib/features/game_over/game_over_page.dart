@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/features/game_over/pugya.dart';
+import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/style/color.dart';
 
 import '../../style/button.dart';
@@ -74,7 +75,9 @@ class GameOverPage extends StatelessWidget {
               const Spacer(),
               PrimaryButton(
                 text: '本気で再開する',
-                onPressed: () async {},
+                onPressed: () async {
+                  showPurchaseSheet(context);
+                },
               ),
               const SizedBox(height: 10),
               GreyButton(

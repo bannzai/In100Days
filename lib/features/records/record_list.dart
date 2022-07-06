@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/game_over/game_over_page.dart';
+import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
@@ -58,8 +59,7 @@ class RecordList extends HookWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: PrimaryButton(
-                onPressed: () async =>
-                    Navigator.of(context).push(GameOverPageRoute.route()),
+                onPressed: () async => showPurchaseSheet(context),
                 text: "本気で再開する"),
           ),
       ],
