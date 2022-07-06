@@ -1,6 +1,6 @@
 import '../entity/record.codegen.dart';
 
-bool isOver(List<Record> records) {
+bool isGameOver(List<Record> records) {
   if (records.isEmpty) {
     return true;
   }

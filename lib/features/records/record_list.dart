@@ -21,10 +21,10 @@ class RecordList extends HookWidget {
     final goalDate =
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
     final gameOverIsShown = useState(false);
-    final isGameOver = isOver(state.records);
+    final _isGameOver = isGameOver(state.records);
 
     Future.microtask(() {
-      if (isGameOver) {
+      if (_isGameOver) {
         if (!gameOverIsShown.value) {
           Navigator.of(context).push(GameOverPageRoute.route());
           gameOverIsShown.value = true;
@@ -54,7 +54,7 @@ class RecordList extends HookWidget {
             ],
           ),
         ),
-        if (isGameOver)
+        if (_isGameOver)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: PrimaryButton(

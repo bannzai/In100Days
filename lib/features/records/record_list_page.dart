@@ -37,7 +37,7 @@ class RecordListPage extends HookConsumerWidget {
             ],
           ),
         ),
-        floatingActionButton: isOver(state.records) || state.records.isEmpty
+        floatingActionButton: isGameOver(state.records) || state.records.isEmpty
             ? null
             : ElevatedButton(
                 onPressed: () => showRecordAddSheet(context,
