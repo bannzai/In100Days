@@ -116,6 +116,42 @@ class TwitterLikeButton extends HookWidget {
   }
 }
 
+class GreyButton extends StatelessWidget {
+  final String text;
+  final Function() onPressed;
+
+  const GreyButton({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+            maxHeight: 44, minHeight: 44, minWidth: 180, maxWidth: 180),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 17,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+      style: ElevatedButton.styleFrom(
+        primary: Colors.grey,
+        minimumSize: const Size.fromHeight(44),
+      ),
+      onPressed: onPressed,
+    );
+  }
+}
+
 class AppTextButton extends HookWidget {
   final Text text;
   final Future<void> Function()? onPressed;
