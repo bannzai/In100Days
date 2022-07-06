@@ -6,6 +6,7 @@ import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/game_over/game_over_page.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:in_100_days/utility/is_over.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,9 +22,11 @@ class RecordList extends HookWidget {
     final gameOverIsShown = useState(false);
 
     Future.microtask(() {
-      if (!gameOverIsShown.value) {
-        Navigator.of(context).push(GameOverPageRoute.route());
-        gameOverIsShown.value = true;
+      if (isOver(state.records)) {
+        if (!gameOverIsShown.value) {
+          Navigator.of(context).push(GameOverPageRoute.route());
+          gameOverIsShown.value = true;
+        }
       }
     });
 
