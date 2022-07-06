@@ -5,6 +5,7 @@ import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/game_over/game_over_page.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
+import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/is_over.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
@@ -20,9 +21,10 @@ class RecordList extends HookWidget {
     final goalDate =
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
     final gameOverIsShown = useState(false);
+    final isGameOver = isOver(state.records);
 
     Future.microtask(() {
-      if (isOver(state.records)) {
+      if (isGameOver) {
         if (!gameOverIsShown.value) {
           Navigator.of(context).push(GameOverPageRoute.route());
           gameOverIsShown.value = true;
@@ -30,22 +32,36 @@ class RecordList extends HookWidget {
       }
     });
 
-    return ListView(
+    return Column(
       children: [
-        const SizedBox(height: 10),
-        UserInfo(
-          user: state.user,
-          hashTag: state.goal.fullHashTag,
+        Expanded(
+          child: ListView(
+            children: [
+              const SizedBox(height: 10),
+              UserInfo(
+                user: state.user,
+                hashTag: state.goal.fullHashTag,
+              ),
+              const SizedBox(height: 20),
+              ...state.records.asMap().entries.map((entry) {
+                final index = entry.key;
+                final record = state.records[index];
+                final dateNumber = (100 - 1) -
+                    goalDate.difference(record.createdDateTime).inDays;
+                return _element(context,
+                    record: record, dateNumber: dateNumber, index: index);
+              }),
+            ],
+          ),
         ),
-        const SizedBox(height: 20),
-        ...state.records.asMap().entries.map((entry) {
-          final index = entry.key;
-          final record = state.records[index];
-          final dateNumber =
-              (100 - 1) - goalDate.difference(record.createdDateTime).inDays;
-          return _element(context,
-              record: record, dateNumber: dateNumber, index: index);
-        }),
+        if (isGameOver)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: PrimaryButton(
+                onPressed: () async =>
+                    Navigator.of(context).push(GameOverPageRoute.route()),
+                text: "本気で再開する"),
+          ),
       ],
     );
   }
