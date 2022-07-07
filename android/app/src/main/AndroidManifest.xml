@@ -21,4 +21,5 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
     <meta-data android:name="flutterEmbedding" android:value="2"/>
   </application>
+  <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>
