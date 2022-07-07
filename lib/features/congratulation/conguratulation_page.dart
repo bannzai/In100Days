@@ -62,7 +62,7 @@ class CongratulationPage extends StatelessWidget {
               Image.asset("images/conguraturations.png"),
               const SizedBox(height: 10),
               const Text(
-                "あなたは見事100日ゴールに向かって\n努力を継続することができました！",
+                "あなたは見事100日間ゴールに向かって\n努力を継続できました！",
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.normal,
