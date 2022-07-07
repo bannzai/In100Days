@@ -19,7 +19,7 @@ class PrimaryButton extends HookWidget {
     return ElevatedButton(
       child: ConstrainedBox(
         constraints: const BoxConstraints(
-            maxHeight: 44, minHeight: 44, minWidth: 180, maxWidth: 180),
+            maxHeight: 44, minHeight: 44, minWidth: 220, maxWidth: 220),
         child: Stack(
           alignment: Alignment.center,
           children: [
