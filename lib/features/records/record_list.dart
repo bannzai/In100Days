@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
-import 'package:in_100_days/features/congraturation/conguraturation_page.dart';
+import 'package:in_100_days/features/congratulation/conguratulation_page.dart';
 import 'package:in_100_days/features/game_over/game_over_page.dart';
 import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
@@ -37,7 +37,7 @@ class RecordList extends HookWidget {
       } else {
         if (_isCongratulation) {
           if (!congratulationIsShown.value) {
-            Navigator.of(context).push(CongraturationPageRoute.route());
+            Navigator.of(context).push(CongratulationPageRoute.route());
             congratulationIsShown.value = true;
           }
         }

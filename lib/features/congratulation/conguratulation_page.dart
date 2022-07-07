@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:in_100_days/features/congraturation/owata.dart';
+import 'package:in_100_days/features/congratulation/owata.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 
-class CongraturationPage extends StatelessWidget {
-  const CongraturationPage({Key? key}) : super(key: key);
+class CongratulationPage extends StatelessWidget {
+  const CongratulationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +88,11 @@ class CongraturationPage extends StatelessWidget {
   }
 }
 
-extension CongraturationPageRoute on CongraturationPage {
+extension CongratulationPageRoute on CongratulationPage {
   static Route<dynamic> route() {
     return MaterialPageRoute(
-      settings: const RouteSettings(name: "CongraturationPage"),
-      builder: (_) => const CongraturationPage(),
+      settings: const RouteSettings(name: "CongratulationPage"),
+      builder: (_) => const CongratulationPage(),
       fullscreenDialog: true,
     );
   }
