@@ -3,8 +3,8 @@ import 'package:in_100_days/features/congraturation/owata.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 
-class ConfgraturationPage extends StatelessWidget {
-  const ConfgraturationPage({Key? key}) : super(key: key);
+class CongraturationPage extends StatelessWidget {
+  const CongraturationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +84,16 @@ class ConfgraturationPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+extension CongraturationPageRoute on CongraturationPage {
+  static Route<dynamic> route() {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: "CongraturationPage"),
+      builder: (_) => const CongraturationPage(),
+      fullscreenDialog: true,
     );
   }
 }
