@@ -107,7 +107,4 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:30.1.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    
-    def billing_version = "5.0.0"
-    implementation("com.android.billingclient:billing:$billing_version")
 }
