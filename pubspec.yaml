@@ -51,6 +51,7 @@ dependencies:
   mime_type: ^1.0.0
   intl: ^0.17.0
   firebase_crashlytics: ^2.8.2
+  purchases_flutter: ^3.10.0
 
 dev_dependencies:
   flutter_test:
