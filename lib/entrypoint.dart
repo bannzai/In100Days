@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:in_100_days/features/purchase/purchase.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'firebase_options.dart';
 
@@ -16,6 +17,7 @@ void entrypoint() async {
     );
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     await setupTwitterAPIClient();
+    await syncPurchaseInfo();
     runApp(const MyApp());
   },
       (error, stack) =>
