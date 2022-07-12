@@ -79,10 +79,8 @@ class SignInPage extends HookConsumerWidget {
                 onPressed: () async {
                   try {
                     final user = await stateNotifier.asyncAction.signIn();
-
-                    await ref
-                        .read(userDocumentReferenceProvider(user.id!))
-                        .set(user, SetOptions(merge: true));
+                    final setUser = ref.read(setUserProvider);
+                    await setUser(user);
                   } catch (error) {
                     showErrorAlert(context, error: error);
                   }
