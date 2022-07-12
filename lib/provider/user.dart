@@ -18,6 +18,15 @@ DocumentReference userDocumentPrivateReference({required String userID}) {
   return FirebaseFirestore.instance.doc("/users/$userID/privates/$userID");
 }
 
+class SetUser {
+  Future<void> call(User user) async {
+    await userDocumentReference(userID: user.id!)
+        .set(user, SetOptions(merge: true));
+  }
+}
+
+final setUserProvider = Provider((ref) => SetUser());
+
 final userStreamProvider = StreamProvider<User?>((ref) {
   final firebaseCurrentUser = ref.watch(firebaseCurrentUserProvider);
   if (firebaseCurrentUser is AsyncLoading) {
