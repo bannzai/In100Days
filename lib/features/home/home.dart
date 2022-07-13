@@ -47,7 +47,10 @@ class AppHome extends HookConsumerWidget {
             return RecordListPage(goal: state.goals.last);
           }
         },
-        error: (error, _) => ErrorPage(error: error),
+        error: (error, _) => ErrorPage(
+              error: error,
+              reload: () => ref.refresh(homeStateNotifierProvider(user)),
+            ),
         loading: () => const Center(child: CircularProgressIndicator()));
   }
 }

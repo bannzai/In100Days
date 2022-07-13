@@ -102,7 +102,8 @@ class PurchaseSheet extends HookConsumerWidget {
           ),
         );
       },
-      error: (error, st) => ErrorPage(error: error),
+      error: (error, st) => ErrorPage(
+          error: error, reload: () => ref.refresh(purchaseProductsProvider)),
       loading: () => const Center(
         child: CircularProgressIndicator(),
       ),

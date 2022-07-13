@@ -20,7 +20,10 @@ class Root extends HookConsumerWidget {
           return const SignInPage();
         }
       },
-      error: (error, st) => ErrorPage(error: error),
+      error: (error, st) => ErrorPage(
+        error: error,
+        reload: () => ref.refresh(userStreamProvider),
+      ),
       loading: () => const Center(
         child: CircularProgressIndicator(),
       ),

@@ -60,7 +60,10 @@ class RecordListPage extends HookConsumerWidget {
                 ),
               ),
       ),
-      error: (error, _) => ErrorPage(error: error),
+      error: (error, _) => ErrorPage(
+        error: error,
+        reload: () => ref.refresh(recordsAsyncStateProvider(goal)),
+      ),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
