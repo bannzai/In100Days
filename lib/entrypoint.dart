@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'firebase_options.dart';
 
 import 'app.dart';
@@ -16,6 +18,10 @@ Future<void> entrypoint() async {
     );
 
     await setupTwitterAPIClient();
+
+    if (kDebugMode) {
+      PackageInfo.fromPlatform().then((value) => debugPrint(value.toString()));
+    }
 
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     runApp(const MyApp());
