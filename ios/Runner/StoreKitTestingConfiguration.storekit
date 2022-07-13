@@ -81,8 +81,11 @@
     }
   ],
   "settings" : {
+    "_billingIssuesEnabled" : false,
+    "_failTransactionsEnabled" : false,
     "_locale" : "ja",
-    "_storefront" : "JPN"
+    "_storefront" : "JPN",
+    "_storeKitError" : 0
   },
   "subscriptionGroups" : [
 
