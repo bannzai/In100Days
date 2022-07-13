@@ -20,7 +20,9 @@ Future<void> entrypoint() async {
     await setupTwitterAPIClient();
 
     if (kDebugMode) {
-      PackageInfo.fromPlatform().then((value) => debugPrint(value.toString()));
+      PackageInfo.fromPlatform().then((package) {
+        debugPrint("App is ${package.packageName}");
+      });
     }
 
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
