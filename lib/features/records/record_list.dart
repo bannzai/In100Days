@@ -32,7 +32,8 @@ class RecordList extends HookWidget {
     Future.microtask(() {
       if (_isGameOver) {
         if (!gameOverIsShown.value) {
-          Navigator.of(context).push(GameOverPageRoute.route());
+          Navigator.of(context).push(GameOverPageRoute.route(
+              goal: state.goal, userID: state.user.id!));
           gameOverIsShown.value = true;
         }
       } else {

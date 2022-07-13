@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
+import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/purchase/purchase.dart';
 import 'package:in_100_days/provider/goal.dart';
@@ -72,22 +73,26 @@ class PurchaseSheet extends HookConsumerWidget {
                       ),
                     ),
                     onTap: () async {
-                      final purchaserInfo = await Purchases.purchaseProduct(
-                          purchaseProduct.identifier);
-                      await callUpdatePurchaseInfo(purchaserInfo, userID);
+                      try {
+                        final purchaserInfo = await Purchases.purchaseProduct(
+                            purchaseProduct.identifier);
+                        await callUpdatePurchaseInfo(purchaserInfo, userID);
 
-                      final updatedPurchasedProducts = [
-                        ...goal.purchasedProducts,
-                        purchaseProduct
-                      ];
-                      await ref.read(setGoalProvider).call(
-                          goal.copyWith(
-                              purchasedProducts: updatedPurchasedProducts),
-                          userID: userID);
+                        final updatedPurchasedProducts = [
+                          ...goal.purchasedProducts,
+                          purchaseProduct
+                        ];
+                        await ref.read(setGoalProvider).call(
+                            goal.copyWith(
+                                purchasedProducts: updatedPurchasedProducts),
+                            userID: userID);
 
-                      Navigator.of(context).pop();
+                        Navigator.of(context).pop();
 
-                      onPurchased(purchaseProduct);
+                        onPurchased(purchaseProduct);
+                      } catch (error) {
+                        showErrorAlert(context, error: error);
+                      }
                     },
                   ),
                   const Divider(),

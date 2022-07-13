@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/game_over/pugya.dart';
+import 'package:in_100_days/features/purchase/purchase_complete.dart';
 import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/style/color.dart';
 
 import '../../style/button.dart';
 
 class GameOverPage extends StatelessWidget {
-  const GameOverPage({Key? key}) : super(key: key);
+  final Goal goal;
+  final String userID;
+  const GameOverPage({
+    Key? key,
+    required this.goal,
+    required this.userID,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +84,11 @@ class GameOverPage extends StatelessWidget {
               PrimaryButton(
                 text: '本気で再開する',
                 onPressed: () async {
-                  showPurchaseSheet(context);
+                  showPurchaseSheet(context,
+                      goal: goal,
+                      userID: userID,
+                      onPurchased: (product) => Navigator.of(context).push(
+                          PurchaseCompletePageRoute.route(product: product)));
                 },
               ),
               const SizedBox(height: 10),
@@ -91,10 +103,13 @@ class GameOverPage extends StatelessWidget {
 }
 
 extension GameOverPageRoute on GameOverPage {
-  static Route<dynamic> route() {
+  static Route<dynamic> route({required Goal goal, required String userID}) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: "GameOverPage"),
-      builder: (_) => const GameOverPage(),
+      builder: (_) => GameOverPage(
+        goal: goal,
+        userID: userID,
+      ),
       fullscreenDialog: true,
     );
   }
