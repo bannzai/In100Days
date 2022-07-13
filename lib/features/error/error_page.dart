@@ -8,11 +8,16 @@ class ErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Image.asset("images/computer_sagi_error.png"),
-          Text(error.toString()),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            const Spacer(),
+            Image.asset("images/computer_sagi_error.png"),
+            Text(error.toString()),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
