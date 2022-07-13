@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/features/error/error_page.dart';
-import 'package:in_100_days/features/purchase/purchase.dart';
 import 'package:in_100_days/provider/goal.dart';
 import 'package:in_100_days/provider/purchase.dart';
 import 'package:in_100_days/style/color.dart';
@@ -76,6 +75,7 @@ class PurchaseSheet extends HookConsumerWidget {
                       try {
                         final purchaserInfo = await Purchases.purchaseProduct(
                             purchaseProduct.identifier);
+                        debugPrint(purchaserInfo.toString());
 
                         final updatedPurchasedProducts = [
                           ...goal.purchasedProducts,
