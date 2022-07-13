@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:in_100_days/flavors.dart';
 import 'package:in_100_days/provider/user.dart';
@@ -22,7 +23,7 @@ Future<void> initializePurchase(String uid) async {
   }
   Purchases.addPurchaserInfoUpdateListener(
       (info) => callUpdatePurchaseInfo(info, uid));
-  await syncPurchaseInfo();
+  await syncPurchaseInfo(uid);
 }
 
 Future<void> callUpdatePurchaseInfo(PurchaserInfo info, String uid) async {
@@ -36,12 +37,8 @@ Future<void> callUpdatePurchaseInfo(PurchaserInfo info, String uid) async {
   }
 }
 
-Future<void> syncPurchaseInfo() async {
+Future<void> syncPurchaseInfo(String uid) async {
   analytics.logEvent(name: "start_sync_purchase_info");
-  final uid = FirebaseAuth.instance.currentUser?.uid;
-  if (uid == null) {
-    return;
-  }
 
   try {
     await _updatePurchaseInfo(
@@ -57,7 +54,7 @@ class _UpdatePurchaseInfo {
       {required PurchaserInfo info, required String userID}) async {
     final reference = userDocumentPrivateReference(userID: userID);
     final entitlement = info.entitlements.all[defaultEntitlementKey];
-    await reference.update({
+    await reference.set({
       "purchaseInfo": {
         "isActivated": entitlement?.isActive,
         "entitlementIdentifier": entitlement?.identifier,
@@ -67,7 +64,7 @@ class _UpdatePurchaseInfo {
         "originalPurchaseDate": info.originalPurchaseDate,
         "updatedDateTime": DateTime.now(),
       }
-    });
+    }, SetOptions(merge: true));
   }
 }
 

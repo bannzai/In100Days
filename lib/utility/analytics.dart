@@ -22,7 +22,7 @@ class Analytics {
         }
       }
     }
-    return firebaseAnalytics.logEvent(name: name, parameters: parameters);
+    firebaseAnalytics.logEvent(name: name, parameters: parameters);
   }
 
   void setCurrentScreen(

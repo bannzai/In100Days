@@ -24,5 +24,8 @@ List<String> productIdentifiers() {
 }
 
 final purchaseProductsProvider = FutureProvider((ref) async {
+  if (true) {
+    return [];
+  }
   return await Purchases.getProducts(productIdentifiers());
 });
