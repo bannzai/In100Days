@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
 import 'package:in_100_days/features/congratulation/owata.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-class PurchaseComplete extends StatelessWidget {
+class PurchaseCompletePage extends StatelessWidget {
   final Product product;
-  const PurchaseComplete({Key? key, required this.product}) : super(key: key);
+  const PurchaseCompletePage({Key? key, required this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +88,18 @@ class PurchaseComplete extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+extension PurchaseCompletePageRoute on PurchaseCompletePage {
+  static Route<dynamic> route({required Product product}) {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: "PurchaseCompletePage"),
+      builder: (_) => PurchaseCompletePage(
+        product: product,
+      ),
+      fullscreenDialog: true,
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/congratulation/conguratulation_page.dart';
 import 'package:in_100_days/features/game_over/game_over_page.dart';
+import 'package:in_100_days/features/purchase/purchase_complete.dart';
 import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/button.dart';
@@ -73,12 +74,8 @@ class RecordList extends HookWidget {
                 onPressed: () async => showPurchaseSheet(context,
                         goal: state.goal,
                         userID: state.user.id!, onPurchased: (product) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          duration: const Duration(seconds: 2),
-                          content: Text("${product.priceString}の本気を出しました"),
-                        ),
-                      );
+                      Navigator.of(context).push(
+                          PurchaseCompletePageRoute.route(product: product));
                     }),
                 text: "本気で再開する"),
           ),

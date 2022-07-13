@@ -85,8 +85,9 @@ class PurchaseSheet extends HookConsumerWidget {
                               purchasedProducts: updatedPurchasedProducts),
                           userID: userID);
 
-                      onPurchased(purchaseProduct);
                       Navigator.of(context).pop();
+
+                      onPurchased(purchaseProduct);
                     },
                   ),
                   const Divider(),
