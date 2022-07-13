@@ -63,7 +63,7 @@ class PurchaseComplete extends StatelessWidget {
               const SizedBox(height: 6),
               const Owata(),
               const SizedBox(height: 10),
-              Image.asset("images/conguraturations.png"),
+              Image.asset("images/character_angel.png"),
               const SizedBox(height: 10),
               Text(
                 "あなたの${product.priceString}の本気をいただきました",
