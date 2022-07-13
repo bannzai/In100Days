@@ -40,9 +40,6 @@ Future<void> syncPurchaseInfo() async {
   analytics.logEvent(name: "start_sync_purchase_info");
   final uid = FirebaseAuth.instance.currentUser?.uid;
   if (uid == null) {
-    errorLogger.recordError(
-        "unexpected uid is not found when purchase info to sync",
-        StackTrace.current);
     return;
   }
 
