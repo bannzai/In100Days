@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/error/error_page.dart';
+import 'package:in_100_days/features/purchase/purchase.dart';
+import 'package:in_100_days/provider/goal.dart';
 import 'package:in_100_days/provider/purchase.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PurchaseSheet extends HookConsumerWidget {
-  const PurchaseSheet({Key? key}) : super(key: key);
+  final Goal goal;
+  final String userID;
+  final Function(Product) onPurchased;
+  const PurchaseSheet({
+    Key? key,
+    required this.goal,
+    required this.userID,
+    required this.onPurchased,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,8 +71,22 @@ class PurchaseSheet extends HookConsumerWidget {
                         ),
                       ),
                     ),
-                    onTap: () {
-                      // TODO:
+                    onTap: () async {
+                      final purchaserInfo = await Purchases.purchaseProduct(
+                          purchaseProduct.identifier);
+                      await callUpdatePurchaseInfo(purchaserInfo, userID);
+
+                      final updatedPurchasedProducts = [
+                        ...goal.purchasedProducts,
+                        purchaseProduct
+                      ];
+                      await ref.read(setGoalProvider).call(
+                          goal.copyWith(
+                              purchasedProducts: updatedPurchasedProducts),
+                          userID: userID);
+
+                      onPurchased(purchaseProduct);
+                      Navigator.of(context).pop();
                     },
                   ),
                   const Divider(),
@@ -78,12 +104,21 @@ class PurchaseSheet extends HookConsumerWidget {
   }
 }
 
-void showPurchaseSheet(BuildContext context) {
+void showPurchaseSheet(
+  BuildContext context, {
+  required Goal goal,
+  required String userID,
+  required Function(Product) onPurchased,
+}) {
   showModalBottomSheet(
     backgroundColor: Colors.transparent,
     enableDrag: true,
     isScrollControlled: true,
     context: context,
-    builder: (BuildContext context) => const PurchaseSheet(),
+    builder: (BuildContext context) => PurchaseSheet(
+      goal: goal,
+      userID: userID,
+      onPurchased: onPurchased,
+    ),
   );
 }

@@ -70,7 +70,16 @@ class RecordList extends HookWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: PrimaryButton(
-                onPressed: () async => showPurchaseSheet(context),
+                onPressed: () async => showPurchaseSheet(context,
+                        goal: state.goal,
+                        userID: state.user.id!, onPurchased: (product) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          duration: const Duration(seconds: 2),
+                          content: Text("${product.priceString}の本気を出しました"),
+                        ),
+                      );
+                    }),
                 text: "本気で再開する"),
           ),
       ],
