@@ -1,0 +1,93 @@
+{
+  "identifier" : "9C0D7243",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "120",
+      "familyShareable" : false,
+      "internalID" : "4D56BB3E",
+      "localizations" : [
+        {
+          "description" : "ふっかつのじゅもんを唱えしものに与えられる",
+          "displayName" : "ふっかつのじゅもん",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "in100days_dev_120_consume",
+      "referenceName" : "consumable item ¥120",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "370",
+      "familyShareable" : false,
+      "internalID" : "296561D6",
+      "localizations" : [
+        {
+          "description" : "ふっかつのじゅもんを唱えしものに与えられる",
+          "displayName" : "ふっかつのじゅもん",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "in100days_dev_370_consume",
+      "referenceName" : "consumable item ¥370",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "730",
+      "familyShareable" : false,
+      "internalID" : "8184DAE1",
+      "localizations" : [
+        {
+          "description" : "ふっかつのじゅもんを唱えしものに与えられる",
+          "displayName" : "ふっかつのじゅもん",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "in100days_dev_730_consume",
+      "referenceName" : "consumable item ¥730",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1220",
+      "familyShareable" : false,
+      "internalID" : "5BCB0D4F",
+      "localizations" : [
+        {
+          "description" : "ふっかつのじゅもんを唱えしものに与えられる",
+          "displayName" : "ふっかつのじゅもん",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "in100days_dev_1220_consume",
+      "referenceName" : "consumable item ¥1220",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "12000",
+      "familyShareable" : false,
+      "internalID" : "41941A5E",
+      "localizations" : [
+        {
+          "description" : "ふっかつのじゅもんを唱えしものに与えられる",
+          "displayName" : "ふっかつのじゅもん",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "in100days_dev_12000_consume.copy",
+      "referenceName" : "consumable item ¥12000 copy",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 2
+  }
+}
