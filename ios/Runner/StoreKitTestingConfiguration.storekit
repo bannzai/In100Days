@@ -81,7 +81,8 @@
     }
   ],
   "settings" : {
-
+    "_locale" : "ja",
+    "_storefront" : "JPN"
   },
   "subscriptionGroups" : [
 
