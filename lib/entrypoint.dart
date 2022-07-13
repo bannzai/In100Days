@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'features/purchase/purchase.dart';
 import 'firebase_options.dart';
 
 import 'app.dart';
@@ -18,6 +19,7 @@ Future<void> entrypoint() async {
     );
 
     await setupTwitterAPIClient();
+    await initializePurchase();
 
     if (kDebugMode) {
       PackageInfo.fromPlatform().then((package) {

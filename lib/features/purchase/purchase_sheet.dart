@@ -76,7 +76,6 @@ class PurchaseSheet extends HookConsumerWidget {
                       try {
                         final purchaserInfo = await Purchases.purchaseProduct(
                             purchaseProduct.identifier);
-                        await callUpdatePurchaseInfo(purchaserInfo, userID);
 
                         final updatedPurchasedProducts = [
                           ...goal.purchasedProducts,
