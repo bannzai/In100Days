@@ -75,8 +75,8 @@
           "locale" : "ja"
         }
       ],
-      "productID" : "in100days_dev_12000_consume.copy",
-      "referenceName" : "consumable item ¥12000 copy",
+      "productID" : "in100days_dev_12000_consume",
+      "referenceName" : "consumable item ¥12000",
       "type" : "Consumable"
     }
   ],
