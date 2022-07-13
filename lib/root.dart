@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/home/home.dart';
 import 'package:in_100_days/features/sign_in/sign_in_page.dart';
+import 'package:in_100_days/provider/auth.dart';
 import 'package:in_100_days/provider/user.dart';
 
 class Root extends HookConsumerWidget {
@@ -22,7 +23,7 @@ class Root extends HookConsumerWidget {
       },
       error: (error, st) => ErrorPage(
         error: error,
-        reload: () => ref.refresh(userStreamProvider),
+        reload: () => ref.refresh(firebaseCurrentUserProvider),
       ),
       loading: () => const Center(
         child: CircularProgressIndicator(),
