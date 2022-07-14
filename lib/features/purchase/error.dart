@@ -1,9 +1,7 @@
 // See also: https://docs.revenuecat.com/docs/errors
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:in_100_days/flavors.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 String get storeName {
@@ -69,11 +67,6 @@ Exception? mapToDisplayException(PlatformException exception) {
     case PurchasesErrorCode.invalidReceiptError:
       return const FormatException("不正な購入情報です。購入情報を確かめてください");
     case PurchasesErrorCode.missingReceiptFileError:
-      if (Platform.isIOS && F.appFlavor == Flavor.DEV && kDebugMode) {
-        // TODO: 動作確認してこのif文を削除
-        // Simulatorでうまく動かないため一時的に早期リターンしておく
-        return null;
-      }
       return FormatException(
           "購入者の情報が存在しません。$accountName で端末にサインインをした上でお試しください");
     case PurchasesErrorCode.networkError:
