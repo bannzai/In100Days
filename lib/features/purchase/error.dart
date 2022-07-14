@@ -26,7 +26,7 @@ String get accountName {
   return "アカウント";
 }
 
-Exception? mapToDisplayedException(PlatformException exception) {
+Exception? mapToDisplayException(PlatformException exception) {
   final errorCode = PurchasesErrorHelper.getErrorCode(exception);
   switch (errorCode) {
     case PurchasesErrorCode.unknownError:

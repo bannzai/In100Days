@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/features/error/error_page.dart';
+import 'package:in_100_days/features/purchase/error.dart';
 import 'package:in_100_days/provider/goal.dart';
 import 'package:in_100_days/provider/purchase.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:in_100_days/utility/analytics.dart';
+import 'package:in_100_days/utility/error_log.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PurchaseSheet extends HookConsumerWidget {
@@ -89,8 +93,28 @@ class PurchaseSheet extends HookConsumerWidget {
                         Navigator.of(context).pop();
 
                         onPurchased(purchaseProduct);
-                      } catch (error) {
-                        showErrorAlert(context, error: error);
+                      } on PlatformException catch (exception) {
+                        analytics.logEvent(
+                            name: "catched_purchase_exception",
+                            parameters: {
+                              "code": exception.code,
+                              "details": exception.details.toString(),
+                              "message": exception.message
+                            });
+
+                        final displayError = mapToDisplayException(exception);
+                        if (displayError != null) {
+                          showErrorAlert(context, error: displayError);
+                        }
+                      } catch (exception, stack) {
+                        analytics.logEvent(
+                            name: "catched_purchase_anonymous",
+                            parameters: {
+                              "exception_type":
+                                  exception.runtimeType.toString(),
+                            });
+                        errorLogger.recordError(exception, stack);
+                        showErrorAlert(context, error: exception);
                       }
                     },
                   ),
