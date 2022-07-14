@@ -11,7 +11,6 @@ List<String> productIdentifiers() {
       "in100days_dev_730_consume",
       "in100days_dev_1220_consume",
       "in100days_dev_12000_consume",
-      "in100days_dev_120_consume_test",
     ];
   } else {
     return [

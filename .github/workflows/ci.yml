@@ -34,8 +34,6 @@ jobs:
         with:
           flutter-version: "3.0.1"
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: flutter gen-l10n
       - name: Run iOS
         run: flutter build ios --debug --no-codesign --flavor dev --target lib/main_dev.dart
   build-android-debug:
@@ -61,8 +59,6 @@ jobs:
         with:
           flutter-version: "3.0.1"
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: flutter gen-l10n
       - run: flutter build apk --debug --flavor dev --target lib/main_dev.dart
   test:
     runs-on: macos-latest
@@ -77,8 +73,6 @@ jobs:
           flutter-version: "3.0.1"
       - run: make secret
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: flutter gen-l10n
       - run: flutter test
   codegen:
     runs-on: macos-latest
@@ -94,5 +88,4 @@ jobs:
       - run: make secret
       - run: flutter pub get
       - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: flutter gen-l10n
       - run: git diff --quiet --exit-code

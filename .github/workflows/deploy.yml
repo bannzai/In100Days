@@ -31,8 +31,6 @@ jobs:
         with:
           flutter-version: "3.0.1"
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: flutter gen-l10n
       - name: Set Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
@@ -81,8 +79,6 @@ jobs:
         with:
           flutter-version: "3.0.1"
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: flutter gen-l10n
       - name: Prepare keystore file
         run: echo -n ${{ secrets.ANDROID_KEYSTORE_FILE }} | base64 -d > android/release.jks
       - run: flutter build appbundle --release --flavor dev --target lib/main_dev.dart --build-number ${GITHUB_RUN_NUMBER}
