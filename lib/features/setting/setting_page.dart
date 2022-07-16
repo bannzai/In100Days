@@ -11,7 +11,12 @@ class SettingPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userStreamProvider).value!;
+    final user = ref.watch(userStreamProvider).value;
+
+    if (user == null) {
+      // Deleted User
+      return Container();
+    }
 
     return Scaffold(
       appBar: AppBar(
