@@ -20,13 +20,17 @@ import 'package:mime_type/mime_type.dart';
 const _1MB = 1024 * 1024;
 
 class RecordAddSheet extends HookConsumerWidget {
+  final String initialMessage;
   final User user;
   final Goal goal;
+  final VoidCallback onPost;
 
   const RecordAddSheet({
     Key? key,
+    required this.initialMessage,
     required this.user,
     required this.goal,
+    required this.onPost,
   }) : super(key: key);
 
   @override
@@ -46,7 +50,7 @@ class RecordAddSheet extends HookConsumerWidget {
 
     const textFieldLineCount = 20;
     // TODO: Fill store link if record is empty after first release
-    final textFieldController = useTextEditingController(text: "");
+    final textFieldController = useTextEditingController(text: initialMessage);
 
     return Container(
       color: Colors.white,
@@ -294,12 +298,22 @@ class RecordAddSheet extends HookConsumerWidget {
   }
 }
 
-void showRecordAddSheet(BuildContext context,
-    {required Goal goal, required User user}) {
+void showRecordAddSheet(
+  BuildContext context, {
+  required String initialMessage,
+  required User user,
+  required Goal goal,
+  required VoidCallback onPost,
+}) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) => RecordAddSheet(goal: goal, user: user),
+    builder: (context) => RecordAddSheet(
+      initialMessage: initialMessage,
+      goal: goal,
+      user: user,
+      onPost: onPost,
+    ),
   );
 }
