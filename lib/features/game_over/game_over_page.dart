@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_100_days/components/kirakira.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
 import 'package:in_100_days/features/game_over/pugya.dart';
 import 'package:in_100_days/features/purchase/purchase_complete.dart';
@@ -67,7 +68,7 @@ class GameOverPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              const Pugya(),
+              const Kirakira(message: "m9(^Д^)ﾌﾟｷﾞｬｰ"),
               const SizedBox(height: 10),
               Image.asset("images/omori_futan_woman.png"),
               const SizedBox(height: 10),
