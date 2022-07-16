@@ -9,7 +9,6 @@ import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/goal/goal_input_sheet.dart';
 import 'package:in_100_days/features/home/state_notifier.dart';
-import 'package:in_100_days/features/purchase/purchase.dart';
 import 'package:in_100_days/features/records/record_list_page.dart';
 
 class AppHome extends HookConsumerWidget {
