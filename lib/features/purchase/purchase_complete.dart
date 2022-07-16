@@ -90,7 +90,7 @@ class PurchaseCompletePage extends StatelessWidget {
                   showRecordAddSheet(
                     context,
                     initialMessage:
-                        "${product.priceString}を代償に #${goal.fullHashTag} を再開しました",
+                        "${product.priceString}を代償に ${goal.fullHashTag} を再開しました",
                     goal: goal,
                     user: user,
                     onPost: (tweet, text) async {
