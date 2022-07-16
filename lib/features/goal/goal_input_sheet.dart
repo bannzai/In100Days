@@ -20,14 +20,7 @@ class GoalInputSheet extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final text = useState("");
     final textFieldController = useTextEditingController(text: "");
-    final hintText = useState(pickRandomElement<String>([
-      "海賊王になる",
-      "Twitterを辞める",
-      "100Kgのバーベルをあげる",
-      "猫を飼う",
-      "家を買う",
-      "お腹いっぱいにご飯を食べる"
-    ]));
+    final hintText = useState(_hintText());
 
     const double paddingHorizontal = 20;
     final hashTag = "100日後に${text.value}${user.twitterID}";
@@ -113,6 +106,9 @@ class GoalInputSheet extends HookConsumerWidget {
                         ),
                       ),
                       onChanged: (_text) {
+                        if (text.value.isNotEmpty && _text.isEmpty) {
+                          hintText.value = _hintText();
+                        }
                         text.value = _text;
                       },
                       onEditingComplete: () async {
@@ -167,4 +163,13 @@ class GoalInputSheet extends HookConsumerWidget {
       ),
     );
   }
+
+  String _hintText() => pickRandomElement<String>([
+        "海賊王になる",
+        "Twitterを辞める",
+        "100Kgのバーベルをあげる",
+        "猫を飼う",
+        "家を買う",
+        "お腹いっぱいにご飯を食べる"
+      ]);
 }
