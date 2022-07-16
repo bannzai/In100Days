@@ -28,13 +28,15 @@ class _$GoalTearOff {
       required String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
-      required List<PurchasedProduct> purchasedProducts}) {
+      required List<PurchasedProduct> purchasedProducts,
+      Record? conguratulationRecord}) {
     return _Goal(
       id: id,
       goalAction: goalAction,
       fullHashTag: fullHashTag,
       createdDateTime: createdDateTime,
       purchasedProducts: purchasedProducts,
+      conguratulationRecord: conguratulationRecord,
     );
   }
 
@@ -57,6 +59,7 @@ mixin _$Goal {
   DateTime get createdDateTime => throw _privateConstructorUsedError;
   List<PurchasedProduct> get purchasedProducts =>
       throw _privateConstructorUsedError;
+  Record? get conguratulationRecord => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +76,10 @@ abstract class $GoalCopyWith<$Res> {
       String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
-      List<PurchasedProduct> purchasedProducts});
+      List<PurchasedProduct> purchasedProducts,
+      Record? conguratulationRecord});
+
+  $RecordCopyWith<$Res>? get conguratulationRecord;
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
     Object? fullHashTag = freezed,
     Object? createdDateTime = freezed,
     Object? purchasedProducts = freezed,
+    Object? conguratulationRecord = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -113,7 +120,22 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
           ? _value.purchasedProducts
           : purchasedProducts // ignore: cast_nullable_to_non_nullable
               as List<PurchasedProduct>,
+      conguratulationRecord: conguratulationRecord == freezed
+          ? _value.conguratulationRecord
+          : conguratulationRecord // ignore: cast_nullable_to_non_nullable
+              as Record?,
     ));
+  }
+
+  @override
+  $RecordCopyWith<$Res>? get conguratulationRecord {
+    if (_value.conguratulationRecord == null) {
+      return null;
+    }
+
+    return $RecordCopyWith<$Res>(_value.conguratulationRecord!, (value) {
+      return _then(_value.copyWith(conguratulationRecord: value));
+    });
   }
 }
 
@@ -128,7 +150,11 @@ abstract class _$GoalCopyWith<$Res> implements $GoalCopyWith<$Res> {
       String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
-      List<PurchasedProduct> purchasedProducts});
+      List<PurchasedProduct> purchasedProducts,
+      Record? conguratulationRecord});
+
+  @override
+  $RecordCopyWith<$Res>? get conguratulationRecord;
 }
 
 /// @nodoc
@@ -147,6 +173,7 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
     Object? fullHashTag = freezed,
     Object? createdDateTime = freezed,
     Object? purchasedProducts = freezed,
+    Object? conguratulationRecord = freezed,
   }) {
     return _then(_Goal(
       id: id == freezed
@@ -169,6 +196,10 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
           ? _value.purchasedProducts
           : purchasedProducts // ignore: cast_nullable_to_non_nullable
               as List<PurchasedProduct>,
+      conguratulationRecord: conguratulationRecord == freezed
+          ? _value.conguratulationRecord
+          : conguratulationRecord // ignore: cast_nullable_to_non_nullable
+              as Record?,
     ));
   }
 }
@@ -183,7 +214,8 @@ class _$_Goal implements _Goal {
       required this.fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required this.createdDateTime,
-      required this.purchasedProducts});
+      required this.purchasedProducts,
+      this.conguratulationRecord});
 
   factory _$_Goal.fromJson(Map<String, dynamic> json) => _$$_GoalFromJson(json);
 
@@ -200,10 +232,12 @@ class _$_Goal implements _Goal {
   final DateTime createdDateTime;
   @override
   final List<PurchasedProduct> purchasedProducts;
+  @override
+  final Record? conguratulationRecord;
 
   @override
   String toString() {
-    return 'Goal(id: $id, goalAction: $goalAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime, purchasedProducts: $purchasedProducts)';
+    return 'Goal(id: $id, goalAction: $goalAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime, purchasedProducts: $purchasedProducts, conguratulationRecord: $conguratulationRecord)';
   }
 
   @override
@@ -219,7 +253,9 @@ class _$_Goal implements _Goal {
             const DeepCollectionEquality()
                 .equals(other.createdDateTime, createdDateTime) &&
             const DeepCollectionEquality()
-                .equals(other.purchasedProducts, purchasedProducts));
+                .equals(other.purchasedProducts, purchasedProducts) &&
+            const DeepCollectionEquality()
+                .equals(other.conguratulationRecord, conguratulationRecord));
   }
 
   @override
@@ -229,7 +265,8 @@ class _$_Goal implements _Goal {
       const DeepCollectionEquality().hash(goalAction),
       const DeepCollectionEquality().hash(fullHashTag),
       const DeepCollectionEquality().hash(createdDateTime),
-      const DeepCollectionEquality().hash(purchasedProducts));
+      const DeepCollectionEquality().hash(purchasedProducts),
+      const DeepCollectionEquality().hash(conguratulationRecord));
 
   @JsonKey(ignore: true)
   @override
@@ -249,7 +286,8 @@ abstract class _Goal implements Goal {
       required String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
-      required List<PurchasedProduct> purchasedProducts}) = _$_Goal;
+      required List<PurchasedProduct> purchasedProducts,
+      Record? conguratulationRecord}) = _$_Goal;
 
   factory _Goal.fromJson(Map<String, dynamic> json) = _$_Goal.fromJson;
 
@@ -266,6 +304,8 @@ abstract class _Goal implements Goal {
   DateTime get createdDateTime;
   @override
   List<PurchasedProduct> get purchasedProducts;
+  @override
+  Record? get conguratulationRecord;
   @override
   @JsonKey(ignore: true)
   _$GoalCopyWith<_Goal> get copyWith => throw _privateConstructorUsedError;
