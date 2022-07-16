@@ -68,8 +68,8 @@ class PurchaseCompletePage extends StatelessWidget {
               Text(
                 "あなたの${product.priceString}の本気をいただきました",
                 style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
                   color: AppColor.textMain,
                 ),
                 textAlign: TextAlign.center,
