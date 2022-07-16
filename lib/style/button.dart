@@ -15,6 +15,7 @@ class PrimaryButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     var isProcessing = useState(false);
+    final isMounted = useIsMounted();
 
     return ElevatedButton(
       child: ConstrainedBox(
@@ -52,7 +53,9 @@ class PrimaryButton extends HookWidget {
               } catch (error) {
                 rethrow;
               } finally {
-                isProcessing.value = false;
+                if (isMounted()) {
+                  isProcessing.value = false;
+                }
               }
             },
     );
@@ -72,6 +75,7 @@ class TwitterLikeButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     var isProcessing = useState(false);
+    final isMounted = useIsMounted();
 
     return ElevatedButton(
       child: ConstrainedBox(
@@ -109,7 +113,9 @@ class TwitterLikeButton extends HookWidget {
               } catch (error) {
                 rethrow;
               } finally {
-                isProcessing.value = false;
+                if (isMounted()) {
+                  isProcessing.value = false;
+                }
               }
             },
     );
@@ -165,6 +171,8 @@ class AppTextButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     var isProcessing = useState(false);
+    final isMounted = useIsMounted();
+
     return SizedBox(
       height: 44,
       child: TextButton(
@@ -192,7 +200,9 @@ class AppTextButton extends HookWidget {
                 } catch (error) {
                   rethrow;
                 } finally {
-                  isProcessing.value = false;
+                  if (isMounted()) {
+                    isProcessing.value = false;
+                  }
                 }
               },
       ),
