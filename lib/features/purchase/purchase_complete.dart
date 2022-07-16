@@ -94,6 +94,12 @@ class PurchaseCompletePage extends StatelessWidget {
                     goal: goal,
                     user: user,
                     onPost: (tweet, text) async {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(seconds: 2),
+                          content: Text("ツイートしました"),
+                        ),
+                      );
                       Navigator.of(context).pop();
                     },
                   );

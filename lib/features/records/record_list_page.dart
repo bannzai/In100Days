@@ -62,6 +62,13 @@ class RecordListPage extends HookConsumerWidget {
                           final createRecord = CreateRecord();
                           await createRecord.call(record,
                               userID: state.user.id!, goalID: state.goal.id!);
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              duration: Duration(seconds: 2),
+                              content: Text("ツイートしました"),
+                            ),
+                          );
                         },
                       ),
                       style: ElevatedButton.styleFrom(

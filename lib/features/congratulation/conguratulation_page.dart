@@ -99,6 +99,15 @@ class CongratulationPage extends StatelessWidget {
                       final createRecord = CreateRecord();
                       await createRecord.call(record,
                           userID: user.id!, goalID: goal.id!);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(seconds: 2),
+                          content: Text("ツイートしました"),
+                        ),
+                      );
+
+                      Navigator.of(context).pop();
                     },
                   );
                 },
