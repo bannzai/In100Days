@@ -33,7 +33,7 @@ class RecordAddSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final text = useState("");
+    final text = useState(initialMessage);
     final images = useState<List<XFile>>([]);
 
     const double profileImageRadius = 16;
