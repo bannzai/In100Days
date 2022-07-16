@@ -22,6 +22,7 @@ class AppHome extends HookConsumerWidget {
     useEffect(() {
       final userID = state.asData?.value.user.id;
       if (userID != null) {
+        debugPrint("userID: $userID");
         unawaited(FirebaseAnalytics.instance.setUserId(id: userID));
         unawaited(FirebaseCrashlytics.instance.setUserIdentifier(userID));
       }
