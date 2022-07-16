@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:in_100_days/features/congratulation/owata.dart';
+import 'package:in_100_days/components/kirakira.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 
@@ -57,7 +57,7 @@ class CongratulationPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              const Owata(),
+              const Kirakira(message: "＼（^o^）／"),
               const SizedBox(height: 10),
               Image.asset("images/conguraturations.png"),
               const SizedBox(height: 10),

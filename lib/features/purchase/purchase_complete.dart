@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:in_100_days/components/kirakira.dart';
 
-import 'package:in_100_days/features/congratulation/owata.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -61,7 +61,7 @@ class PurchaseCompletePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              const Owata(),
+              const Kirakira(message: "（　＾ω＾）b"),
               const SizedBox(height: 10),
               Image.asset("images/character_angel.png"),
               const SizedBox(height: 10),
