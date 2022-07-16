@@ -87,7 +87,7 @@ class CongratulationPage extends StatelessWidget {
                     initialMessage: "",
                     goal: goal,
                     user: user,
-                    onPost: (tweet, text) async {
+                    onPost: (tweet, text, recordAddSheetContext) async {
                       final record = Record(
                         tweetID: tweet.idStr!,
                         message: text,
@@ -107,6 +107,7 @@ class CongratulationPage extends StatelessWidget {
                         ),
                       );
 
+                      Navigator.of(recordAddSheetContext).pop();
                       Navigator.of(context).pop();
                     },
                   );

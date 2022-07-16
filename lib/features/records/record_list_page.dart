@@ -51,7 +51,7 @@ class RecordListPage extends HookConsumerWidget {
                         initialMessage: "",
                         goal: state.goal,
                         user: state.user,
-                        onPost: (tweet, text) async {
+                        onPost: (tweet, text, recordAddSheetContext) async {
                           final record = Record(
                             tweetID: tweet.idStr!,
                             message: text,
@@ -69,6 +69,7 @@ class RecordListPage extends HookConsumerWidget {
                               content: Text("ツイートしました"),
                             ),
                           );
+                          Navigator.of(recordAddSheetContext).pop();
                         },
                       ),
                       style: ElevatedButton.styleFrom(

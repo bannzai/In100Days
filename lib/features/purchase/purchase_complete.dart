@@ -93,13 +93,15 @@ class PurchaseCompletePage extends StatelessWidget {
                         "${product.priceString}を代償に ${goal.fullHashTag} を再開しました",
                     goal: goal,
                     user: user,
-                    onPost: (tweet, text) async {
+                    onPost: (tweet, text, recordAddSheetContext) async {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           duration: Duration(seconds: 2),
                           content: Text("ツイートしました"),
                         ),
                       );
+
+                      Navigator.of(recordAddSheetContext).pop();
                       Navigator.of(context).pop();
                     },
                   );

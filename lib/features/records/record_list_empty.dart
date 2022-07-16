@@ -37,7 +37,7 @@ class RecordListEmpty extends StatelessWidget {
                   initialMessage: "",
                   goal: state.goal,
                   user: state.user,
-                  onPost: (tweet, text) async {
+                  onPost: (tweet, text, recordAddSheetContext) async {
                     final record = Record(
                       tweetID: tweet.idStr!,
                       message: text,
@@ -54,6 +54,8 @@ class RecordListEmpty extends StatelessWidget {
                         content: Text("ツイートしました"),
                       ),
                     );
+
+                    Navigator.of(recordAddSheetContext).pop();
                   },
                 ),
                 style: ElevatedButton.styleFrom(

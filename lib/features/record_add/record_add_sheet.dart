@@ -21,7 +21,7 @@ class RecordAddSheet extends HookConsumerWidget {
   final String initialMessage;
   final User user;
   final Goal goal;
-  final Future<void> Function(Tweet, String) onPost;
+  final Future<void> Function(Tweet, String, BuildContext) onPost;
 
   const RecordAddSheet({
     Key? key,
@@ -95,9 +95,7 @@ class RecordAddSheet extends HookConsumerWidget {
                               mediaIds: mediaIDs,
                             );
 
-                            await onPost(tweet, text.value);
-
-                            Navigator.of(context).pop();
+                            await onPost(tweet, text.value, context);
                           } catch (error) {
                             showErrorAlert(context, error: error);
                           }
@@ -292,7 +290,7 @@ void showRecordAddSheet(
   required String initialMessage,
   required User user,
   required Goal goal,
-  required Future<void> Function(Tweet, String) onPost,
+  required Future<void> Function(Tweet, String, BuildContext) onPost,
 }) {
   showModalBottomSheet(
     context: context,
