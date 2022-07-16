@@ -3,7 +3,7 @@ import 'package:in_100_days/entity/goal.codegen.dart';
 
 bool isGameOver(List<Record> records) {
   if (records.isEmpty) {
-    return true;
+    return false;
   }
   return records.first.createdDateTime.day + 1 >= DateTime.now().day;
 }
