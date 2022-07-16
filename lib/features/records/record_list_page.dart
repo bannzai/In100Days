@@ -9,7 +9,7 @@ import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/features/setting/setting_page.dart';
 import 'package:in_100_days/style/color.dart';
 
-import '../../utility/is_over.dart';
+import 'is_over.dart';
 
 class RecordListPage extends HookConsumerWidget {
   final Goal goal;

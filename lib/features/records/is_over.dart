@@ -1,4 +1,4 @@
-import '../entity/record.codegen.dart';
+import '../../entity/record.codegen.dart';
 
 bool isGameOver(List<Record> records) {
   if (records.isEmpty) {

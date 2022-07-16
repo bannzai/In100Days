@@ -11,7 +11,7 @@ import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/is_congratulation.dart';
-import 'package:in_100_days/utility/is_over.dart';
+import 'package:in_100_days/features/records/is_over.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
