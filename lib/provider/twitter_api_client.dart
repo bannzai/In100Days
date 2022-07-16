@@ -17,8 +17,8 @@ Future<void> setupTwitterAPIClient() async {
 
   twitterAPIClient = TwitterApi(
     client: TwitterClient(
-      consumerKey: TwitterAPISecret.apiKey,
-      consumerSecret: TwitterAPISecret.apiKeySecret,
+      consumerKey: Secret.twitterApiKey,
+      consumerSecret: Secret.twitterApiKeySecret,
       token: twitterAuthToken,
       secret: twitterAuthTokenSecret,
     ),

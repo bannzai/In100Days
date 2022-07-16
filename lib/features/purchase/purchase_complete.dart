@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/components/kirakira.dart';
+
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
-class CongratulationPage extends StatelessWidget {
-  const CongratulationPage({Key? key}) : super(key: key);
+class PurchaseCompletePage extends StatelessWidget {
+  final Product product;
+  const PurchaseCompletePage({Key? key, required this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class CongratulationPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    "成",
+                    "再",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
@@ -46,7 +50,7 @@ class CongratulationPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    "功",
+                    "開",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
@@ -57,22 +61,22 @@ class CongratulationPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              const Kirakira(message: "＼（^o^）／"),
+              const Kirakira(message: "（　＾ω＾）b"),
               const SizedBox(height: 10),
-              Image.asset("images/conguraturations.png"),
+              Image.asset("images/character_angel.png"),
               const SizedBox(height: 10),
-              const Text(
-                "あなたは見事100日間ゴールに向かって\n努力を継続できました！",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
+              Text(
+                "あなたの${product.priceString}の本気をいただきました",
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
                   color: AppColor.textMain,
                 ),
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
               PrimaryButton(
-                text: 'お祝いのツイートをする',
+                text: 'ふっかつのツイートをする',
                 onPressed: () async {
                   // TODO:
                 },
@@ -88,11 +92,13 @@ class CongratulationPage extends StatelessWidget {
   }
 }
 
-extension CongratulationPageRoute on CongratulationPage {
-  static Route<dynamic> route() {
+extension PurchaseCompletePageRoute on PurchaseCompletePage {
+  static Route<dynamic> route({required Product product}) {
     return MaterialPageRoute(
-      settings: const RouteSettings(name: "CongratulationPage"),
-      builder: (_) => const CongratulationPage(),
+      settings: const RouteSettings(name: "PurchaseCompletePage"),
+      builder: (_) => PurchaseCompletePage(
+        product: product,
+      ),
       fullscreenDialog: true,
     );
   }

@@ -56,8 +56,8 @@ class SignInAsyncAction {
 
   Future<AuthResult> twitterSignIn() {
     final twitterSignIn = TwitterLogin(
-      apiKey: TwitterAPISecret.apiKey,
-      apiSecretKey: TwitterAPISecret.apiKeySecret,
+      apiKey: Secret.twitterApiKey,
+      apiSecretKey: Secret.twitterApiKeySecret,
       redirectURI: 'in100days://',
     );
     return twitterSignIn.login();

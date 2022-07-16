@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Pugya extends StatefulWidget {
-  const Pugya({Key? key}) : super(key: key);
+class Kirakira extends StatefulWidget {
+  final String message;
+  const Kirakira({Key? key, required this.message}) : super(key: key);
 
   @override
-  PugyaState createState() {
-    return PugyaState();
+  KirakiraState createState() {
+    return KirakiraState();
   }
 }
 
-class PugyaState extends State<Pugya> with SingleTickerProviderStateMixin {
+class KirakiraState extends State<Kirakira>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation animation;
   late Color color;
@@ -41,7 +43,7 @@ class PugyaState extends State<Pugya> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "m9(^Д^)ﾌﾟｷﾞｬｰ",
+      widget.message,
       style: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,

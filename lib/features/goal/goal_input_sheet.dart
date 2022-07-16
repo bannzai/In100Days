@@ -144,9 +144,11 @@ class GoalInputSheet extends HookConsumerWidget {
                         }
                         try {
                           final goal = Goal(
-                              goalAction: text.value,
-                              fullHashTag: hashTag,
-                              createdDateTime: DateTime.now());
+                            goalAction: text.value,
+                            fullHashTag: hashTag,
+                            createdDateTime: DateTime.now(),
+                            purchasedProducts: [],
+                          );
                           await goalCollectionReference(userID: user.id!)
                               .doc()
                               .set(goal, SetOptions(merge: true));

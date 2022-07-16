@@ -4,16 +4,28 @@ import 'package:in_100_days/provider/auth.dart';
 
 import '../entity/user.codegen.dart';
 
-final userDocumentReferenceProvider = Provider.family(
-  (ref, String userID) =>
-      FirebaseFirestore.instance.doc("/users/$userID").withConverter(
-            fromFirestore: (snapshot, _) =>
-                User.fromJson(snapshot.data()!)..copyWith(id: snapshot.id),
-            toFirestore: (User value, _) {
-              return value.toJson();
-            },
-          ),
-);
+DocumentReference<User> userDocumentReference({required String userID}) {
+  return FirebaseFirestore.instance.doc("/users/$userID").withConverter(
+        fromFirestore: (snapshot, _) =>
+            User.fromJson(snapshot.data()!)..copyWith(id: snapshot.id),
+        toFirestore: (User value, _) {
+          return value.toJson();
+        },
+      );
+}
+
+DocumentReference userDocumentPrivateReference({required String userID}) {
+  return FirebaseFirestore.instance.doc("/users/$userID/privates/$userID");
+}
+
+class SetUser {
+  Future<void> call(User user) async {
+    await userDocumentReference(userID: user.id!)
+        .set(user, SetOptions(merge: true));
+  }
+}
+
+final setUserProvider = Provider((ref) => SetUser());
 
 final userStreamProvider = StreamProvider<User?>((ref) {
   final firebaseCurrentUser = ref.watch(firebaseCurrentUserProvider);
@@ -26,8 +38,7 @@ final userStreamProvider = StreamProvider<User?>((ref) {
     return Stream.value(null);
   }
 
-  return ref
-      .watch(userDocumentReferenceProvider(twitterAuthTokenSecretValue.uid))
+  return userDocumentReference(userID: twitterAuthTokenSecretValue.uid)
       .snapshots()
       .map((event) => event.data());
 });

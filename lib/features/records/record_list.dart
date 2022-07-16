@@ -5,6 +5,7 @@ import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/congratulation/conguratulation_page.dart';
 import 'package:in_100_days/features/game_over/game_over_page.dart';
+import 'package:in_100_days/features/purchase/purchase_complete.dart';
 import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/button.dart';
@@ -31,7 +32,8 @@ class RecordList extends HookWidget {
     Future.microtask(() {
       if (_isGameOver) {
         if (!gameOverIsShown.value) {
-          Navigator.of(context).push(GameOverPageRoute.route());
+          Navigator.of(context).push(GameOverPageRoute.route(
+              goal: state.goal, userID: state.user.id!));
           gameOverIsShown.value = true;
         }
       } else {
@@ -70,7 +72,12 @@ class RecordList extends HookWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: PrimaryButton(
-                onPressed: () async => showPurchaseSheet(context),
+                onPressed: () async => showPurchaseSheet(context,
+                        goal: state.goal,
+                        userID: state.user.id!, onPurchased: (product) {
+                      Navigator.of(context).push(
+                          PurchaseCompletePageRoute.route(product: product));
+                    }),
                 text: "本気で再開する"),
           ),
       ],

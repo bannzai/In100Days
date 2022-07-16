@@ -7,5 +7,5 @@ final oAuth1TwitterPlatform = oauth1.Platform(
   'https://api.twitter.com/oauth/access_token',
   oauth1.SignatureMethods.hmacSha1,
 );
-final clientCredentials = oauth1.ClientCredentials(
-    TwitterAPISecret.apiKey, TwitterAPISecret.apiKeySecret);
+final clientCredentials =
+    oauth1.ClientCredentials(Secret.twitterApiKey, Secret.twitterApiKeySecret);
