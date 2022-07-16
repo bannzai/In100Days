@@ -20,46 +20,51 @@ class RecordListPage extends HookConsumerWidget {
     final state = ref.watch(recordsAsyncStateProvider(goal));
 
     return state.when(
-      data: (state) => Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: [
-              _content(state),
-              Positioned(
-                right: 10,
-                child: IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {
-                    Navigator.of(context).push(UserPageRoute.route());
-                  },
-                ),
-              )
-            ],
+      data: (state) {
+        final gameOverAndNotYetPurchase =
+            isGameOver(state.records) && !purchasedInToday(goal);
+        return Scaffold(
+          body: SafeArea(
+            child: Stack(
+              children: [
+                _content(state),
+                Positioned(
+                  right: 10,
+                  child: IconButton(
+                    icon: const Icon(Icons.settings),
+                    onPressed: () {
+                      Navigator.of(context).push(UserPageRoute.route());
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        floatingActionButton: isGameOver(state.records) || state.records.isEmpty
-            ? null
-            : ElevatedButton(
-                onPressed: () => showRecordAddSheet(context,
-                    goal: state.goal, user: state.user),
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                ),
-                child: Container(
-                  width: 70,
-                  height: 70,
-                  decoration: const BoxDecoration(
-                    color: AppColor.primary,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 35,
-                  ),
-                ),
-              ),
-      ),
+          floatingActionButton:
+              gameOverAndNotYetPurchase || state.records.isEmpty
+                  ? null
+                  : ElevatedButton(
+                      onPressed: () => showRecordAddSheet(context,
+                          goal: state.goal, user: state.user),
+                      style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                      ),
+                      child: Container(
+                        width: 70,
+                        height: 70,
+                        decoration: const BoxDecoration(
+                          color: AppColor.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                      ),
+                    ),
+        );
+      },
       error: (error, _) => ErrorPage(
         error: error,
         reload: () => ref.refresh(recordsAsyncStateProvider(goal)),
