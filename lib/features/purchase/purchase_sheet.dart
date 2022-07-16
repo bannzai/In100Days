@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
+import 'package:in_100_days/entity/purchased_product.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/features/error/error_page.dart';
 import 'package:in_100_days/features/purchase/error.dart';
@@ -85,7 +86,9 @@ class PurchaseSheet extends HookConsumerWidget {
 
                         final updatedPurchasedProducts = [
                           ...goal.purchasedProducts,
-                          purchaseProduct
+                          PurchasedProduct(
+                              product: purchaseProduct,
+                              purchasedDateTime: DateTime.now()),
                         ];
                         await ref.read(setGoalProvider).call(
                             goal.copyWith(
