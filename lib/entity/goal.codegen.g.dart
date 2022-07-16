@@ -9,7 +9,7 @@ part of 'goal.codegen.dart';
 _$_Goal _$$_GoalFromJson(Map<String, dynamic> json) => _$_Goal(
       id: json['id'] as String?,
       goalAction: json['goalAction'] as String,
-      fullHashTag: json['fullHashTag'] as String,
+      hashTag: json['hashTag'] as String,
       createdDateTime: NonNullTimestampConverter.timestampToDateTime(
           json['createdDateTime'] as Timestamp),
       purchasedProducts: (json['purchasedProducts'] as List<dynamic>)
@@ -20,7 +20,7 @@ _$_Goal _$$_GoalFromJson(Map<String, dynamic> json) => _$_Goal(
 Map<String, dynamic> _$$_GoalToJson(_$_Goal instance) => <String, dynamic>{
       'id': instance.id,
       'goalAction': instance.goalAction,
-      'fullHashTag': instance.fullHashTag,
+      'hashTag': instance.hashTag,
       'createdDateTime': NonNullTimestampConverter.dateTimeToTimestamp(
           instance.createdDateTime),
       'purchasedProducts':

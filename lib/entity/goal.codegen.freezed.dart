@@ -25,14 +25,14 @@ class _$GoalTearOff {
   _Goal call(
       {String? id,
       required String goalAction,
-      required String fullHashTag,
+      required String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
       required List<PurchasedProduct> purchasedProducts}) {
     return _Goal(
       id: id,
       goalAction: goalAction,
-      fullHashTag: fullHashTag,
+      hashTag: hashTag,
       createdDateTime: createdDateTime,
       purchasedProducts: purchasedProducts,
     );
@@ -50,7 +50,7 @@ const $Goal = _$GoalTearOff();
 mixin _$Goal {
   String? get id => throw _privateConstructorUsedError;
   String get goalAction => throw _privateConstructorUsedError;
-  String get fullHashTag => throw _privateConstructorUsedError;
+  String get hashTag => throw _privateConstructorUsedError;
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
@@ -70,7 +70,7 @@ abstract class $GoalCopyWith<$Res> {
   $Res call(
       {String? id,
       String goalAction,
-      String fullHashTag,
+      String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
       List<PurchasedProduct> purchasedProducts});
@@ -88,7 +88,7 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? goalAction = freezed,
-    Object? fullHashTag = freezed,
+    Object? hashTag = freezed,
     Object? createdDateTime = freezed,
     Object? purchasedProducts = freezed,
   }) {
@@ -101,9 +101,9 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
           ? _value.goalAction
           : goalAction // ignore: cast_nullable_to_non_nullable
               as String,
-      fullHashTag: fullHashTag == freezed
-          ? _value.fullHashTag
-          : fullHashTag // ignore: cast_nullable_to_non_nullable
+      hashTag: hashTag == freezed
+          ? _value.hashTag
+          : hashTag // ignore: cast_nullable_to_non_nullable
               as String,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
@@ -125,7 +125,7 @@ abstract class _$GoalCopyWith<$Res> implements $GoalCopyWith<$Res> {
   $Res call(
       {String? id,
       String goalAction,
-      String fullHashTag,
+      String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
       List<PurchasedProduct> purchasedProducts});
@@ -144,7 +144,7 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? goalAction = freezed,
-    Object? fullHashTag = freezed,
+    Object? hashTag = freezed,
     Object? createdDateTime = freezed,
     Object? purchasedProducts = freezed,
   }) {
@@ -157,9 +157,9 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
           ? _value.goalAction
           : goalAction // ignore: cast_nullable_to_non_nullable
               as String,
-      fullHashTag: fullHashTag == freezed
-          ? _value.fullHashTag
-          : fullHashTag // ignore: cast_nullable_to_non_nullable
+      hashTag: hashTag == freezed
+          ? _value.hashTag
+          : hashTag // ignore: cast_nullable_to_non_nullable
               as String,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
@@ -180,7 +180,7 @@ class _$_Goal implements _Goal {
   _$_Goal(
       {this.id,
       required this.goalAction,
-      required this.fullHashTag,
+      required this.hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required this.createdDateTime,
       required this.purchasedProducts});
@@ -192,7 +192,7 @@ class _$_Goal implements _Goal {
   @override
   final String goalAction;
   @override
-  final String fullHashTag;
+  final String hashTag;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
@@ -203,7 +203,7 @@ class _$_Goal implements _Goal {
 
   @override
   String toString() {
-    return 'Goal(id: $id, goalAction: $goalAction, fullHashTag: $fullHashTag, createdDateTime: $createdDateTime, purchasedProducts: $purchasedProducts)';
+    return 'Goal(id: $id, goalAction: $goalAction, hashTag: $hashTag, createdDateTime: $createdDateTime, purchasedProducts: $purchasedProducts)';
   }
 
   @override
@@ -214,8 +214,7 @@ class _$_Goal implements _Goal {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.goalAction, goalAction) &&
-            const DeepCollectionEquality()
-                .equals(other.fullHashTag, fullHashTag) &&
+            const DeepCollectionEquality().equals(other.hashTag, hashTag) &&
             const DeepCollectionEquality()
                 .equals(other.createdDateTime, createdDateTime) &&
             const DeepCollectionEquality()
@@ -227,7 +226,7 @@ class _$_Goal implements _Goal {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(goalAction),
-      const DeepCollectionEquality().hash(fullHashTag),
+      const DeepCollectionEquality().hash(hashTag),
       const DeepCollectionEquality().hash(createdDateTime),
       const DeepCollectionEquality().hash(purchasedProducts));
 
@@ -246,7 +245,7 @@ abstract class _Goal implements Goal {
   factory _Goal(
       {String? id,
       required String goalAction,
-      required String fullHashTag,
+      required String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
       required List<PurchasedProduct> purchasedProducts}) = _$_Goal;
@@ -258,7 +257,7 @@ abstract class _Goal implements Goal {
   @override
   String get goalAction;
   @override
-  String get fullHashTag;
+  String get hashTag;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,

@@ -12,7 +12,7 @@ class Goal with _$Goal {
   factory Goal({
     String? id,
     required String goalAction,
-    required String fullHashTag,
+    required String hashTag,
     @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp,

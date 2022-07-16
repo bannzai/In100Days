@@ -145,7 +145,7 @@ class GoalInputSheet extends HookConsumerWidget {
                         try {
                           final goal = Goal(
                             goalAction: text.value,
-                            fullHashTag: hashTag,
+                            hashTag: hashTag,
                             createdDateTime: DateTime.now(),
                             purchasedProducts: [],
                           );
