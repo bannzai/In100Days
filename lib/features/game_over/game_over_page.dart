@@ -76,7 +76,7 @@ class GameOverPage extends StatelessWidget {
                 "本気で再開をするなら少しのお金くらい払えますよね？",
                 style: TextStyle(
                   fontSize: 17,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w600,
                   color: AppColor.textMain,
                 ),
                 textAlign: TextAlign.center,
