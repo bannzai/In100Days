@@ -78,7 +78,9 @@ class PurchaseSheet extends HookConsumerWidget {
                     onTap: () async {
                       try {
                         final purchaserInfo = await Purchases.purchaseProduct(
-                            purchaseProduct.identifier);
+                          purchaseProduct.identifier,
+                          type: PurchaseType.inapp,
+                        );
                         debugPrint(purchaserInfo.toString());
 
                         final updatedPurchasedProducts = [
