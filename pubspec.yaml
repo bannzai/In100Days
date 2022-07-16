@@ -42,9 +42,9 @@ dependencies:
   flutter_hooks: ^0.18.4
   hooks_riverpod: ^1.0.1
   flutter_svg: ^1.0.0
-  firebase_core: ^1.0.1
-  firebase_analytics: ^9.0.4
-  firebase_auth: ^3.3.4
+  firebase_core: ^1.19.2
+  firebase_analytics: ^9.2.0
+  firebase_auth: ^3.4.2
   cloud_firestore: ^3.3.0
   dart_twitter_api: ^0.5.6+1
   image_picker: ^0.8.5+3
