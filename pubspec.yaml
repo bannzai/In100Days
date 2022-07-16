@@ -53,6 +53,7 @@ dependencies:
   firebase_crashlytics: ^2.8.2
   purchases_flutter: ^3.10.0
   package_info_plus: ^1.4.2
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
