@@ -17,6 +17,9 @@ bool purchasedInToday(Goal goal) {
     return false;
   }
 
-  final purchaseProduct = goal.purchasedProducts.last;
-  return purchaseProduct.purchasedDateTime.day == DateTime.now().day;
+  return isSameDay(
+      goal.purchasedProducts.last.purchasedDateTime, DateTime.now());
 }
+
+bool isSameDay(DateTime lhs, DateTime rhs) =>
+    lhs.year == rhs.year && lhs.month == rhs.month && lhs.day == rhs.day;
