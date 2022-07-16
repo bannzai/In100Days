@@ -33,8 +33,8 @@ class RecordList extends HookWidget {
       if (_isGameOver) {
         if (!_purchasedInToday) {
           if (!gameOverIsShown.value) {
-            Navigator.of(context).push(GameOverPageRoute.route(
-                goal: state.goal, userID: state.user.id!));
+            Navigator.of(context).push(
+                GameOverPageRoute.route(goal: state.goal, user: state.user));
             gameOverIsShown.value = true;
           }
         }
@@ -79,7 +79,10 @@ class RecordList extends HookWidget {
                         goal: state.goal,
                         userID: state.user.id!, onPurchased: (product) {
                       Navigator.of(context).push(
-                          PurchaseCompletePageRoute.route(product: product));
+                          PurchaseCompletePageRoute.route(
+                              product: product,
+                              goal: state.goal,
+                              user: state.user));
                     }),
                 text: "本気で再開する"),
           ),

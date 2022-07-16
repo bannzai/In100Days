@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/components/kirakira.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
+import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/purchase/purchase_complete.dart';
 import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/style/color.dart';
@@ -8,12 +9,12 @@ import 'package:in_100_days/style/color.dart';
 import '../../style/button.dart';
 
 class GameOverPage extends StatelessWidget {
+  final User user;
   final Goal goal;
-  final String userID;
   const GameOverPage({
     Key? key,
+    required this.user,
     required this.goal,
-    required this.userID,
   }) : super(key: key);
 
   @override
@@ -84,11 +85,18 @@ class GameOverPage extends StatelessWidget {
               PrimaryButton(
                 text: '本気で再開する',
                 onPressed: () async {
-                  showPurchaseSheet(context,
-                      goal: goal,
-                      userID: userID,
-                      onPurchased: (product) => Navigator.of(context).push(
-                          PurchaseCompletePageRoute.route(product: product)));
+                  showPurchaseSheet(
+                    context,
+                    goal: goal,
+                    userID: user.id!,
+                    onPurchased: (product) => Navigator.of(context).push(
+                      PurchaseCompletePageRoute.route(
+                        product: product,
+                        goal: goal,
+                        user: user,
+                      ),
+                    ),
+                  );
                 },
               ),
               const SizedBox(height: 10),
@@ -103,12 +111,12 @@ class GameOverPage extends StatelessWidget {
 }
 
 extension GameOverPageRoute on GameOverPage {
-  static Route<dynamic> route({required Goal goal, required String userID}) {
+  static Route<dynamic> route({required Goal goal, required User user}) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: "GameOverPage"),
       builder: (_) => GameOverPage(
         goal: goal,
-        userID: userID,
+        user: user,
       ),
       fullscreenDialog: true,
     );
