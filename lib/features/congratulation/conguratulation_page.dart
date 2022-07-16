@@ -91,7 +91,7 @@ class CongratulationPage extends StatelessWidget {
                       final record = Record(
                         tweetID: tweet.idStr!,
                         message: text,
-                        hashTag: goal.fullHashTag,
+                        hashTag: goal.hashTag,
                         createdDateTime: DateTime.now(),
                         isConguratulation: true,
                       );

@@ -22,4 +22,6 @@ class Goal with _$Goal {
   }) = _Goal;
 
   factory Goal.fromJson(Map<String, dynamic> json) => _$GoalFromJson(json);
+
+  String get fullHashTag => "#" + hashTag;
 }

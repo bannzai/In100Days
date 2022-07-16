@@ -55,7 +55,7 @@ class RecordListPage extends HookConsumerWidget {
                           final record = Record(
                             tweetID: tweet.idStr!,
                             message: text,
-                            hashTag: state.goal.fullHashTag,
+                            hashTag: state.goal.hashTag,
                             createdDateTime: DateTime.now(),
                           );
 
