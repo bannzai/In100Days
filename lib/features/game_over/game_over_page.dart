@@ -85,18 +85,19 @@ class GameOverPage extends StatelessWidget {
               PrimaryButton(
                 text: '本気で再開する',
                 onPressed: () async {
-                  showPurchaseSheet(
-                    context,
-                    goal: goal,
-                    userID: user.id!,
-                    onPurchased: (product) => Navigator.of(context).push(
+                  showPurchaseSheet(context, goal: goal, userID: user.id!,
+                      onPurchased: (product) async {
+                    final result = await Navigator.of(context).push(
                       PurchaseCompletePageRoute.route(
                         product: product,
                         goal: goal,
                         user: user,
                       ),
-                    ),
-                  );
+                    );
+                    if (result != null) {
+                      Navigator.of(context).pop();
+                    }
+                  });
                 },
               ),
               const SizedBox(height: 10),

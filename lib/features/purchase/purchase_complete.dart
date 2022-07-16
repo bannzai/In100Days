@@ -6,6 +6,7 @@ import 'package:in_100_days/features/record_add/record_add_sheet.dart';
 
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:in_100_days/utility/complete_result.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PurchaseCompletePage extends StatelessWidget {
@@ -102,7 +103,7 @@ class PurchaseCompletePage extends StatelessWidget {
                       );
 
                       Navigator.of(recordAddSheetContext).pop();
-                      Navigator.of(context).pop();
+                      Navigator.of(context).pop(completed);
                     },
                   );
                 },
