@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:in_100_days/style/color.dart';
 
 class DiscardDialog extends StatelessWidget {
