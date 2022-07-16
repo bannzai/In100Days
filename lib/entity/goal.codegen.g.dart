@@ -15,10 +15,6 @@ _$_Goal _$$_GoalFromJson(Map<String, dynamic> json) => _$_Goal(
       purchasedProducts: (json['purchasedProducts'] as List<dynamic>)
           .map((e) => PurchasedProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
-      conguratulationRecord: json['conguratulationRecord'] == null
-          ? null
-          : Record.fromJson(
-              json['conguratulationRecord'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_GoalToJson(_$_Goal instance) => <String, dynamic>{
@@ -29,5 +25,4 @@ Map<String, dynamic> _$$_GoalToJson(_$_Goal instance) => <String, dynamic>{
           instance.createdDateTime),
       'purchasedProducts':
           instance.purchasedProducts.map((e) => e.toJson()).toList(),
-      'conguratulationRecord': instance.conguratulationRecord?.toJson(),
     };

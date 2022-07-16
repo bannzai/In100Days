@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:in_100_days/entity/purchased_product.codegen.dart';
-import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/timestam_converter.dart';
 
 part 'goal.codegen.freezed.dart';
@@ -20,7 +19,6 @@ class Goal with _$Goal {
     )
         required DateTime createdDateTime,
     required List<PurchasedProduct> purchasedProducts,
-    Record? conguratulationRecord,
   }) = _Goal;
 
   factory Goal.fromJson(Map<String, dynamic> json) => _$GoalFromJson(json);
