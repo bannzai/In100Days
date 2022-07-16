@@ -13,7 +13,7 @@ _$_Goal _$$_GoalFromJson(Map<String, dynamic> json) => _$_Goal(
       createdDateTime: NonNullTimestampConverter.timestampToDateTime(
           json['createdDateTime'] as Timestamp),
       purchasedProducts: (json['purchasedProducts'] as List<dynamic>)
-          .map((e) => Product.fromJson(e as Map<String, dynamic>))
+          .map((e) => PurchasedProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

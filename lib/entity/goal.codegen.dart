@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:in_100_days/entity/purchased_product.codegen.dart';
 import 'package:in_100_days/entity/timestam_converter.dart';
 import 'package:purchases_flutter/object_wrappers.dart';
 
@@ -18,7 +19,7 @@ class Goal with _$Goal {
       toJson: NonNullTimestampConverter.dateTimeToTimestamp,
     )
         required DateTime createdDateTime,
-    required List<Product> purchasedProducts,
+    required List<PurchasedProduct> purchasedProducts,
   }) = _Goal;
 
   factory Goal.fromJson(Map<String, dynamic> json) => _$GoalFromJson(json);

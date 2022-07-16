@@ -28,7 +28,7 @@ class _$GoalTearOff {
       required String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
-      required List<Product> purchasedProducts}) {
+      required List<PurchasedProduct> purchasedProducts}) {
     return _Goal(
       id: id,
       goalAction: goalAction,
@@ -55,7 +55,8 @@ mixin _$Goal {
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime => throw _privateConstructorUsedError;
-  List<Product> get purchasedProducts => throw _privateConstructorUsedError;
+  List<PurchasedProduct> get purchasedProducts =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,7 +73,7 @@ abstract class $GoalCopyWith<$Res> {
       String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
-      List<Product> purchasedProducts});
+      List<PurchasedProduct> purchasedProducts});
 }
 
 /// @nodoc
@@ -111,7 +112,7 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
       purchasedProducts: purchasedProducts == freezed
           ? _value.purchasedProducts
           : purchasedProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as List<PurchasedProduct>,
     ));
   }
 }
@@ -127,7 +128,7 @@ abstract class _$GoalCopyWith<$Res> implements $GoalCopyWith<$Res> {
       String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
-      List<Product> purchasedProducts});
+      List<PurchasedProduct> purchasedProducts});
 }
 
 /// @nodoc
@@ -167,7 +168,7 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
       purchasedProducts: purchasedProducts == freezed
           ? _value.purchasedProducts
           : purchasedProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as List<PurchasedProduct>,
     ));
   }
 }
@@ -198,7 +199,7 @@ class _$_Goal implements _Goal {
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   final DateTime createdDateTime;
   @override
-  final List<Product> purchasedProducts;
+  final List<PurchasedProduct> purchasedProducts;
 
   @override
   String toString() {
@@ -248,7 +249,7 @@ abstract class _Goal implements Goal {
       required String fullHashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
-      required List<Product> purchasedProducts}) = _$_Goal;
+      required List<PurchasedProduct> purchasedProducts}) = _$_Goal;
 
   factory _Goal.fromJson(Map<String, dynamic> json) = _$_Goal.fromJson;
 
@@ -264,7 +265,7 @@ abstract class _Goal implements Goal {
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime;
   @override
-  List<Product> get purchasedProducts;
+  List<PurchasedProduct> get purchasedProducts;
   @override
   @JsonKey(ignore: true)
   _$GoalCopyWith<_Goal> get copyWith => throw _privateConstructorUsedError;
