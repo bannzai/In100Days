@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:in_100_days/entity/purchased_product.codegen.dart';
 import 'package:in_100_days/entity/timestam_converter.dart';
-import 'package:purchases_flutter/object_wrappers.dart';
 
 part 'goal.codegen.freezed.dart';
 part 'goal.codegen.g.dart';
