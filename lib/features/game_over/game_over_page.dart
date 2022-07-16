@@ -75,7 +75,7 @@ class GameOverPage extends StatelessWidget {
               const Text(
                 "本気で再開をするなら少しのお金くらい払えますよね？",
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColor.textMain,
                 ),
