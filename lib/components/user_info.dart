@@ -7,11 +7,11 @@ class UserInfo extends StatelessWidget {
   const UserInfo({
     Key? key,
     required this.user,
-    required this.hashTag,
+    required this.fullHashTag,
   }) : super(key: key);
 
   final User user;
-  final String hashTag;
+  final String fullHashTag;
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +52,10 @@ class UserInfo extends StatelessWidget {
         const SizedBox(height: 10),
         GestureDetector(
           onTap: () {
-            openTwitterHashTag(hashTag);
+            openTwitterHashTag(fullHashTag);
           },
           child: Text(
-            hashTag,
+            fullHashTag,
             style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

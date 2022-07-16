@@ -57,7 +57,7 @@ class RecordList extends HookWidget {
               const SizedBox(height: 10),
               UserInfo(
                 user: state.user,
-                hashTag: state.goal.fullHashTag,
+                fullHashTag: state.goal.fullHashTag,
               ),
               const SizedBox(height: 20),
               ...state.records.asMap().entries.map((entry) {

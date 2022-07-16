@@ -21,7 +21,7 @@ class RecordListEmpty extends StatelessWidget {
           const SizedBox(height: 10),
           UserInfo(
             user: state.user,
-            hashTag: state.goal.fullHashTag,
+            fullHashTag: state.goal.fullHashTag,
           ),
           const SizedBox(height: 20),
           Column(

@@ -60,7 +60,7 @@ class GoalInputSheet extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              UserInfo(user: user, hashTag: fullHashTag),
+              UserInfo(user: user, fullHashTag: fullHashTag),
               const SizedBox(height: 40.5),
               Column(
                 children: [
