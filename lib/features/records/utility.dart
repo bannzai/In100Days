@@ -5,7 +5,7 @@ bool isGameOver(List<Record> records) {
   if (records.isEmpty) {
     return false;
   }
-  return records.first.createdDateTime.day + 1 >= DateTime.now().day;
+  return records.last.createdDateTime.day < DateTime.now().day;
 }
 
 bool isCongratulation(Goal goal) {
