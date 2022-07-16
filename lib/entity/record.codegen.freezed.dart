@@ -27,12 +27,14 @@ class _$RecordTearOff {
       required String message,
       required String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          required DateTime createdDateTime}) {
+          required DateTime createdDateTime,
+      bool isConguratulation = false}) {
     return _Record(
       tweetID: tweetID,
       message: message,
       hashTag: hashTag,
       createdDateTime: createdDateTime,
+      isConguratulation: isConguratulation,
     );
   }
 
@@ -53,6 +55,7 @@ mixin _$Record {
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime => throw _privateConstructorUsedError;
+  bool get isConguratulation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,7 +71,8 @@ abstract class $RecordCopyWith<$Res> {
       String message,
       String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          DateTime createdDateTime});
+          DateTime createdDateTime,
+      bool isConguratulation});
 }
 
 /// @nodoc
@@ -85,6 +89,7 @@ class _$RecordCopyWithImpl<$Res> implements $RecordCopyWith<$Res> {
     Object? message = freezed,
     Object? hashTag = freezed,
     Object? createdDateTime = freezed,
+    Object? isConguratulation = freezed,
   }) {
     return _then(_value.copyWith(
       tweetID: tweetID == freezed
@@ -103,6 +108,10 @@ class _$RecordCopyWithImpl<$Res> implements $RecordCopyWith<$Res> {
           ? _value.createdDateTime
           : createdDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isConguratulation: isConguratulation == freezed
+          ? _value.isConguratulation
+          : isConguratulation // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -117,7 +126,8 @@ abstract class _$RecordCopyWith<$Res> implements $RecordCopyWith<$Res> {
       String message,
       String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          DateTime createdDateTime});
+          DateTime createdDateTime,
+      bool isConguratulation});
 }
 
 /// @nodoc
@@ -135,6 +145,7 @@ class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
     Object? message = freezed,
     Object? hashTag = freezed,
     Object? createdDateTime = freezed,
+    Object? isConguratulation = freezed,
   }) {
     return _then(_Record(
       tweetID: tweetID == freezed
@@ -153,6 +164,10 @@ class __$RecordCopyWithImpl<$Res> extends _$RecordCopyWithImpl<$Res>
           ? _value.createdDateTime
           : createdDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isConguratulation: isConguratulation == freezed
+          ? _value.isConguratulation
+          : isConguratulation // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -166,7 +181,8 @@ class _$_Record implements _Record {
       required this.message,
       required this.hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          required this.createdDateTime});
+          required this.createdDateTime,
+      this.isConguratulation = false});
 
   factory _$_Record.fromJson(Map<String, dynamic> json) =>
       _$$_RecordFromJson(json);
@@ -182,10 +198,13 @@ class _$_Record implements _Record {
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   final DateTime createdDateTime;
+  @JsonKey()
+  @override
+  final bool isConguratulation;
 
   @override
   String toString() {
-    return 'Record(tweetID: $tweetID, message: $message, hashTag: $hashTag, createdDateTime: $createdDateTime)';
+    return 'Record(tweetID: $tweetID, message: $message, hashTag: $hashTag, createdDateTime: $createdDateTime, isConguratulation: $isConguratulation)';
   }
 
   @override
@@ -197,7 +216,9 @@ class _$_Record implements _Record {
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.hashTag, hashTag) &&
             const DeepCollectionEquality()
-                .equals(other.createdDateTime, createdDateTime));
+                .equals(other.createdDateTime, createdDateTime) &&
+            const DeepCollectionEquality()
+                .equals(other.isConguratulation, isConguratulation));
   }
 
   @override
@@ -206,7 +227,8 @@ class _$_Record implements _Record {
       const DeepCollectionEquality().hash(tweetID),
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(hashTag),
-      const DeepCollectionEquality().hash(createdDateTime));
+      const DeepCollectionEquality().hash(createdDateTime),
+      const DeepCollectionEquality().hash(isConguratulation));
 
   @JsonKey(ignore: true)
   @override
@@ -225,7 +247,8 @@ abstract class _Record implements Record {
       required String message,
       required String hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
-          required DateTime createdDateTime}) = _$_Record;
+          required DateTime createdDateTime,
+      bool isConguratulation}) = _$_Record;
 
   factory _Record.fromJson(Map<String, dynamic> json) = _$_Record.fromJson;
 
@@ -240,6 +263,8 @@ abstract class _Record implements Record {
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   DateTime get createdDateTime;
+  @override
+  bool get isConguratulation;
   @override
   @JsonKey(ignore: true)
   _$RecordCopyWith<_Record> get copyWith => throw _privateConstructorUsedError;

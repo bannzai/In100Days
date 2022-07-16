@@ -41,7 +41,8 @@ class RecordList extends HookWidget {
       } else {
         if (_isCongratulation) {
           if (!congratulationIsShown.value) {
-            Navigator.of(context).push(CongratulationPageRoute.route());
+            Navigator.of(context).push(CongratulationPageRoute.route(
+                user: state.user, goal: state.goal));
             congratulationIsShown.value = true;
           }
         }
