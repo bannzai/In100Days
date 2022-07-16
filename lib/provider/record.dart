@@ -13,6 +13,20 @@ FromFirestore<Record> _fromFirestore() =>
     (snapshot, _) => Record.fromJson(snapshot.data()!);
 ToFirestore<Record> _toFirestore() => (value, _) => value.toJson();
 
+class CreateRecord {
+  Future<void> call(
+    Record record, {
+    required String userID,
+    required String goalID,
+  }) async {
+    await recordCollectionReference(userID: userID, goalID: goalID)
+        .doc()
+        .set(record, SetOptions(merge: true));
+  }
+}
+
+final createRecordProvider = Provider((ref) => CreateRecord());
+
 CollectionReference<Record> recordCollectionReference(
         {required String userID, required String goalID}) =>
     FirebaseFirestore.instance

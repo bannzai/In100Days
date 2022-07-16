@@ -1,13 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_twitter_api/api/tweets/data/tweet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
-import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/features/record_add/image_list.dart';
-import 'package:in_100_days/provider/record.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/style/button.dart';
@@ -23,7 +21,7 @@ class RecordAddSheet extends HookConsumerWidget {
   final String initialMessage;
   final User user;
   final Goal goal;
-  final VoidCallback onPost;
+  final Future<void> Function(Tweet, String) onPost;
 
   const RecordAddSheet({
     Key? key,
@@ -96,17 +94,8 @@ class RecordAddSheet extends HookConsumerWidget {
                               status: text.value + "\n\n" + goal.fullHashTag,
                               mediaIds: mediaIDs,
                             );
-                            final record = Record(
-                              tweetID: tweet.idStr!,
-                              message: text.value,
-                              hashTag: goal.fullHashTag,
-                              createdDateTime: DateTime.now(),
-                            );
 
-                            await recordCollectionReference(
-                              userID: user.id!,
-                              goalID: goal.id!,
-                            ).doc().set(record, SetOptions(merge: true));
+                            await onPost(tweet, text.value);
 
                             Navigator.of(context).pop();
                           } catch (error) {
@@ -303,7 +292,7 @@ void showRecordAddSheet(
   required String initialMessage,
   required User user,
   required Goal goal,
-  required VoidCallback onPost,
+  required Future<void> Function(Tweet, String) onPost,
 }) {
   showModalBottomSheet(
     context: context,
