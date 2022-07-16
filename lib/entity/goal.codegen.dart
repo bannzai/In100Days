@@ -20,6 +20,7 @@ class Goal with _$Goal {
         required DateTime createdDateTime,
     required List<PurchasedProduct> purchasedProducts,
   }) = _Goal;
+  Goal._();
 
   factory Goal.fromJson(Map<String, dynamic> json) => _$GoalFromJson(json);
 

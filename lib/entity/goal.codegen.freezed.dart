@@ -176,14 +176,15 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_Goal implements _Goal {
+class _$_Goal extends _Goal {
   _$_Goal(
       {this.id,
       required this.goalAction,
       required this.hashTag,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required this.createdDateTime,
-      required this.purchasedProducts});
+      required this.purchasedProducts})
+      : super._();
 
   factory _$_Goal.fromJson(Map<String, dynamic> json) => _$$_GoalFromJson(json);
 
@@ -241,7 +242,7 @@ class _$_Goal implements _Goal {
   }
 }
 
-abstract class _Goal implements Goal {
+abstract class _Goal extends Goal {
   factory _Goal(
       {String? id,
       required String goalAction,
@@ -249,6 +250,7 @@ abstract class _Goal implements Goal {
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
       required List<PurchasedProduct> purchasedProducts}) = _$_Goal;
+  _Goal._() : super._();
 
   factory _Goal.fromJson(Map<String, dynamic> json) = _$_Goal.fromJson;
 
