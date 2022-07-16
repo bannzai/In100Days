@@ -39,5 +39,6 @@ CollectionReference<Record> recordCollectionReference(
 final recordsStreamProvider = StreamProvider.family((ref, String goalID) =>
     recordCollectionReference(
             userID: FirebaseAuth.instance.currentUser!.uid, goalID: goalID)
+        .orderBy("createdDateTime", descending: true)
         .snapshots()
         .map((event) => event.docs.map((e) => e.data()).toList()));
