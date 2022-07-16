@@ -11,3 +11,12 @@ bool isGameOver(List<Record> records) {
 bool isCongratulation(Goal goal) {
   return goal.createdDateTime.difference(DateTime.now()).inDays >= 100;
 }
+
+bool purchasedInToday(Goal goal) {
+  if (goal.purchasedProducts.isEmpty) {
+    return false;
+  }
+
+  final purchaseProduct = goal.purchasedProducts.last;
+  return purchaseProduct.purchasedDateTime.day == DateTime.now().day;
+}

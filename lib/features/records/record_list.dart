@@ -25,15 +25,18 @@ class RecordList extends HookWidget {
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
     final gameOverIsShown = useState(false);
     final _isGameOver = isGameOver(state.records);
+    final _purchasedInToday = purchasedInToday(state.goal);
     final congratulationIsShown = useState(false);
     final _isCongratulation = isCongratulation(state.goal);
 
     Future.microtask(() {
       if (_isGameOver) {
-        if (!gameOverIsShown.value) {
-          Navigator.of(context).push(GameOverPageRoute.route(
-              goal: state.goal, userID: state.user.id!));
-          gameOverIsShown.value = true;
+        if (!_purchasedInToday) {
+          if (!gameOverIsShown.value) {
+            Navigator.of(context).push(GameOverPageRoute.route(
+                goal: state.goal, userID: state.user.id!));
+            gameOverIsShown.value = true;
+          }
         }
       } else {
         if (_isCongratulation) {
@@ -67,7 +70,7 @@ class RecordList extends HookWidget {
             ],
           ),
         ),
-        if (_isGameOver)
+        if (_isGameOver && !_purchasedInToday)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: PrimaryButton(
