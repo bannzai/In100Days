@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/root.dart';
 import 'package:in_100_days/style/color.dart';
@@ -20,6 +21,13 @@ class MyApp extends StatelessWidget {
           ),
           textSelectionTheme: const TextSelectionThemeData(
             cursorColor: AppColor.primary,
+          ),
+          appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarBrightness: Brightness.dark,
+              statusBarIconBrightness: Brightness.dark,
+              statusBarColor: Colors.white,
+            ),
           ),
         ),
         home: const Root(),
