@@ -392,6 +392,7 @@
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.Dev.AppStore;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug-dev";
 		};
@@ -404,6 +405,7 @@
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.Dev.AppStore;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Profile-dev";
 		};
@@ -416,6 +418,7 @@
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.Dev.AppStore;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release-dev";
 		};
@@ -428,6 +431,7 @@
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug-prod";
 		};
@@ -440,6 +444,7 @@
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Profile-prod";
 		};
@@ -452,6 +457,7 @@
 				DEVELOPMENT_TEAM = TQPN82UBBY;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release-prod";
 		};
@@ -526,6 +532,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.Dev.AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -875,6 +882,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -900,6 +908,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = In100Days.AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
