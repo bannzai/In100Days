@@ -33,12 +33,12 @@ final userStreamProvider = StreamProvider<User?>((ref) {
     return const Stream.empty();
   }
 
-  final twitterAuthTokenSecretValue = firebaseCurrentUser.asData?.value;
-  if (twitterAuthTokenSecretValue == null) {
+  final firebaseCurrentUserValue = firebaseCurrentUser.asData?.value;
+  if (firebaseCurrentUserValue == null) {
     return Stream.value(null);
   }
 
-  return userDocumentReference(userID: twitterAuthTokenSecretValue.uid)
+  return userDocumentReference(userID: firebaseCurrentUserValue.uid)
       .snapshots()
       .map((event) => event.data());
 });
