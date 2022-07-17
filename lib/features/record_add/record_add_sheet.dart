@@ -50,16 +50,16 @@ class RecordAddSheet extends HookConsumerWidget {
     // TODO: Fill store link if record is empty after first release
     final textFieldController = useTextEditingController(text: initialMessage);
 
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.only(
-        left: paddingHorizontal,
-        top: 60,
-        right: paddingHorizontal,
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
-      child: SafeArea(
-        bottom: false,
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        color: Colors.white,
+        padding: EdgeInsets.only(
+          left: paddingHorizontal,
+          top: 40,
+          right: paddingHorizontal,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
         child: Column(
           children: [
             Row(

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
@@ -45,64 +46,67 @@ class RecordListPage extends HookConsumerWidget {
       data: (state) {
         final gameOverAndNotYetPurchase =
             isGameOver(state.records) && !purchasedInToday(goal);
-        return Scaffold(
-          body: SafeArea(
-            child: Stack(
-              children: [
-                _content(state),
-                Positioned(
-                  right: 10,
-                  child: IconButton(
-                    icon: const Icon(Icons.settings),
-                    onPressed: () {
-                      Navigator.of(context).push(UserPageRoute.route());
-                    },
-                  ),
-                )
-              ],
-            ),
-          ),
-          floatingActionButton:
-              gameOverAndNotYetPurchase || state.records.isEmpty
-                  ? null
-                  : ElevatedButton(
-                      onPressed: () => showRecordAddSheet(
-                        context,
-                        initialMessage: "",
-                        goal: state.goal,
-                        user: state.user,
-                        onPost: (tweet, text, recordAddSheetContext) async {
-                          final record = Record(
-                            tweetID: tweet.idStr!,
-                            message: text,
-                            hashTag: state.goal.hashTag,
-                            createdDateTime: DateTime.now(),
-                          );
-
-                          final createRecord = CreateRecord();
-                          await createRecord.call(record,
-                              userID: state.user.id!, goalID: state.goal.id!);
-
-                          Navigator.of(recordAddSheetContext).pop();
-                        },
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                      ),
-                      child: Container(
-                        width: 70,
-                        height: 70,
-                        decoration: const BoxDecoration(
-                          color: AppColor.primary,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                      ),
+        return AnnotatedRegion(
+          value: SystemUiOverlayStyle.dark,
+          child: Scaffold(
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  _content(state),
+                  Positioned(
+                    right: 10,
+                    child: IconButton(
+                      icon: const Icon(Icons.settings),
+                      onPressed: () {
+                        Navigator.of(context).push(UserPageRoute.route());
+                      },
                     ),
+                  )
+                ],
+              ),
+            ),
+            floatingActionButton:
+                gameOverAndNotYetPurchase || state.records.isEmpty
+                    ? null
+                    : ElevatedButton(
+                        onPressed: () => showRecordAddSheet(
+                          context,
+                          initialMessage: "",
+                          goal: state.goal,
+                          user: state.user,
+                          onPost: (tweet, text, recordAddSheetContext) async {
+                            final record = Record(
+                              tweetID: tweet.idStr!,
+                              message: text,
+                              hashTag: state.goal.hashTag,
+                              createdDateTime: DateTime.now(),
+                            );
+
+                            final createRecord = CreateRecord();
+                            await createRecord.call(record,
+                                userID: state.user.id!, goalID: state.goal.id!);
+
+                            Navigator.of(recordAddSheetContext).pop();
+                          },
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                        ),
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          decoration: const BoxDecoration(
+                            color: AppColor.primary,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 35,
+                          ),
+                        ),
+                      ),
+          ),
         );
       },
       error: (error, _) => ErrorPage(
