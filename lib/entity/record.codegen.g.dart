@@ -12,6 +12,7 @@ _$_Record _$$_RecordFromJson(Map<String, dynamic> json) => _$_Record(
       hashTag: json['hashTag'] as String,
       createdDateTime: NonNullTimestampConverter.timestampToDateTime(
           json['createdDateTime'] as Timestamp),
+      isConguratulation: json['isConguratulation'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_RecordToJson(_$_Record instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_RecordToJson(_$_Record instance) => <String, dynamic>{
       'hashTag': instance.hashTag,
       'createdDateTime': NonNullTimestampConverter.dateTimeToTimestamp(
           instance.createdDateTime),
+      'isConguratulation': instance.isConguratulation,
     };

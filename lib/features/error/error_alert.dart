@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class ErrorAlert extends StatelessWidget {
   final String? title;
@@ -45,8 +46,16 @@ void showErrorAlert(BuildContext context,
     builder: (_) {
       return ErrorAlert(
         title: title,
-        errorMessage:
-            (error is FormatException) ? error.message : error.toString(),
+        errorMessage: () {
+          if (error is FormatException) {
+            return error.message;
+          }
+          // handle twitter client error
+          if (error is Response) {
+            return error.body;
+          }
+          return error.toString();
+        }(),
       );
     },
   );

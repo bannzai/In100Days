@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/components/kirakira.dart';
+import 'package:in_100_days/entity/goal.codegen.dart';
+import 'package:in_100_days/entity/user.codegen.dart';
+import 'package:in_100_days/features/record_add/record_add_sheet.dart';
 
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
+import 'package:in_100_days/utility/complete_result.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PurchaseCompletePage extends StatelessWidget {
   final Product product;
-  const PurchaseCompletePage({Key? key, required this.product})
-      : super(key: key);
+  final User user;
+  final Goal goal;
+  const PurchaseCompletePage({
+    Key? key,
+    required this.product,
+    required this.user,
+    required this.goal,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +88,17 @@ class PurchaseCompletePage extends StatelessWidget {
               PrimaryButton(
                 text: 'ふっかつのツイートをする',
                 onPressed: () async {
-                  // TODO:
+                  showRecordAddSheet(
+                    context,
+                    initialMessage:
+                        "${product.priceString}を代償に ${goal.fullHashTag} を再開しました",
+                    goal: goal,
+                    user: user,
+                    onPost: (tweet, text, recordAddSheetContext) async {
+                      Navigator.of(recordAddSheetContext).pop();
+                      Navigator.of(context).pop(completed);
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 10),
@@ -93,11 +113,14 @@ class PurchaseCompletePage extends StatelessWidget {
 }
 
 extension PurchaseCompletePageRoute on PurchaseCompletePage {
-  static Route<dynamic> route({required Product product}) {
+  static Route<dynamic> route(
+      {required Product product, required User user, required Goal goal}) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: "PurchaseCompletePage"),
       builder: (_) => PurchaseCompletePage(
         product: product,
+        user: user,
+        goal: goal,
       ),
       fullscreenDialog: true,
     );

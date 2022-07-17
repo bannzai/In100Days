@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/components/kirakira.dart';
+import 'package:in_100_days/entity/goal.codegen.dart';
+import 'package:in_100_days/entity/record.codegen.dart';
+import 'package:in_100_days/entity/user.codegen.dart';
+import 'package:in_100_days/features/record_add/record_add_sheet.dart';
+import 'package:in_100_days/provider/record.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
 
 class CongratulationPage extends StatelessWidget {
-  const CongratulationPage({Key? key}) : super(key: key);
+  final User user;
+  final Goal goal;
+  const CongratulationPage({Key? key, required this.user, required this.goal})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +82,28 @@ class CongratulationPage extends StatelessWidget {
               PrimaryButton(
                 text: 'お祝いのツイートをする',
                 onPressed: () async {
-                  // TODO:
+                  showRecordAddSheet(
+                    context,
+                    initialMessage: "",
+                    goal: goal,
+                    user: user,
+                    onPost: (tweet, text, recordAddSheetContext) async {
+                      final record = Record(
+                        tweetID: tweet.idStr!,
+                        message: text,
+                        hashTag: goal.hashTag,
+                        createdDateTime: DateTime.now(),
+                        isConguratulation: true,
+                      );
+
+                      final createRecord = CreateRecord();
+                      await createRecord.call(record,
+                          userID: user.id!, goalID: goal.id!);
+
+                      Navigator.of(recordAddSheetContext).pop();
+                      Navigator.of(context).pop();
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 10),
@@ -89,10 +118,10 @@ class CongratulationPage extends StatelessWidget {
 }
 
 extension CongratulationPageRoute on CongratulationPage {
-  static Route<dynamic> route() {
+  static Route<dynamic> route({required Goal goal, required User user}) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: "CongratulationPage"),
-      builder: (_) => const CongratulationPage(),
+      builder: (_) => CongratulationPage(goal: goal, user: user),
       fullscreenDialog: true,
     );
   }

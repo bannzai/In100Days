@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:in_100_days/components/user_info.dart';
+import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/record_add/record_add_sheet.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
+import 'package:in_100_days/provider/record.dart';
 import 'package:in_100_days/style/color.dart';
 
 class RecordListEmpty extends StatelessWidget {
@@ -19,7 +21,7 @@ class RecordListEmpty extends StatelessWidget {
           const SizedBox(height: 10),
           UserInfo(
             user: state.user,
-            hashTag: state.goal.fullHashTag,
+            fullHashTag: state.goal.fullHashTag,
           ),
           const SizedBox(height: 20),
           Column(
@@ -30,8 +32,25 @@ class RecordListEmpty extends StatelessWidget {
                   style: TextStyle(fontSize: 20, color: AppColor.textMain)),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () => showRecordAddSheet(context,
-                    goal: state.goal, user: state.user),
+                onPressed: () => showRecordAddSheet(
+                  context,
+                  initialMessage: "",
+                  goal: state.goal,
+                  user: state.user,
+                  onPost: (tweet, text, recordAddSheetContext) async {
+                    final record = Record(
+                      tweetID: tweet.idStr!,
+                      message: text,
+                      hashTag: state.goal.hashTag,
+                      createdDateTime: DateTime.now(),
+                    );
+
+                    final createRecord = CreateRecord();
+                    await createRecord.call(record,
+                        userID: state.user.id!, goalID: state.goal.id!);
+                    Navigator.of(recordAddSheetContext).pop();
+                  },
+                ),
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),
                 ),

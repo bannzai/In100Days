@@ -9,7 +9,8 @@ class ErrorLogger {
     dynamic exception,
     StackTrace? stack,
   ) {
-    unawaited(FirebaseCrashlytics.instance.recordError(exception, stack));
+    unawaited(
+        FirebaseCrashlytics.instance.recordError(exception.toString(), stack));
   }
 
   void log(String message) {

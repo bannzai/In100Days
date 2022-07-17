@@ -22,7 +22,8 @@ class GoalInputSheet extends HookConsumerWidget {
     final textFieldController = useTextEditingController(text: "");
 
     const double paddingHorizontal = 20;
-    final hashTag = "#100日後に${text.value}${user.twitterID}";
+    final hashTag = "100日後に${text.value}${user.twitterID}";
+    final fullHashTag = "#" + hashTag;
 
     return Scaffold(
       body: SafeArea(
@@ -59,7 +60,7 @@ class GoalInputSheet extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              UserInfo(user: user, hashTag: hashTag),
+              UserInfo(user: user, fullHashTag: fullHashTag),
               const SizedBox(height: 40.5),
               Column(
                 children: [
@@ -145,7 +146,7 @@ class GoalInputSheet extends HookConsumerWidget {
                         try {
                           final goal = Goal(
                             goalAction: text.value,
-                            fullHashTag: hashTag,
+                            hashTag: hashTag,
                             createdDateTime: DateTime.now(),
                             purchasedProducts: [],
                           );

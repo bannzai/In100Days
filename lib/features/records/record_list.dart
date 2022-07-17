@@ -10,8 +10,7 @@ import 'package:in_100_days/features/purchase/purchase_sheet.dart';
 import 'package:in_100_days/features/records/state.codegen.dart';
 import 'package:in_100_days/style/button.dart';
 import 'package:in_100_days/style/color.dart';
-import 'package:in_100_days/utility/is_congratulation.dart';
-import 'package:in_100_days/utility/is_over.dart';
+import 'package:in_100_days/features/records/utility.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,20 +25,24 @@ class RecordList extends HookWidget {
         state.goal.createdDateTime.add(const Duration(days: 100 - 1));
     final gameOverIsShown = useState(false);
     final _isGameOver = isGameOver(state.records);
+    final _purchasedInToday = purchasedInToday(state.goal);
     final congratulationIsShown = useState(false);
     final _isCongratulation = isCongratulation(state.goal);
 
     Future.microtask(() {
       if (_isGameOver) {
-        if (!gameOverIsShown.value) {
-          Navigator.of(context).push(GameOverPageRoute.route(
-              goal: state.goal, userID: state.user.id!));
-          gameOverIsShown.value = true;
+        if (!_purchasedInToday) {
+          if (!gameOverIsShown.value) {
+            Navigator.of(context).push(
+                GameOverPageRoute.route(goal: state.goal, user: state.user));
+            gameOverIsShown.value = true;
+          }
         }
       } else {
         if (_isCongratulation) {
           if (!congratulationIsShown.value) {
-            Navigator.of(context).push(CongratulationPageRoute.route());
+            Navigator.of(context).push(CongratulationPageRoute.route(
+                user: state.user, goal: state.goal));
             congratulationIsShown.value = true;
           }
         }
@@ -54,7 +57,7 @@ class RecordList extends HookWidget {
               const SizedBox(height: 10),
               UserInfo(
                 user: state.user,
-                hashTag: state.goal.fullHashTag,
+                fullHashTag: state.goal.fullHashTag,
               ),
               const SizedBox(height: 20),
               ...state.records.asMap().entries.map((entry) {
@@ -68,7 +71,7 @@ class RecordList extends HookWidget {
             ],
           ),
         ),
-        if (_isGameOver)
+        if (_isGameOver && !_purchasedInToday)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: PrimaryButton(
@@ -76,7 +79,10 @@ class RecordList extends HookWidget {
                         goal: state.goal,
                         userID: state.user.id!, onPurchased: (product) {
                       Navigator.of(context).push(
-                          PurchaseCompletePageRoute.route(product: product));
+                          PurchaseCompletePageRoute.route(
+                              product: product,
+                              goal: state.goal,
+                              user: state.user));
                     }),
                 text: "本気で再開する"),
           ),

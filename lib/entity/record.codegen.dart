@@ -17,6 +17,8 @@ class Record with _$Record {
       toJson: NonNullTimestampConverter.dateTimeToTimestamp,
     )
         required DateTime createdDateTime,
+    @Default(false)
+        bool isConguratulation,
   }) = _Record;
 
   factory Record.fromJson(Map<String, dynamic> json) => _$RecordFromJson(json);

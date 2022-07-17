@@ -1,13 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_twitter_api/api/tweets/data/tweet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/entity/goal.codegen.dart';
-import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/features/error/error_alert.dart';
 import 'package:in_100_days/features/record_add/image_list.dart';
-import 'package:in_100_days/provider/record.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:in_100_days/provider/twitter_api_client.dart';
 import 'package:in_100_days/style/button.dart';
@@ -20,18 +18,22 @@ import 'package:mime_type/mime_type.dart';
 const _1MB = 1024 * 1024;
 
 class RecordAddSheet extends HookConsumerWidget {
+  final String initialMessage;
   final User user;
   final Goal goal;
+  final Future<void> Function(Tweet, String, BuildContext) onPost;
 
   const RecordAddSheet({
     Key? key,
+    required this.initialMessage,
     required this.user,
     required this.goal,
+    required this.onPost,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final text = useState("");
+    final text = useState(initialMessage);
     final images = useState<List<XFile>>([]);
 
     const double profileImageRadius = 16;
@@ -46,7 +48,7 @@ class RecordAddSheet extends HookConsumerWidget {
 
     const textFieldLineCount = 20;
     // TODO: Fill store link if record is empty after first release
-    final textFieldController = useTextEditingController(text: "");
+    final textFieldController = useTextEditingController(text: initialMessage);
 
     return Container(
       color: Colors.white,
@@ -92,19 +94,8 @@ class RecordAddSheet extends HookConsumerWidget {
                               status: text.value + "\n\n" + goal.fullHashTag,
                               mediaIds: mediaIDs,
                             );
-                            final record = Record(
-                              tweetID: tweet.idStr!,
-                              message: text.value,
-                              hashTag: goal.fullHashTag,
-                              createdDateTime: DateTime.now(),
-                            );
 
-                            await recordCollectionReference(
-                              userID: user.id!,
-                              goalID: goal.id!,
-                            ).doc().set(record, SetOptions(merge: true));
-
-                            Navigator.of(context).pop();
+                            await onPost(tweet, text.value, context);
                           } catch (error) {
                             showErrorAlert(context, error: error);
                           }
@@ -294,12 +285,22 @@ class RecordAddSheet extends HookConsumerWidget {
   }
 }
 
-void showRecordAddSheet(BuildContext context,
-    {required Goal goal, required User user}) {
+void showRecordAddSheet(
+  BuildContext context, {
+  required String initialMessage,
+  required User user,
+  required Goal goal,
+  required Future<void> Function(Tweet, String, BuildContext) onPost,
+}) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) => RecordAddSheet(goal: goal, user: user),
+    builder: (context) => RecordAddSheet(
+      initialMessage: initialMessage,
+      goal: goal,
+      user: user,
+      onPost: onPost,
+    ),
   );
 }
