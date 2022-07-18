@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/provider/auth.dart';
 
@@ -38,6 +39,7 @@ final userStreamProvider = StreamProvider<User?>((ref) {
     return Stream.value(null);
   }
 
+  debugPrint("userID: ${firebaseCurrentUserValue.uid}");
   return userDocumentReference(userID: firebaseCurrentUserValue.uid)
       .snapshots()
       .map((event) => event.data());
