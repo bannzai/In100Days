@@ -11,7 +11,7 @@ final homeAsyncStateProvider =
   try {
     final goals = ref.watch(goalsStreamProvider);
 
-    if (user is AsyncLoading || goals is AsyncLoading) {
+    if (goals is AsyncLoading) {
       return const AsyncValue.loading();
     }
 
