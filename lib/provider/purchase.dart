@@ -35,6 +35,7 @@ List<String> productIdentifiers() {
 }
 
 final purchaseProductsProvider = FutureProvider((ref) async {
-  final products = await Purchases.getProducts(productIdentifiers());
+  final products = await Purchases.getProducts(productIdentifiers(),
+      type: PurchaseType.inapp);
   return products..sort((a, b) => a.price > b.price ? 1 : 0);
 });
