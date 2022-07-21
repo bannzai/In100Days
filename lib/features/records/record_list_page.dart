@@ -24,6 +24,20 @@ class RecordListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(recordsAsyncStateProvider(goal));
 
+    final latestRecord = state.asData?.value.records.firstOrNull;
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            duration: Duration(seconds: 2),
+            content: Text("ツイートしました"),
+          ),
+        );
+      });
+
+      return null;
+    }, [latestRecord]);
+
     return state.when(
       data: (state) {
         final gameOverAndNotYetPurchase =
@@ -69,14 +83,6 @@ class RecordListPage extends HookConsumerWidget {
                                 userID: state.user.id!, goalID: state.goal.id!);
 
                             Navigator.of(recordAddSheetContext).pop();
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  duration: Duration(seconds: 2),
-                                  content: Text("ツイートしました"),
-                                ),
-                              );
-                            });
                           },
                         ),
                         style: ElevatedButton.styleFrom(
