@@ -25,15 +25,19 @@ class RecordListPage extends HookConsumerWidget {
     final state = ref.watch(recordsAsyncStateProvider(goal));
 
     final latestRecord = state.asData?.value.records.firstOrNull;
+    final initialLastestRecord =
+        useMemoized(() => state.asData?.value.records.firstOrNull);
     useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            duration: Duration(seconds: 2),
-            content: Text("ツイートしました"),
-          ),
-        );
-      });
+      if (latestRecord != initialLastestRecord) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              duration: Duration(seconds: 2),
+              content: Text("ツイートしました"),
+            ),
+          );
+        });
+      }
 
       return null;
     }, [latestRecord]);
