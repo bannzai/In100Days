@@ -49,14 +49,12 @@ class RecordListEmpty extends StatelessWidget {
                     await createRecord.call(record,
                         userID: state.user.id!, goalID: state.goal.id!);
                     Navigator.of(recordAddSheetContext).pop();
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          duration: Duration(seconds: 2),
-                          content: Text("ツイートしました"),
-                        ),
-                      );
-                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        duration: Duration(seconds: 2),
+                        content: Text("ツイートしました"),
+                      ),
+                    );
                   },
                 ),
                 style: ElevatedButton.styleFrom(

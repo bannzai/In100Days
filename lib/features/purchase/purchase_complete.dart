@@ -97,14 +97,12 @@ class PurchaseCompletePage extends StatelessWidget {
                     onPost: (tweet, text, recordAddSheetContext) async {
                       Navigator.of(recordAddSheetContext).pop();
                       Navigator.of(context).pop(completed);
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            duration: Duration(seconds: 2),
-                            content: Text("ツイートしました"),
-                          ),
-                        );
-                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(seconds: 2),
+                          content: Text("ツイートしました"),
+                        ),
+                      );
                     },
                   );
                 },
