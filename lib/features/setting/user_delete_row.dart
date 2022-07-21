@@ -7,6 +7,7 @@ import 'package:in_100_days/provider/secure_storage.dart';
 import 'package:in_100_days/secret/secret.dart';
 import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/error_log.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:twitter_login/twitter_login.dart';
 
 class UserDeleteRow extends StatelessWidget {
@@ -141,10 +142,11 @@ class UserDeleteRow extends StatelessWidget {
   }
 
   Future<UserCredential> _reauthentificate() async {
+    final package = await PackageInfo.fromPlatform();
     final twitterSignIn = TwitterLogin(
       apiKey: Secret.twitterApiKey,
       apiSecretKey: Secret.twitterApiKeySecret,
-      redirectURI: 'in100days://',
+      redirectURI: package.packageName,
     );
     final authResult = await twitterSignIn.login();
     final authToken = authResult.authToken;

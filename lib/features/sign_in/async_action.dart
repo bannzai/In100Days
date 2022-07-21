@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:in_100_days/entity/user.codegen.dart';
 import 'package:in_100_days/provider/secure_storage.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:in_100_days/secret/secret.dart';
 import 'package:twitter_login/entity/auth_result.dart';
@@ -54,11 +55,12 @@ class SignInAsyncAction {
     return user;
   }
 
-  Future<AuthResult> twitterSignIn() {
+  Future<AuthResult> twitterSignIn() async {
+    final package = await PackageInfo.fromPlatform();
     final twitterSignIn = TwitterLogin(
       apiKey: Secret.twitterApiKey,
       apiSecretKey: Secret.twitterApiKeySecret,
-      redirectURI: 'in100days://',
+      redirectURI: package.packageName,
     );
     return twitterSignIn.login();
   }
