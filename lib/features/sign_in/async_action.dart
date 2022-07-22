@@ -60,7 +60,7 @@ class SignInAsyncAction {
     final twitterSignIn = TwitterLogin(
       apiKey: Secret.twitterApiKey,
       apiSecretKey: Secret.twitterApiKeySecret,
-      redirectURI: package.packageName,
+      redirectURI: package.packageName + "://",
     );
     return twitterSignIn.login();
   }

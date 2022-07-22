@@ -146,7 +146,7 @@ class UserDeleteRow extends StatelessWidget {
     final twitterSignIn = TwitterLogin(
       apiKey: Secret.twitterApiKey,
       apiSecretKey: Secret.twitterApiKeySecret,
-      redirectURI: package.packageName,
+      redirectURI: package.packageName + "://",
     );
     final authResult = await twitterSignIn.login();
     final authToken = authResult.authToken;
