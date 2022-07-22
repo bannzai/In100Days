@@ -37,7 +37,7 @@ class RecordListEmpty extends StatelessWidget {
                   initialMessage:
                       """「100日後」にアプリで ${state.goal.fullHashTag} を始めました！
 
-                  「100日後」にアプリ: in100days.page.link/welcom""",
+「100日後」にアプリ: in100days.page.link/welcom""",
                   goal: state.goal,
                   user: state.user,
                   onPost: (tweet, text, recordAddSheetContext) async {
