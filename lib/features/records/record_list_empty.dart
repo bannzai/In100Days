@@ -34,7 +34,10 @@ class RecordListEmpty extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => showRecordAddSheet(
                   context,
-                  initialMessage: "",
+                  initialMessage:
+                      """「100日後に」アプリで ${state.goal.fullHashTag} を始めました！
+
+「100日後に」アプリ: in100days.page.link/welcom""",
                   goal: state.goal,
                   user: state.user,
                   onPost: (tweet, text, recordAddSheetContext) async {
@@ -49,6 +52,12 @@ class RecordListEmpty extends StatelessWidget {
                     await createRecord.call(record,
                         userID: state.user.id!, goalID: state.goal.id!);
                     Navigator.of(recordAddSheetContext).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        duration: Duration(seconds: 2),
+                        content: Text("ツイートしました"),
+                      ),
+                    );
                   },
                 ),
                 style: ElevatedButton.styleFrom(

@@ -67,7 +67,6 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.bannzai.in100days"
         minSdkVersion 23
         targetSdkVersion 31
@@ -92,11 +91,6 @@ android {
     }
     // ref: https://stackoverflow.com/questions/72015115/no-signature-of-method-build-9to1cg5tnfrkz8e8n77tajtyd-android-is-applicable
     ndkVersion "23.1.7779620"
-    
-//    play {
-//       track = 'internal'
-//       serviceAccountCredentials.set(file('service-account.json'))
-//    }
 }
 
 flutter {

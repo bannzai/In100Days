@@ -92,17 +92,23 @@ class RecordList extends HookWidget {
 
   Widget _element(BuildContext context,
       {required Record record, required int dateNumber, required int index}) {
+    // FIXME: Prevent manual calculation for message area width
+    const avatarRadius = 30.0;
+    const avatarBorderWidth = 0.5;
+    const horizonalPadding = 14.0;
+    const spacingAvatarBetweenMessageArea = 10.0;
     return Column(
       children: [
         if (index == 0) const Divider(color: Colors.grey),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+          padding: const EdgeInsets.symmetric(
+              vertical: 10, horizontal: horizonalPadding),
           child: Row(
             children: [
               GestureDetector(
                 child: Container(
                   child: CircleAvatar(
-                    radius: 30,
+                    radius: avatarRadius,
                     backgroundImage:
                         NetworkImage(state.user.orignalProfileImageURL),
                     backgroundColor: Colors.black,
@@ -112,7 +118,7 @@ class RecordList extends HookWidget {
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.black,
-                      width: 0.5,
+                      width: avatarBorderWidth,
                     ),
                   ),
                 ),
@@ -120,7 +126,7 @@ class RecordList extends HookWidget {
                   openTwitterUser(state.user.twitterID);
                 },
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: spacingAvatarBetweenMessageArea),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -160,30 +166,36 @@ class RecordList extends HookWidget {
                           child: const Icon(Icons.open_in_new, size: 20)),
                     ],
                   ),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: record.message + "\n\n",
-                          style: const TextStyle(
-                            color: AppColor.textMain,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width -
+                        (avatarRadius * 2 + avatarBorderWidth * 2) -
+                        spacingAvatarBetweenMessageArea -
+                        (horizonalPadding * 2),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: record.message + "\n\n",
+                            style: const TextStyle(
+                              color: AppColor.textMain,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: record.hashTag,
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              openTwitterHashTag(record.hashTag);
-                            },
-                          style: const TextStyle(
-                            color: AppColor.twitterHashTag,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
+                          TextSpan(
+                            text: record.hashTag,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                openTwitterHashTag(record.hashTag);
+                              },
+                            style: const TextStyle(
+                              color: AppColor.twitterHashTag,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
