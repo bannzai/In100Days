@@ -195,7 +195,7 @@ class RecordList extends HookWidget {
                             ),
                           ),
                           TextSpan(
-                            text: record.hashTag,
+                            text: "#" + record.hashTag,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 openTwitterHashTag(record.hashTag);
