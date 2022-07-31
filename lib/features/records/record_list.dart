@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_100_days/components/user_info.dart';
 import 'package:in_100_days/entity/record.codegen.dart';
 import 'package:in_100_days/features/congratulation/conguratulation_page.dart';
@@ -29,25 +30,36 @@ class RecordList extends HookWidget {
     final congratulationIsShown = useState(false);
     final _isCongratulation = isCongratulation(state.goal);
 
-    Future.microtask(() {
+    useEffect(() {
       if (_isGameOver) {
         if (!_purchasedInToday) {
           if (!gameOverIsShown.value) {
-            Navigator.of(context).push(
-                GameOverPageRoute.route(goal: state.goal, user: state.user));
-            gameOverIsShown.value = true;
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              Navigator.of(context).push(
+                  GameOverPageRoute.route(goal: state.goal, user: state.user));
+              gameOverIsShown.value = true;
+            });
           }
         }
       } else {
         if (_isCongratulation) {
           if (!congratulationIsShown.value) {
-            Navigator.of(context).push(CongratulationPageRoute.route(
-                user: state.user, goal: state.goal));
-            congratulationIsShown.value = true;
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              Navigator.of(context).push(CongratulationPageRoute.route(
+                  user: state.user, goal: state.goal));
+              congratulationIsShown.value = true;
+            });
           }
         }
       }
-    });
+      return null;
+    }, [
+      _isGameOver,
+      _purchasedInToday,
+      gameOverIsShown.value,
+      _isCongratulation,
+      congratulationIsShown.value
+    ]);
 
     return Column(
       children: [
