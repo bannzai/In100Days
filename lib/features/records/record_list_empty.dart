@@ -52,12 +52,6 @@ class RecordListEmpty extends StatelessWidget {
                     await createRecord.call(record,
                         userID: state.user.id!, goalID: state.goal.id!);
                     Navigator.of(recordAddSheetContext).pop();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        duration: Duration(seconds: 2),
-                        content: Text("ツイートしました"),
-                      ),
-                    );
                   },
                 ),
                 style: ElevatedButton.styleFrom(
