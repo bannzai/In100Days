@@ -31,21 +31,13 @@ class Goal with _$Goal {
 
   String get fullHashTag => "#" + hashTag;
 
-  int get startDateOffset {
-    final startDate = this.startDate;
-    if (startDate != null) {
-      return startDate.difference(createdDateTime).inDays;
-    } else {
-      return 0;
-    }
-  }
-
   DateTime get goalDate {
     final startDate = this.startDate;
     if (startDate != null) {
-      return startDate.add(Duration(days: (100 - startDateOffset) - 1));
+      final diff = startDate.difference(createdDateTime).inDays;
+      return createdDateTime.add(Duration(days: diff));
     } else {
-      return createdDateTime.add(const Duration(days: 100 - 1));
+      return createdDateTime.add(const Duration(days: 100));
     }
   }
 }
