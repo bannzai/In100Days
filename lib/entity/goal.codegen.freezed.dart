@@ -26,6 +26,8 @@ class _$GoalTearOff {
       {String? id,
       required String goalAction,
       required String hashTag,
+      @JsonKey(fromJson: TimestampConverter.timestampToDateTime, toJson: TimestampConverter.dateTimeToTimestamp)
+          required DateTime? startDate,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
       required List<PurchasedProduct> purchasedProducts}) {
@@ -33,6 +35,7 @@ class _$GoalTearOff {
       id: id,
       goalAction: goalAction,
       hashTag: hashTag,
+      startDate: startDate,
       createdDateTime: createdDateTime,
       purchasedProducts: purchasedProducts,
     );
@@ -51,6 +54,10 @@ mixin _$Goal {
   String? get id => throw _privateConstructorUsedError;
   String get goalAction => throw _privateConstructorUsedError;
   String get hashTag => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: TimestampConverter.timestampToDateTime,
+      toJson: TimestampConverter.dateTimeToTimestamp)
+  DateTime? get startDate => throw _privateConstructorUsedError;
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
@@ -71,6 +78,8 @@ abstract class $GoalCopyWith<$Res> {
       {String? id,
       String goalAction,
       String hashTag,
+      @JsonKey(fromJson: TimestampConverter.timestampToDateTime, toJson: TimestampConverter.dateTimeToTimestamp)
+          DateTime? startDate,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
       List<PurchasedProduct> purchasedProducts});
@@ -89,6 +98,7 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
     Object? id = freezed,
     Object? goalAction = freezed,
     Object? hashTag = freezed,
+    Object? startDate = freezed,
     Object? createdDateTime = freezed,
     Object? purchasedProducts = freezed,
   }) {
@@ -105,6 +115,10 @@ class _$GoalCopyWithImpl<$Res> implements $GoalCopyWith<$Res> {
           ? _value.hashTag
           : hashTag // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
           : createdDateTime // ignore: cast_nullable_to_non_nullable
@@ -126,6 +140,8 @@ abstract class _$GoalCopyWith<$Res> implements $GoalCopyWith<$Res> {
       {String? id,
       String goalAction,
       String hashTag,
+      @JsonKey(fromJson: TimestampConverter.timestampToDateTime, toJson: TimestampConverter.dateTimeToTimestamp)
+          DateTime? startDate,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           DateTime createdDateTime,
       List<PurchasedProduct> purchasedProducts});
@@ -145,6 +161,7 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
     Object? id = freezed,
     Object? goalAction = freezed,
     Object? hashTag = freezed,
+    Object? startDate = freezed,
     Object? createdDateTime = freezed,
     Object? purchasedProducts = freezed,
   }) {
@@ -161,6 +178,10 @@ class __$GoalCopyWithImpl<$Res> extends _$GoalCopyWithImpl<$Res>
           ? _value.hashTag
           : hashTag // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdDateTime: createdDateTime == freezed
           ? _value.createdDateTime
           : createdDateTime // ignore: cast_nullable_to_non_nullable
@@ -181,6 +202,8 @@ class _$_Goal extends _Goal {
       {this.id,
       required this.goalAction,
       required this.hashTag,
+      @JsonKey(fromJson: TimestampConverter.timestampToDateTime, toJson: TimestampConverter.dateTimeToTimestamp)
+          required this.startDate,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required this.createdDateTime,
       required this.purchasedProducts})
@@ -196,6 +219,11 @@ class _$_Goal extends _Goal {
   final String hashTag;
   @override
   @JsonKey(
+      fromJson: TimestampConverter.timestampToDateTime,
+      toJson: TimestampConverter.dateTimeToTimestamp)
+  final DateTime? startDate;
+  @override
+  @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp)
   final DateTime createdDateTime;
@@ -204,7 +232,7 @@ class _$_Goal extends _Goal {
 
   @override
   String toString() {
-    return 'Goal(id: $id, goalAction: $goalAction, hashTag: $hashTag, createdDateTime: $createdDateTime, purchasedProducts: $purchasedProducts)';
+    return 'Goal(id: $id, goalAction: $goalAction, hashTag: $hashTag, startDate: $startDate, createdDateTime: $createdDateTime, purchasedProducts: $purchasedProducts)';
   }
 
   @override
@@ -216,6 +244,7 @@ class _$_Goal extends _Goal {
             const DeepCollectionEquality()
                 .equals(other.goalAction, goalAction) &&
             const DeepCollectionEquality().equals(other.hashTag, hashTag) &&
+            const DeepCollectionEquality().equals(other.startDate, startDate) &&
             const DeepCollectionEquality()
                 .equals(other.createdDateTime, createdDateTime) &&
             const DeepCollectionEquality()
@@ -228,6 +257,7 @@ class _$_Goal extends _Goal {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(goalAction),
       const DeepCollectionEquality().hash(hashTag),
+      const DeepCollectionEquality().hash(startDate),
       const DeepCollectionEquality().hash(createdDateTime),
       const DeepCollectionEquality().hash(purchasedProducts));
 
@@ -247,6 +277,8 @@ abstract class _Goal extends Goal {
       {String? id,
       required String goalAction,
       required String hashTag,
+      @JsonKey(fromJson: TimestampConverter.timestampToDateTime, toJson: TimestampConverter.dateTimeToTimestamp)
+          required DateTime? startDate,
       @JsonKey(fromJson: NonNullTimestampConverter.timestampToDateTime, toJson: NonNullTimestampConverter.dateTimeToTimestamp)
           required DateTime createdDateTime,
       required List<PurchasedProduct> purchasedProducts}) = _$_Goal;
@@ -260,6 +292,11 @@ abstract class _Goal extends Goal {
   String get goalAction;
   @override
   String get hashTag;
+  @override
+  @JsonKey(
+      fromJson: TimestampConverter.timestampToDateTime,
+      toJson: TimestampConverter.dateTimeToTimestamp)
+  DateTime? get startDate;
   @override
   @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,

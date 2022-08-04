@@ -14,6 +14,11 @@ class Goal with _$Goal {
     required String goalAction,
     required String hashTag,
     @JsonKey(
+      fromJson: TimestampConverter.timestampToDateTime,
+      toJson: TimestampConverter.dateTimeToTimestamp,
+    )
+        required DateTime? startDate,
+    @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp,
     )
