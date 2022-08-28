@@ -22,13 +22,8 @@ class GoalInputSheet extends HookConsumerWidget {
     final text = useState("");
     final textFieldController = useTextEditingController(text: "");
 
-    final estimateStartDate = DateTime.now().add(const Duration(days: 100));
-    final startDate = useState<DateTime>(estimateStartDate);
-    final latestDays =
-        100 - estimateStartDate.difference(startDate.value).inDays;
-
     const double paddingHorizontal = 20;
-    final hashTag = "$latestDays日後に${text.value}${user.twitterID}";
+    final hashTag = "100日後に${text.value}${user.twitterID}";
     final fullHashTag = "#" + hashTag;
 
     return AnnotatedRegion(
@@ -44,36 +39,27 @@ class GoalInputSheet extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Spacer(),
-                GestureDetector(
-                  onTap: () async {
-                    final selected =
-                        await _selectDate(context, startDate: startDate.value);
-                    if (selected != null) {
-                      startDate.value = selected;
-                    }
-                  },
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "$latestDays日後",
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.textMain,
-                          ),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "100日後",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.textMain,
                         ),
-                        const TextSpan(
-                          text: "に達成したい目標・なりたい自分を決めましょう",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.normal,
-                            color: AppColor.textMain,
-                          ),
+                      ),
+                      TextSpan(
+                        text: "に達成したい目標・なりたい自分を決めましょう",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal,
+                          color: AppColor.textMain,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -82,16 +68,16 @@ class GoalInputSheet extends HookConsumerWidget {
                 Column(
                   children: [
                     Row(
-                      children: [
+                      children: const [
                         Text(
-                          "#$latestDays日後に",
-                          style: const TextStyle(
+                          "#100日後に",
+                          style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 24,
                             color: AppColor.textMain,
                           ),
                         ),
-                        const Spacer(),
+                        Spacer(),
                       ],
                     ),
                     const SizedBox(height: 12),
@@ -164,7 +150,6 @@ class GoalInputSheet extends HookConsumerWidget {
                             final goal = Goal(
                               goalAction: text.value,
                               hashTag: hashTag,
-                              startDate: startDate.value,
                               createdDateTime: DateTime.now(),
                               purchasedProducts: [],
                             );
@@ -183,17 +168,6 @@ class GoalInputSheet extends HookConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Future<DateTime?> _selectDate(BuildContext context,
-      {required DateTime startDate}) async {
-    return await showDatePicker(
-      context: context,
-      helpText: "開始日を変更できます",
-      initialDate: startDate,
-      firstDate: DateTime.now().add(const Duration(days: 1)),
-      lastDate: DateTime.now().add(const Duration(days: 100)),
     );
   }
 }

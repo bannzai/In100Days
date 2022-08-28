@@ -9,7 +9,7 @@ bool isGameOver(List<Record> records) {
 }
 
 bool isCongratulation(Goal goal) {
-  return goal.goalDate.difference(DateTime.now()).inDays <= 0;
+  return goal.createdDateTime.difference(DateTime.now()).inDays >= 100;
 }
 
 bool purchasedInToday(Goal goal) {
