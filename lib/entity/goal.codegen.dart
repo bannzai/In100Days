@@ -14,11 +14,6 @@ class Goal with _$Goal {
     required String goalAction,
     required String hashTag,
     @JsonKey(
-      fromJson: TimestampConverter.timestampToDateTime,
-      toJson: TimestampConverter.dateTimeToTimestamp,
-    )
-        required DateTime? startDate,
-    @JsonKey(
       fromJson: NonNullTimestampConverter.timestampToDateTime,
       toJson: NonNullTimestampConverter.dateTimeToTimestamp,
     )
@@ -30,14 +25,4 @@ class Goal with _$Goal {
   factory Goal.fromJson(Map<String, dynamic> json) => _$GoalFromJson(json);
 
   String get fullHashTag => "#" + hashTag;
-
-  DateTime get goalDate {
-    final startDate = this.startDate;
-    if (startDate != null) {
-      final diff = startDate.difference(createdDateTime).inDays;
-      return createdDateTime.add(Duration(days: diff));
-    } else {
-      return createdDateTime.add(const Duration(days: 100));
-    }
-  }
 }

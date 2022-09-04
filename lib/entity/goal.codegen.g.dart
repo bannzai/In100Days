@@ -10,8 +10,6 @@ _$_Goal _$$_GoalFromJson(Map<String, dynamic> json) => _$_Goal(
       id: json['id'] as String?,
       goalAction: json['goalAction'] as String,
       hashTag: json['hashTag'] as String,
-      startDate: TimestampConverter.timestampToDateTime(
-          json['startDate'] as Timestamp?),
       createdDateTime: NonNullTimestampConverter.timestampToDateTime(
           json['createdDateTime'] as Timestamp),
       purchasedProducts: (json['purchasedProducts'] as List<dynamic>)
@@ -23,7 +21,6 @@ Map<String, dynamic> _$$_GoalToJson(_$_Goal instance) => <String, dynamic>{
       'id': instance.id,
       'goalAction': instance.goalAction,
       'hashTag': instance.hashTag,
-      'startDate': TimestampConverter.dateTimeToTimestamp(instance.startDate),
       'createdDateTime': NonNullTimestampConverter.dateTimeToTimestamp(
           instance.createdDateTime),
       'purchasedProducts':
