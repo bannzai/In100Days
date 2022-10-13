@@ -74,7 +74,6 @@ class SignInAsyncAction {
 
     final twitterAPIProfileImageURL = twitterAPIMe.profileImageUrlHttps!;
     final updateUser = user.copyWith(
-      twitterUserID: twitterAPIMe.idStr!,
       name: twitterAPIMe.name!,
       screenName: twitterAPIMe.screenName!,
       twitterAPIProfileImageURL: twitterAPIProfileImageURL,
