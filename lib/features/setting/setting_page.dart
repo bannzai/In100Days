@@ -6,12 +6,17 @@ import 'package:in_100_days/style/color.dart';
 import 'package:in_100_days/utility/open_twitter_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../provider/auth.dart';
+import '../error/error_alert.dart';
+import '../sign_in/state_notifier.dart';
+
 class SettingPage extends HookConsumerWidget {
   const SettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userStreamProvider).value;
+    final stateNotifier = ref.watch(loginStateNotifierProvider.notifier);
 
     if (user == null) {
       // Deleted User
@@ -81,6 +86,28 @@ class SettingPage extends HookConsumerWidget {
                       onTap: () {
                         launchUrl(Uri.parse(
                             "https://bannzai.github.io/In100Days/PrivacyPolicy"));
+                      },
+                    ),
+                    const Divider(color: Colors.black38, indent: 16),
+                    ListTile(
+                      title: Row(children: const [
+                        Text(
+                          "Twitter情報再取得",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 16),
+                        ),
+                        SizedBox(width: 8),
+                      ]),
+                      onTap: () async {
+                        try {
+                          final updatedUser = await stateNotifier.asyncAction.updateTwitterUser(user);
+                          final setUser = ref.read(setUserProvider);
+                          await setUser(updatedUser);
+
+                          ref.refresh(firebaseCurrentUserProvider);
+                        } catch (error) {
+                          showErrorAlert(context, error: error);
+                        }
                       },
                     ),
                     const Divider(color: Colors.black38),

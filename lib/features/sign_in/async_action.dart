@@ -55,6 +55,36 @@ class SignInAsyncAction {
     return user;
   }
 
+  Future<User> updateTwitterUser(User user) async {
+    await setupTwitterAPIClient();
+    const secureStorage = FlutterSecureStorage();
+    final twitterAuthToken =
+    await secureStorage.read(key: SecuretStorageKeys.twitterAuthToken);
+    final twitterAuthTokenSecret =
+    await secureStorage.read(key: SecuretStorageKeys.twitterAuthTokenSecret);
+    if (twitterAuthToken == null || twitterAuthTokenSecret == null) {
+      throw const FormatException("authToken or authTokenSecret is null");
+    }
+    final firebaseUserCredential = await firebaseSignInWithTwitter(
+        authToken: twitterAuthToken, authTokenSecret: twitterAuthTokenSecret);
+
+    final twitterUID = firebaseUserCredential.user!.providerData.first.uid;
+    final twitterAPIMe =
+    await twitterAPIClient.userService.usersShow(userId: twitterUID);
+
+    final twitterAPIProfileImageURL = twitterAPIMe.profileImageUrlHttps!;
+    final updateUser = user.copyWith(
+      name: twitterAPIMe.name!,
+      screenName: twitterAPIMe.screenName!,
+      twitterAPIProfileImageURL: twitterAPIProfileImageURL,
+      // Remove _normal. Reference: https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/user-profile-images-and-banners
+      orignalProfileImageURL:
+      twitterAPIProfileImageURL.replaceFirst("_normal", ""),
+    );
+
+    return updateUser;
+  }
+
   Future<AuthResult> twitterSignIn() async {
     final package = await PackageInfo.fromPlatform();
     final twitterSignIn = TwitterLogin(
