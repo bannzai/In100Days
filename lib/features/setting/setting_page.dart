@@ -102,7 +102,7 @@ class SettingPage extends HookConsumerWidget {
                         try {
                           final updatedUser = await stateNotifier.asyncAction.updateTwitterUser(user);
                           final setUser = ref.read(setUserProvider);
-                          await setUser(updateuser);
+                          await setUser(updatedUser);
 
                           ref.refresh(firebaseCurrentUserProvider);
                         } catch (error) {
