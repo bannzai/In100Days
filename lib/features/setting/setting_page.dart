@@ -100,7 +100,7 @@ class SettingPage extends HookConsumerWidget {
                       ]),
                       onTap: () async {
                         try {
-                          final updateuser = await stateNotifier.asyncAction.updateTwitterUser(user);
+                          final updatedUser = await stateNotifier.asyncAction.updateTwitterUser(user);
                           final setUser = ref.read(setUserProvider);
                           await setUser(updateuser);
 
