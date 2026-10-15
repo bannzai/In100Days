@@ -10,6 +10,9 @@ on:
   pull_request:
     branches: [main, feature/*]
 
+permissions:
+  contents: read
+
 jobs:
   build-ios-debug:
     runs-on: macos-latest
