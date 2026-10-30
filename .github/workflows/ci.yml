@@ -40,7 +40,7 @@ jobs:
       - name: Run iOS
         run: flutter build ios --debug --no-codesign --flavor dev --target lib/main_dev.dart
   build-android-debug:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
       - uses: actions/checkout@v1
@@ -64,7 +64,7 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk --debug --flavor dev --target lib/main_dev.dart
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
       - uses: actions/checkout@v1
@@ -78,7 +78,7 @@ jobs:
       - run: flutter pub get
       - run: flutter test
   codegen:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.title, '[Skip CI]') }}
     steps:
       - uses: actions/checkout@v1
